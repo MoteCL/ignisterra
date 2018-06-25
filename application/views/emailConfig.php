@@ -80,7 +80,7 @@
                                             <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
               <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
                                         </li>
-                                        <li class="active">
+                                        <li class="">
                                             <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
               <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
                                         </li>
@@ -183,7 +183,7 @@
                                               <?php foreach ($personas as $key): ?>
                                                 <?php if ($key-> Codigo == $mail-> codigoCC): ?>
                                                   <div style="margin-top: 10px;">
-                                                  
+
                                                     <p><?php echo $key-> Nombre; ?></p>
                                                   </div>
                                                 <?php endif; ?>
