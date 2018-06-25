@@ -82,10 +82,8 @@ class Seguimiento extends CI_Controller {
              $output .= '
 
          <center><br><br>
+				 <hr style="margin:0;">
          <div class="row">
-				 <div class="col-4 col-md-2"><strong> Numero Seguimiento</strong>
-				 <p> '.$row["idMan_Tecnico"].'</p>
-				 </div>
 				 <div class="col-4 col-md-2"><strong>Numero Solicitud</strong>
 				 <p> '.$row["NroSolicitud"].'</p>
 				 </div>
@@ -98,6 +96,23 @@ class Seguimiento extends CI_Controller {
 				 <div class="col-4 col-md-2"><strong> Tipo Detencion</strong>
 				 <p> '.$row["tipo_detencion"].'</p>
 				 </div>
+				 </div>
+				 <div class="row">
+				 <div class="col-4 col-md-2"><strong>Inicio</strong>
+				  <p> '.$row["horaInicio"].'</p>
+				 </div>
+				 <div class="col-4 col-md-2"><strong>Termino</strong>
+				  <p> '.$row["horaTermino"].'</p>
+				 </div>
+				 <div class="col-4 col-md-2"><strong>HH</strong>
+				  <p> '.$row["HH"].'</p>
+				 </div>
+				 <div class="col-4 col-md-2"><strong>HM</strong>
+				  <p> '.$row["HM"].'</p>
+				 </div>
+				 <div class="col-4 col-md-2"><strong>Detalle Tecnico</strong>
+				 <p> '.$row["Comentario"].'</p>
+				</div>
 				 </div>';
 
             }

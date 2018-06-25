@@ -116,6 +116,7 @@ class ModelSeguimiento extends CI_Model
     // $query = $this->db->get();
     $this->db->select('*');
     $this->db->from('MAN_Seguimiento');
+    $this->db->join('Seguimiento_Detalle as detalle','detalle.id_detalle = MAN_Seguimiento.idMan_Tecnico');
     $this->db->where('NroSolicitud',$phoneData);
     $res2 = $this->db->get();
     return $res2;

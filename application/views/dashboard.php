@@ -83,6 +83,10 @@
                                             <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
               <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
                                         </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/index');  ?>" target="_self" style="color:">
+              <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -94,7 +98,7 @@
             <div class="container-fluid">
                 <div class="side-body padding-top">
                     <h1 class="page-title">
-                        <i class="voyager-documentation"></i> Agregar Mantencion  
+                        <i class="voyager-documentation"></i> Agregar Mantencion
                     </h1>
                     <?php include('template/msg.php'); ?>
 
