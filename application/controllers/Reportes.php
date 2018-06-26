@@ -48,5 +48,20 @@ class Reportes extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function Mes()
+	{
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$this->load->view('report/usoMaquina',$data);
+	}
+
+
+	public function getEntreUnMes(){
+		$result = $this->report->getBETWEEN();
+		//print_r($result);
+		echo json_encode($result);
+	}
+
 
 }

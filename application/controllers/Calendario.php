@@ -25,15 +25,15 @@ class Calendario extends CI_Controller {
 	 **/
 	public function index()
 	{
-		// $parametros="host=192.168.0.102 user=prg password=Itsa2015 dbname=erp port=5432";
-		// $conectar=pg_connect($parametros) OR DIE("Fallo en la Conexion");
-		//
-		// $sql="SELECT * FROM adempiere.a_ref_list  order by value asc";
-		// $resultado = pg_query($sql) or die("Error en $sql:" .mysql_error());
-		// $data['data'] = $resultado;
+		$parametros="host=192.168.0.102 user=prg password=Itsa2015 dbname=erp port=5432";
+		$conectar=pg_connect($parametros) OR DIE("Fallo en la Conexion");
+
+		$sql="SELECT * FROM adempiere.a_ref_list  order by value asc";
+		$resultado = pg_query($sql) or die("Error en $sql:" .mysql_error());
+		$data['data'] = $resultado;
 
 		//$data['maquinas'] = $this->adempiere->getMaquina();
-		$data['maquinas'] = $this->ma->getallMaquinas();
+		//$data['maquinas'] = $this->ma->getallMaquinas();
 
 		$data['calendarios'] = $this->calendario->getCalendario();
 		$session_data = $this->session->userdata('logged_in');
