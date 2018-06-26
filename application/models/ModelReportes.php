@@ -11,7 +11,7 @@ class ModelReportes extends CI_Model {
  public function getIngresos()
  {
 
-   $sql ="SELECT `fechasolicitud`, count(*) as contador FROM `MAN_Solicitud` GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` DESC ";
+   $sql ="SELECT `fechasolicitud`, count(*) as contador FROM `MAN_Solicitud` GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` asc ";
    $query = $this->db->query($sql);
    if ($query->num_rows() > 0) {
      return $query->result();
@@ -24,7 +24,7 @@ class ModelReportes extends CI_Model {
  {
    $hoy = date('Y-m-d');
    $mes=date('Y-m-d',strtotime("-1 month"));
-   $sql ="SELECT `fechasolicitud`, count(*) as contador FROM `MAN_Solicitud` WHERE fechasolicitud BETWEEN '$mes' AND '$hoy' GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` DESC ";
+   $sql ="SELECT `fechasolicitud`, count(*) as contador FROM `MAN_Solicitud` WHERE fechasolicitud BETWEEN '$mes' AND '$hoy' GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` asc ";
 
      //$sql = "SELECT * FROM MAN_Solicitud WHERE fechasolicitud BETWEEN '$end' AND '$start'";
    $query = $this->db->query($sql);
@@ -38,9 +38,9 @@ class ModelReportes extends CI_Model {
  public function getEstados()
  {
 
-   $sql="SELECT count(*) as abierta from MAN_Solicitud where estado = 'ABIERTA' union SELECT count(*) as cerrada from MAN_Solicitud where estado = 'CERRADA'";
+   //$sql= "SELECT estado, count(*) from MAN_Solicitud WHERE estado = 'ABIERTA' UNION ALL SELECT estado, count(*) from MAN_Solicitud WHERE estado = 'CERRADA'";
 
-     //$sql = "SELECT * FROM MAN_Solicitud WHERE fechasolicitud BETWEEN '$end' AND '$start'";
+    $sql = "SELECT estado, COUNT(*) as contador FROM MAN_Solicitud WHERE estado IN ('ABIERTA','CERRADA','TECNICA') GROUP BY estado";
    $query = $this->db->query($sql);
    if ($query->num_rows() > 0) {
      return $query->result();

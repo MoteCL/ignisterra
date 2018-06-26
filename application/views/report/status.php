@@ -17,7 +17,8 @@
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                                <i class="voyager-home"></i> Panel
+                                <i class="voyager-home"></i>
+                                 <a href="<?php echo base_url('index.php/main/menu'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
                             <li class="">
                               <a href="#"></a>
@@ -107,11 +108,7 @@
                 <div class="side-body padding-top">
                     <h1 class="page-title">
                         <i class="voyager-file-text"></i> Estado <code>ABIERTA</code> e <code>CERRADA</code>
-                        <?php $hoy = date('Y-m-d');
-                         $nestedData = date('j M Y',strtotime($hoy));
-                         $hoyF =  date('j M Y',strtotime("-1 month"));
-                         echo 'Desde '.$hoyF.'  Hasta '.$nestedData;
-                         ?>
+
                     </h1>
                     <div class="page-content edit-add container-fluid">
                         <div class="row">
@@ -121,7 +118,10 @@
                                     <span class="voyager-documentation"></span> Imprimir &nbsp;
                                   </button>
                                     <div class="panel-body">
-                                      <canvas id="myChart"></canvas>
+                                      <div id="canvas-holder" style="width:30%">
+                                    		<canvas id="chart-area"></canvas>
+                                    	</div>
+
                                 </div>
                             </div>
                         </div>
@@ -141,13 +141,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 
 <script>
+
 var paramNombres = [];
 var paramEdades = [];
 $(document).ready(function(){
@@ -157,64 +155,51 @@ $(document).ready(function(){
 
 			paramNombres = [];
 			paramEdades = [];
-			bgColor = [];
-			bgBorder = [];
+
 			$.each(obj, function(i,item){
-				var r = Math.random() * 255;
-				r = Math.round(r);
 
-				var g = Math.random() * 255;
-				g = Math.round(g);
-
-				var b = Math.random() * 255;
-				b = Math.round(b);
-
-				paramNombres.push(item.abierta);
+				paramNombres.push(item.estado);
+        paramEdades.push(item.contador);
 
 			});
+      var config = {
+  			type: 'doughnut',
+  			data: {
+  				datasets: [{
+  					data: paramEdades,
+  					backgroundColor: [
+  						'#36a2eb',
+  						'#ff6384',
+              '#4bc0c0',
+
+  					],
+  					label: 'Dataset 1'
+  				}],
+  				labels: paramNombres
+  			},
+  			options: {
+  				responsive: true,
+  				legend: {
+  					position: 'top',
+  				},
+  				title: {
+  					display: true,
+  					text: 'Grafico de Mantenciones'
+  				},
+  				animation: {
+  					animateScale: true,
+  					animateRotate: true
+  				}
+  			}
+  		};
+
+      var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myDoughnut = new Chart(ctx, config);
 
 
-
-
-			var ctx = $("#myChart");
-			var myChart = new Chart(ctx, {type: 'doughnut',
-			data: {
-				datasets: [{
-					data: [
-						paramNombres
-					],
-					backgroundColor: [
-						window.chartColors.red,
-						window.chartColors.orange,
-
-					],
-					label: 'Dataset 1'
-				}],
-				labels: [
-					'Red',
-					'Orange'
-				]
-			},
-			options: {
-				responsive: true,
-				legend: {
-					position: 'top',
-				},
-				title: {
-					display: true,
-					text: 'Chart.js Doughnut Chart'
-				},
-				animation: {
-					animateScale: true,
-					animateRotate: true
-				}
-			}});
 
 		});
 });
 </script>
-
-
-
     </body>
     </html>

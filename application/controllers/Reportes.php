@@ -26,7 +26,9 @@ class Reportes extends CI_Controller {
 	 **/
 	public function index()
 	{
-
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
@@ -35,7 +37,9 @@ class Reportes extends CI_Controller {
 
 	public function usoMaquina()
 	{
-
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
@@ -50,6 +54,9 @@ class Reportes extends CI_Controller {
 
 	public function Mes()
 	{
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
@@ -65,6 +72,9 @@ class Reportes extends CI_Controller {
 
 	public function verEstado()
 	{
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];

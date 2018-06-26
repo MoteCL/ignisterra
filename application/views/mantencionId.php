@@ -19,7 +19,8 @@
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                                <i class="voyager-home"></i> Tablero
+                                <i class="voyager-home"></i> panel
+                                <a href="<?php echo base_url('index.php/main/menu'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
 
                             <li class="">

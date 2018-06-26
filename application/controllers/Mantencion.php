@@ -49,7 +49,7 @@ class Mantencion extends CI_Controller {
 			$result = $this->main->getEmail();
 			foreach ($result as $row) {
 				$recibeQuery = $row-> codigoEncargado;
-				$enviaQuery = $row-> smtp_user;
+				$envia = $row-> smtp_user;
 				$recibeUrQuery = $row -> codigoCC;
 				$config = Array(
 			'protocol' => $row->protocol,
@@ -65,6 +65,15 @@ class Mantencion extends CI_Controller {
 			foreach ($result1 as $key) {
 			 $recibe = $key-> Correo;
 			}
+			// 	$config = Array(
+			// 'protocol' => 'smtp',
+			// 'smtp_host' => 'mail.ignisterra.com ',
+			// 'smtp_port' => '25 TLS',
+			// 'smtp_user' => 'noreply@ignisterra.com',
+			// 'smtp_pass' => 'N10412014',
+			// 'mailtype'  => 'html',
+			// 'charset'   => 'iso-8859-1'
+			// );
 
 
 		$dataa['NroSolicitud'] = $_POST['NroSolicitud'];
