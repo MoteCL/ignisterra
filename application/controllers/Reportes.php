@@ -14,7 +14,8 @@ class Reportes extends CI_Controller {
  		parent::__construct();
  		$this->load->model('ModelMain', 'm');
 		$this->load->model('ModelMantencion', 'ma');
-		$this->load->model('ModelCalendario', 'calendario');
+		$this->load->model('ModelReportes', 'report');
+
 		//$this->load->model('ModelAdempiere', 'adempiere');
  	}
 
@@ -30,6 +31,21 @@ class Reportes extends CI_Controller {
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$this->load->view('reports',$data);
+	}
+
+	public function usoMaquina()
+	{
+
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$this->load->view('report/usoMaquina',$data);
+	}
+
+	public function getdata(){
+		$result = $this->report->getIngresos();
+		//print_r($result);
+		echo json_encode($result);
 	}
 
 

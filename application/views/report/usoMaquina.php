@@ -1,4 +1,4 @@
-<?php include("template/header.php"); ?>
+<?php include("header.php"); ?>
 
 <body class="voyager ">
 
@@ -19,12 +19,16 @@
                             <li class="">
                                 <i class="voyager-home"></i> Panel
                             </li>
-                            <li class="active">
+                            <li class="">
+                              <a href="#"></a>
                                 <i class="voyager-file-text"></i> Reportes
+                            </li>
+                            <li class="active">
+                                <i class="voyager-calendar"></i> Informe
                             </li>
                         </ol>
                     </div>
-                    <?php include('template/nav-top.php'); ?>
+                    <?php include('nav-top.php'); ?>
                 </div>
             </nav>
             <div class="side-menu sidebar-inverse">
@@ -101,43 +105,17 @@
             <div class="container-fluid">
                 <div class="side-body padding-top">
                     <h1 class="page-title">
-                        <i class="voyager-file-text"></i> Reportes Mantencion
+                        <i class="voyager-file-text"></i> Informe de Manteciones ingresadas
                     </h1>
-                    <?php include('template/msg.php'); ?>
+
 
 
                     <div class="page-content edit-add container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-
                                 <div class="panel panel-bordered">
-
                                     <div class="panel-body">
-                                      <div class="row">
-                                      <div class="col-lg-3 col-md-6">
-                                          <div class="panel panel-primary">
-                                              <div class="panel-heading">
-                                                  <div class="row">
-                                                      <div class="col-md-6">
-                                                        <br>
-                                                          <i class="voyager-calendar fa-2x" style="padding-left:10px"></i>
-                                                      </div>
-                                                      <div class="col-xs-10 text-center">
-                                                          <div class="huge">Generar Informe de Mantenciones ingresadas al sistema </div>
-
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <a href="<?php echo base_url('index.php/reportes/usoMaquina') ?>">
-                                                  <div class="panel-footer">
-                                                      <span class="pull-left">Obtener reporte</span>
-                                                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                      <div class="clearfix"></div>
-                                                  </div>
-                                              </a>
-                                          </div>
-                                      </div>
-                                  </div>
+                                      <canvas id="myChart" width="10" height="10"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -147,4 +125,81 @@
         </div>
     </div>
 
-    <?php include("template/footer.php"); ?>
+
+    <footer class="app-footer">
+        <div class="site-footer-right">
+                        Made with <i class="voyager-heart"></i>
+                                      - v1.1.0
+                </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
+<script>
+var paramNombres = [];
+var paramEdades = [];
+var bgColor = [];
+var bgBorder = [];
+$(document).ready(function(){
+	$.post("<?php echo base_url();?>index.php/Reportes/getdata",
+		function(data){
+			var obj = JSON.parse(data);
+
+			paramNombres = [];
+			paramEdades = [];
+			bgColor = [];
+			bgBorder = [];
+			$.each(obj, function(i,item){
+				var r = Math.random() * 255;
+				r = Math.round(r);
+
+				var g = Math.random() * 255;
+				g = Math.round(g);
+
+				var b = Math.random() * 255;
+				b = Math.round(b);
+
+				paramNombres.push(item.fechasolicitud);
+				paramEdades.push(item.contador);
+				bgColor.push('rgba('+r+','+g+','+b+', 0.3)');
+				bgBorder.push('rgba('+r+','+g+','+b+', 1)');
+			});
+
+
+
+
+			var ctx = $("#myChart");
+			var myChart = new Chart(ctx, {
+			    type: 'line',
+			    data: {
+			        labels: paramNombres,
+			        datasets: [{
+			            label: 'Fechas',
+                  steppedLine: paramEdades,
+			            data: paramEdades,
+
+			            borderColor: '#ff6384',
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+            responsive: true,
+        title: {
+          display: true,
+
+        }
+			    }
+			});
+
+		});
+});
+</script>
+
+    </body>
+    </html>
