@@ -106,7 +106,7 @@
             <div class="container-fluid">
                 <div class="side-body padding-top">
                     <h1 class="page-title">
-                        <i class="voyager-file-text"></i> Informe de Manteciones entre <code>un mes</code> |
+                        <i class="voyager-file-text"></i> Estado <code>ABIERTA</code> e <code>CERRADA</code>
                         <?php $hoy = date('Y-m-d');
                          $nestedData = date('j M Y',strtotime($hoy));
                          $hoyF =  date('j M Y',strtotime("-1 month"));
@@ -150,10 +150,8 @@
 <script>
 var paramNombres = [];
 var paramEdades = [];
-var bgColor = [];
-var bgBorder = [];
 $(document).ready(function(){
-	$.post("<?php echo base_url();?>index.php/Reportes/getEntreUnMes",
+	$.post("<?php echo base_url();?>index.php/Reportes/getStatus",
 		function(data){
 			var obj = JSON.parse(data);
 
@@ -171,41 +169,52 @@ $(document).ready(function(){
 				var b = Math.random() * 255;
 				b = Math.round(b);
 
-				paramNombres.push(item.fechasolicitud);
-				paramEdades.push(item.contador);
-				bgColor.push('rgba('+r+','+g+','+b+', 0.3)');
-				bgBorder.push('rgba('+r+','+g+','+b+', 1)');
+				paramNombres.push(item.abierta);
+
 			});
 
 
 
 
 			var ctx = $("#myChart");
-			var myChart = new Chart(ctx, {
-			    type: 'line',
-			    data: {
-			        labels: paramNombres,
-			        datasets: [{
-			            label: 'Mantenciones',
-                  steppedLine: paramEdades,
-			            data: paramEdades,
+			var myChart = new Chart(ctx, {type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [
+						paramNombres
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
 
-			            borderColor: '#ff6384',
-			            borderWidth: 1
-			        }]
-			    },
-			    options: {
-            responsive: true,
-        title: {
-          display: true,
-
-        }
-			    }
-			});
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange'
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Chart.js Doughnut Chart'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}});
 
 		});
 });
 </script>
+
+
 
     </body>
     </html>

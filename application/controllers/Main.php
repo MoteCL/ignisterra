@@ -32,7 +32,7 @@ class Main extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
-		$data['Password'] = $session_data['Password'];
+		
 		$this->load->view('dashboard',$data);
 	}
 

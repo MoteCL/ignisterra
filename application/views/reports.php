@@ -115,7 +115,7 @@
                                     <div class="panel-body">
                                       <div class="row">
                                       <div class="col-lg-3 col-md-6">
-                                          <div class="panel panel-primary">
+                                          <div class="panel panel-info">
                                               <div class="panel-heading">
                                                   <div class="row">
                                                       <div class="col-md-6">
@@ -128,13 +128,14 @@
                                                       </div>
                                                   </div>
                                               </div>
-                                              <a href="<?php echo base_url('index.php/reportes/usoMaquina') ?>">
-                                                  <div class="panel-footer">
-                                                      <span class="pull-left">Obtener reporte</span>
-                                                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                      <div class="clearfix"></div>
-                                                  </div>
-                                              </a>
+
+                                                <div class="panel-footer">
+                                                    <a href="<?php echo base_url('index.php/reportes/usoMaquina') ?>" class="btn btn-link">
+                                                    <span class="pull-left">Obtener reporte</span>
+                                                    </a>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                </div>
+
                                           </div>
                                       </div>
                                       <div class="col-lg-3 col-md-6">
@@ -143,7 +144,7 @@
                                                   <div class="row">
                                                       <div class="col-md-6">
                                                         <br>
-                                                          <i class="voyager-date fa-2x" style="padding-left:10px"></i>
+                                                          <i class="voyager-check fa-2x" style="padding-left:10px"></i>
                                                       </div>
                                                       <div class="col-xs-10 text-center">
                                                           <div class="huge">Generar Informe de Mantenciones ingresadas al sistema entre un mes </div>
@@ -151,17 +152,91 @@
                                                       </div>
                                                   </div>
                                               </div>
-                                              <a href="<?php echo base_url('index.php/reportes/Mes') ?>">
+
                                                   <div class="panel-footer">
+                                                      <a href="<?php echo base_url('index.php/reportes/Mes') ?>" class="btn btn-link">
                                                       <span class="pull-left">Obtener reporte</span>
+                                                      </a>
                                                       <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                      <div class="clearfix"></div>
                                                   </div>
-                                              </a>
                                           </div>
                                       </div>
+                                      <div class="col-lg-3 col-md-6">
+                                          <div class="panel panel-danger">
+                                              <div class="panel-heading">
+                                                  <div class="row">
+                                                      <div class="col-md-6">
+                                                        <br>
+                                                          <i class="voyager-boat fa-2x" style="padding-left:10px"></i>
+                                                      </div>
+                                                      <div class="col-xs-10 text-center">
+                                                          <div class="huge">Generar Informe de Mantencion de acuerdo a dos fechas eleguidas </div>
+
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                  <div class="panel-footer">
+                                                    <button type="button" class="btn btn-link"  data-toggle="modal" data-target="#exampleModalCenter">
+                                                      <span class="pull-left">Obtener reporte</span>
+
+                                                      </button>
+                                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                  </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-3 col-md-6">
+                                          <div class="panel panel-primary">
+                                              <div class="panel-heading">
+                                                  <div class="row">
+                                                      <div class="col-md-6">
+                                                        <br>
+                                                          <i class="voyager-person fa-2x" style="padding-left:10px"></i>
+                                                      </div>
+                                                      <div class="col-xs-9 text-center">
+                                                          <div class="huge">Ver total de Mantenciones ABIERTAS Y CERRADAS en el sistema </div>
+
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                  <div class="panel-footer">
+                                                      <a href="<?php echo base_url('index.php/reportes/verEstado') ?>" class="btn btn-link">
+                                                      <span class="pull-left">Obtener reporte</span>
+                                                      </a>
+                                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                  </div>
+                                          </div>
+                                      </div>
+
+
                                   </div>
                                 </div>
+                                <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <label>Desde</label>
+                                      <input type="date" name="" value="" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                      <label>Hasta</label>
+                                      <input type="date" name="" value="" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             </div>
                         </div>
                     </div>

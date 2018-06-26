@@ -53,12 +53,25 @@ class Reportes extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
-		$this->load->view('report/usoMaquina',$data);
+		$this->load->view('report/entreUnMes',$data);
 	}
 
 
 	public function getEntreUnMes(){
 		$result = $this->report->getBETWEEN();
+		//print_r($result);
+		echo json_encode($result);
+	}
+
+	public function verEstado()
+	{
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$this->load->view('report/status',$data);
+	}
+	public function getStatus(){
+		$result = $this->report->getEstados();
 		//print_r($result);
 		echo json_encode($result);
 	}

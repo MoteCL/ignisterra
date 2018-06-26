@@ -28,7 +28,7 @@ class Calendario extends CI_Controller {
 		$parametros="host=192.168.0.102 user=prg password=Itsa2015 dbname=erp port=5432";
 		$conectar=pg_connect($parametros) OR DIE("Fallo en la Conexion");
 
-		$sql="SELECT * FROM adempiere.a_ref_list  order by value asc";
+		$sql="SELECT * FROM adempiere.ad_ref_list  order by value asc";
 		$resultado = pg_query($sql) or die("Error en $sql:" .mysql_error());
 		$data['data'] = $resultado;
 
