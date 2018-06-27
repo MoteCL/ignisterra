@@ -32,8 +32,9 @@ class Main extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
-		
-		$this->load->view('dashboard',$data);
+			$data['Tipo'] = $session_data['Tipo'];
+
+		$this->load->view('landing-page',$data);
 	}
 
 	/**
@@ -55,7 +56,7 @@ class Main extends CI_Controller {
 
 			// Go to private area
 
-			redirect('main/menu', 'refresh');
+			redirect('main/index', 'refresh');
 		}
 	}
 
@@ -80,6 +81,7 @@ class Main extends CI_Controller {
 						$sess_array = array(
 							'Codigo' => $row-> Codigo,
 							'Nombre' => $row-> Nombre,
+							'Tipo' => $row-> tipo_usuario,
 						);
 						$this->session->set_userdata('logged_in', $sess_array);
 						return TRUE;
@@ -109,6 +111,8 @@ class Main extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
       $data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
+
 			$this->load->view('dashboard',$data);
 		}
 
@@ -131,6 +135,7 @@ class Main extends CI_Controller {
 			$data['personas']= $this->m->getallPersona();
 			$data['Codigo'] = $session_data['Codigo'];
       $data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 			$data['email'] = false;
 			if ($this->m->getEmail()) {
 				$data['email']= $this->m->getEmail();
@@ -184,6 +189,7 @@ class Main extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 
 			$this->load->view('emailConfig',$data);
 		}
@@ -226,6 +232,7 @@ class Main extends CI_Controller {
 				$session_data = $this->session->userdata('logged_in');
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
+				$data['Tipo'] = $session_data['Tipo'];
 
 				$this->load->view('emailConfig',$data);
 		}

@@ -22,7 +22,8 @@
                             </li>
                             <li class="">
                               <a href="#"></a>
-                                <i class="voyager-file-text"></i> Reportes
+                                <i class="voyager-file-text"></i>
+                                      <a href="<?php echo base_url('index.php/reportes/index'); ?>"  target="_self" style="color:">Reportes</a>
                             </li>
                             <li class="active">
                                 <i class="voyager-calendar"></i> Informe

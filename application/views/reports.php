@@ -1,24 +1,24 @@
 <?php include("template/header.php"); ?>
 
-<body class="voyager ">
+<body class="voyager">
 
     <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
     </div>
-    <div class="app-container">
+    <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button class="hamburger btn-link">
+                        <button class="hamburger btn-link is-active">
           <span class="hamburger-inner"></span>
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
                                 <i class="voyager-home"></i>
-                                 <a href="<?php echo base_url('index.php/main/menu'); ?>"  target="_self" style="color:">Panel</a>
+                                 <a href="<?php echo base_url('index.php/main/index'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
                             <li class="active">
                                 <i class="voyager-file-text"></i> Reportes
@@ -53,49 +53,20 @@
                         </div>
                     </div>
 
-                    <ul class="nav navbar-nav">
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
-        <span class="icon voyager-documentation"></span> <span class="title">Panel</span> </a>
-                        </li>
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:"> <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#8-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-documentation"></span> <span class="title">Encargado</span> </a>
-                            <div id="8-dropdown-element" class="panel-collapse collapse ">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-              <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-              <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-              <span class="icon voyager-check"></span> <span class="title">List Man. asignadas</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="<?php echo base_url('index.php/reportes/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <?php
+                    switch ($Tipo) {
+                        case 1:
+                            include('template/nav-user.php');
+                          break;
+                        case 2:
+                            include('template/nav-enc.php');
+                            break;
+                        case 3:
+                            include('template/nav-adm.php');
+                            break;
+
+                    }
+                    ?>
                 </nav>
             </div>
             <!-- Main Content -->
@@ -121,7 +92,7 @@
                                                   <div class="row">
                                                       <div class="col-md-6">
                                                         <br>
-                                                          <i class="voyager-calendar fa-2x" style="padding-left:10px"></i>
+                                                          <i class="far fa-calendar-alt fa-2x" style="padding-left:10px"></i>
                                                       </div>
                                                       <div class="col-xs-10 text-center">
                                                           <div class="huge">Generar Informe de Mantenciones ingresadas al sistema </div>
@@ -210,6 +181,106 @@
 
 
                                   </div>
+
+
+                                  <!-- 2da Row -->
+                                  <div class="row">
+                                  <div class="col-lg-3 col-md-6">
+                                      <div class="panel panel-warning">
+                                          <div class="panel-heading">
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <br>
+                                                      <i class="voyager-truck fa-2x" style="padding-left:10px"></i>
+                                                  </div>
+                                                  <div class="col-xs-10 text-center">
+
+                                                      <div class="huge">Desempeño de Maquina </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                            <div class="panel-footer">
+                                                <a href="#" class="btn btn-link">
+                                                <span class="pull-left">Obtener reporte</span>
+                                                </a>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            </div>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6">
+                                      <div class="panel panel-success">
+                                          <div class="panel-heading">
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <br>
+                                                      <i class="voyager-check fa-2x" style="padding-left:10px"></i>
+                                                  </div>
+                                                  <div class="col-xs-10 text-center">
+                                                      <div class="huge">Indice de cumplimiento Mantencion </div>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                              <div class="panel-footer">
+                                                  <a href="#" class="btn btn-link">
+                                                  <span class="pull-left">Obtener reporte</span>
+                                                  </a>
+                                                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                              </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6">
+                                      <div class="panel panel-danger">
+                                          <div class="panel-heading">
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <br>
+                                                      <i class="voyager-boat fa-2x" style="padding-left:10px"></i>
+                                                  </div>
+                                                  <div class="col-xs-10 text-center">
+                                                      <div class="huge">Informes horas hombres </div>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                              <div class="panel-footer">
+                                                <button type="button" class="btn btn-link"  data-toggle="modal" data-target="#exampleModalCenter">
+                                                  <span class="pull-left">Obtener reporte</span>
+
+                                                  </button>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                              </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6">
+                                      <div class="panel panel-primary">
+                                          <div class="panel-heading">
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <br>
+                                                      <i class="voyager-person fa-2x" style="padding-left:10px"></i>
+                                                  </div>
+                                                  <div class="col-xs-9 text-center">
+                                                      <div class="huge">Informes tecnicos</div>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                              <div class="panel-footer">
+                                                    <a href="#" class="btn btn-link">
+                                                  <span class="pull-left">Obtener reporte</span>
+                                                  </a>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                              </div>
+                                      </div>
+                                  </div>
+
+
+                              </div>
+
                                 </div>
                                 <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -14,6 +14,22 @@ class Mantencion extends CI_Controller {
 
  	}
 
+	public function index()
+	{
+
+		if (!$this->session->userdata('logged_in')) {
+			$this->load->view('index');
+		}
+		$data['data']=$this->ma->getallMaquinas();
+		$data['orden']=$this->ma->getOrden();
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
+
+		$this->load->view('dashboard',$data);
+	}
+
   public function save()
 	{
     $this->load->helper('date');
@@ -65,6 +81,10 @@ class Mantencion extends CI_Controller {
 			foreach ($result1 as $key) {
 			 $recibe = $key-> Correo;
 			}
+			$result2 = $this->main->getCorreo($recibeUrQuery);
+			foreach ($result2 as $key) {
+			 $recibeUr = $key-> Correo;
+			}
 			// 	$config = Array(
 			// 'protocol' => 'smtp',
 			// 'smtp_host' => 'mail.ignisterra.com ',
@@ -88,16 +108,13 @@ class Mantencion extends CI_Controller {
 		$dataa['tipomantencion'] = $_POST['tipomantencion'];
 		$dataa['urgente'] = $_POST['urgente'];
 		$dataa['detalle'] = $_POST['detalle'];
-		$this->load->library('email', $config);
+		$this->load->library('email',$config);
 		$this->email->set_newline("\r\n");
 		$body = $this->load->view('email/index.php',$dataa,TRUE);
 		$this->email->from($envia, 'No responder');
 		$this->email->to($recibe);
 		if ($this->input->post('urgente')) {
-			$result2 = $this->main->getCorreo($recibeUrQuery);
-			foreach ($result2 as $key) {
-			 $recibeUr = $key-> Correo;
-			}
+
 				$this->email->cc($recibeUr);
 		}
 		$this->email->subject('Nueva Mantecion');
@@ -119,6 +136,7 @@ class Mantencion extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
       $data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 
       $this->load->view('dashboard',$data);
     }
@@ -138,6 +156,7 @@ class Mantencion extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('list-mantencion',$data);
 	}
 
@@ -153,6 +172,7 @@ class Mantencion extends CI_Controller {
 		$data['personas']=$this->main->getallPersona();
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('verMantencion', $data);
 	}
 
@@ -167,6 +187,7 @@ class Mantencion extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 			$this->load->view('list-aprobado',$data);
 
 		}
@@ -198,6 +219,7 @@ class Mantencion extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 			$this->load->view('search', $data);
 
 		}
@@ -210,6 +232,7 @@ class Mantencion extends CI_Controller {
 				$session_data = $this->session->userdata('logged_in');
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
+				$data['Tipo'] = $session_data['Tipo'];
 			$this->form_validation->set_rules('NroSolicitud', 'NroSolicitud', 'required', array(
 				'required' => 'Ingrese un codigo!'
 			));
@@ -309,6 +332,7 @@ class Mantencion extends CI_Controller {
 				$data['personas']=$this->main->getallPersona();
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
+				$data['Tipo'] = $session_data['Tipo'];
 
 				$this->load->view('verMantencion', $data);
 			}
@@ -328,6 +352,7 @@ class Mantencion extends CI_Controller {
 			$data['numero'] = $_POST['numero'];
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 			$tittle['titulo'] = 'Historial de Maquina';
 			$tittle['maquina'] = $maquina;
 

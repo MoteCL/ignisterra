@@ -1,6 +1,6 @@
 <?php include("template/header.php"); ?>
 
-<body class="voyager ">
+<body class="voyager">
 
     <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
@@ -8,19 +8,19 @@
     </div>
 
 
-    <div class="app-container">
+    <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button class="hamburger btn-link">
+                        <button class="hamburger btn-link is-active">
           <span class="hamburger-inner"></span>
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
                                 <i class="voyager-home"></i>
-                                 <a href="<?php echo base_url('index.php/main/menu'); ?>"  target="_self" style="color:">Panel</a>
+                                 <a href="<?php echo base_url('index.php/main/index'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
                             <li class="">
                                 <i class="voyager-list"></i>
@@ -62,46 +62,20 @@
                         </div>
 
                     </div>
-                    <ul class="nav navbar-nav">
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
-        <span class="icon voyager-documentation"></span> <span class="title">Panel</span> </a>
-                        </li>
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:"> <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
-                            </a>
-                        </li>
+                    <?php
+                    switch ($Tipo) {
+                        case 1:
+                            include('template/nav-user.php');
+                          break;
+                        case 2:
+                            include('template/nav-enc.php');
+                            break;
+                        case 3:
+                            include('template/nav-adm.php');
+                            break;
 
-                        <li class="dropdown active">
-                            <a href="#8-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-documentation"></span> <span class="title">Encargado</span> </a>
-                            <div id="8-dropdown-element" class="panel-collapse collapse ">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active">
-                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-              <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-              <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-              <span class="icon voyager-check"></span> <span class="title">List Man. asignadas</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    }
+                    ?>
                 </nav>
             </div>
 

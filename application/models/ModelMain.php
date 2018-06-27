@@ -7,7 +7,7 @@ class ModelMain extends CI_Model
 
 	public function login($codigo)
 	{
-		$this->db->select('Codigo, Nombre, Area, Password');
+		$this->db->select('Codigo, Nombre, Area, Password, tipo_usuario');
 		$this->db->from('personal');
 		$this->db->where('NomUser', $codigo);
 		// $this->db->where('password',$pwd));
@@ -93,6 +93,7 @@ class ModelMain extends CI_Model
 			return false;
 		}
 	}
+
 
 }
 

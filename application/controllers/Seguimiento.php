@@ -20,6 +20,7 @@ class Seguimiento extends CI_Controller {
     $session_data = $this->session->userdata('logged_in');
     $data['Codigo'] = $session_data['Codigo'];
     $data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$data['tecnicos']=$this->seguimiento->getSeguimientoWhere($estado);
 
 		$data['datos']=$this->seguimiento->getWhereEstado($estado);
@@ -41,6 +42,7 @@ class Seguimiento extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 
 		$this->load->view('verManTecnico', $data);
 	}
@@ -66,6 +68,7 @@ class Seguimiento extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 
 		$this->load->view('entreFechas', $data);
 	}
@@ -130,6 +133,7 @@ class Seguimiento extends CI_Controller {
 	 $session_data = $this->session->userdata('logged_in');
 	 $data['Codigo'] = $session_data['Codigo'];
 	 $data['Nombre'] = $session_data['Nombre'];
+	 $data['Tipo'] = $session_data['Tipo'];
 
 	 $this->load->view('entreFechas', $data);
  }
@@ -145,6 +149,7 @@ class Seguimiento extends CI_Controller {
 	$session_data = $this->session->userdata('logged_in');
 	$data['Codigo'] = $session_data['Codigo'];
 	$data['Nombre'] = $session_data['Nombre'];
+	$data['Tipo'] = $session_data['Tipo'];
 
 	  if ($this->form_validation->run()) {
 			$inicio= $this->input->post('inicio');

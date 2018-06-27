@@ -32,6 +32,7 @@ class Reportes extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('reports',$data);
 	}
 
@@ -43,6 +44,7 @@ class Reportes extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('report/usoMaquina',$data);
 	}
 
@@ -60,6 +62,7 @@ class Reportes extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('report/entreUnMes',$data);
 	}
 
@@ -78,6 +81,7 @@ class Reportes extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
 		$this->load->view('report/status',$data);
 	}
 	public function getStatus(){
