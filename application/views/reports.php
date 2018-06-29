@@ -52,18 +52,20 @@
                             </div>
                         </div>
                     </div>
-
                     <?php
                     switch ($Tipo) {
                         case 1:
                             include('template/nav-user.php');
                           break;
                         case 2:
-                            include('template/nav-enc.php');
+                            include('template/nav-sup.php');
                             break;
                         case 3:
-                            include('template/nav-adm.php');
+                            include('template/nav-enc.php');
                             break;
+                        case 4:
+                            include('template/nav-adm.php');
+                          break;
 
                     }
                     ?>

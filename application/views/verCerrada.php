@@ -66,11 +66,14 @@
                             include('template/nav-user.php');
                           break;
                         case 2:
-                            include('template/nav-enc.php');
+                            include('template/nav-sup.php');
                             break;
                         case 3:
-                            include('template/nav-adm.php');
+                            include('template/nav-enc.php');
                             break;
+                        case 4:
+                            include('template/nav-adm.php');
+                          break;
 
                     }
                     ?>
@@ -117,7 +120,7 @@
                                             </div>
                                             <div class="col-4 col-md-2">Fecha
                                                 <p>
-                                                    <?php echo $data-> fechasolicitud; ?>
+                                                    <?php echo  date('j M Y',strtotime($data-> fechasolicitud)); ?>
                                                 </p>
                                             </div>
                                             <div class="col-4 col-md-2">Hora
@@ -226,7 +229,7 @@
                                                 </div>
                                                 <div class="col-4 col-md-2"> Fecha Ingresada
                                                     <p>
-                                                        <?php echo $seguimiento-> fecha; ?>
+                                                        <?php echo  date('j M Y',strtotime($seguimiento-> fecha)); ?>
                                                     </p>
                                                 </div>
                                             </div>

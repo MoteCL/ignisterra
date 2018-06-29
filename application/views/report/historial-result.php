@@ -61,9 +61,12 @@
                             require_once(APPPATH.'views/template/nav-user.php');
                           break;
                         case 2:
-                              require_once(APPPATH.'views/template/nav-enc.php');
+                              require_once(APPPATH.'views/template/nav-sup.php');
                             break;
                         case 3:
+                                  require_once(APPPATH.'views/template/nav-enc.php');
+                            break;
+                        case 4:
                               require_once(APPPATH.'views/template/nav-adm.php');
                             break;
                     }

@@ -45,7 +45,7 @@
       $("#divhidden").hide(100);
       $("input[name=tipotrabajo]:checked").prop('checked', false);
         });
-  //mostrar_mensaje();
+  mostrar_mensaje();
    });
 
 
@@ -112,11 +112,27 @@
    }
 </script>
 <script>
-$(document).ready(function() {
-// get current URL path and assign 'active' class
-var pathname = window.location.pathname;
-$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
-})
+// Start jQuery function after page is loaded
+  $(document).ready(function(){
+
+      $('.view_data').keyup(function(){
+
+          var phoneData = $('#phoneData').val();
+          $.ajax({
+              url: "<?php echo base_url() ?>index.php/main/get_personal",
+              method: "POST",
+              data: {phoneData:phoneData},
+              success: function(data){
+                // within the Bootstrap modal
+                  $('#phone_result').html(data);
+
+              }
+
+        });
+        // End AJAX function
+    });
+});
+
 </script>
 </body>
 </html>

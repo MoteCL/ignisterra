@@ -82,6 +82,7 @@ class Main extends CI_Controller {
 							'Codigo' => $row-> Codigo,
 							'Nombre' => $row-> Nombre,
 							'Tipo' => $row-> tipo_usuario,
+							'Area' =>$row-> Area,
 						);
 						$this->session->set_userdata('logged_in', $sess_array);
 						return TRUE;
@@ -252,6 +253,24 @@ class Main extends CI_Controller {
 
 				return redirect('main/configEmail');
 			}
+
+			public function get_personal()
+			{
+				$phoneData = $this->input->post('phoneData');
+				  $output = '';
+		        if(isset($phoneData) and !empty($phoneData)){
+		            $records = $this->m->persona($phoneData);
+
+		            foreach($records->result_array() as $row){
+
+		             $output .= ' '.$row['Nombre'].' ';
+
+		            }
+		            echo $output;
+		        }else {
+		        	 echo $output .= 'ERROR 404 ';
+		        }
+		 		}
 
 
 

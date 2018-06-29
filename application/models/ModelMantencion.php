@@ -76,7 +76,7 @@ class ModelMantencion extends CI_Model
       return $query->result();
     }
     }
-    
+
   public function getMantencionbyId($id)
 	{
     $query = $this->db->get_where('MAN_Solicitud', array(
@@ -114,6 +114,17 @@ class ModelMantencion extends CI_Model
 			return $query->result();
 		}
 	}
+
+  public function listByArea($area)
+  {
+    $query = $this->db->get_where('MAN_Solicitud', array(
+      'CodArea' => 'PB'
+    ));
+
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    }
+  }
 
 }
 

@@ -1,23 +1,26 @@
 <?php include("template/header.php"); ?>
 
-<body class="voyager ">
+<body class="voyager">
 
     <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
     </div>
-    <div class="app-container">
+    <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button class="hamburger btn-link">
+                        <button class="hamburger btn-link is-active">
           <span class="hamburger-inner"></span>
           </button>
                         <ol class="breadcrumb hidden-xs">
+                            <li class="">
+                              <i class="voyager-home"></i> <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
+                            </li>
                             <li class="active">
-                                <i class="voyager-home"></i> Panel
+                                <i class="voyager-tag"></i> Solicitar Mantencion
                             </li>
                         </ol>
                     </div>
@@ -32,7 +35,7 @@
                                 <div class="logo-icon-container">
                                     <img src="<?php echo base_url('assets/img/logo-icon-light.png'); ?>" alt="Logo Icon">
                                 </div>
-                                <div class="title">Bienvenido</div>
+                                <div class="title">Ignisterra</div>
                             </a>
                         </div>
                         <!-- .navbar-header -->
@@ -48,46 +51,23 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                    switch ($Tipo) {
+                        case 1:
+                            include('template/nav-user.php');
+                          break;
+                        case 2:
+                            include('template/nav-sup.php');
+                            break;
+                        case 3:
+                            include('template/nav-enc.php');
+                            break;
+                        case 4:
+                            include('template/nav-adm.php');
+                          break;
 
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
-        <span class="icon voyager-documentation"></span> <span class="title">Panel</span> </a>
-                        </li>
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:"> <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#8-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-documentation"></span> <span class="title">Encargado</span> </a>
-                            <div id="8-dropdown-element" class="panel-collapse collapse ">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-              <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-              <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-              <span class="icon voyager-check"></span> <span class="title">List Man. asignadas</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    }
+                    ?>
                 </nav>
             </div>
             <!-- Main Content -->
@@ -96,6 +76,7 @@
                     <h1 class="page-title">
                         <i class="voyager-documentation"></i> Agregar Mantencion
                     </h1>
+
                     <?php include('template/msg.php'); ?>
 
 
@@ -127,7 +108,7 @@
 
                                             <div class="form-group mx-sm-3 mb-2">
                                                 <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-
+                                                  <option selected="">Choose...</option>
                                         <?php if ($data) foreach ($data as $maquina) { ?>
 
                                           <option  value="<?php echo set_value('CodArea'); ?><?php echo $maquina-> CodArea ?>"> <?php echo set_value('maquina'); ?>
@@ -151,6 +132,7 @@
                                         </div>
                                         <div class="form-group  col-sm-8">
                                             <h3>Tipo Mantencion</h3>
+                                            <br>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="tipomantencion" id="tipo_mantencion1" value="Correctiva" <?php echo set_radio( 'tipomantencion', 'Correctiva') ?>>
                                                 <label class="form-check-label" for="tipo_mantencion1">Correctiva</label>
@@ -201,11 +183,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group  col-md-12">
+                                          <?php if ($Tipo==2||$Tipo==3): ?>
                                             <label>Urgente</label>
                                             <div class="custom-control custom-checkbox">
                                                 <?php echo form_checkbox('urgente', 'Si'); ?>
                                                 <label class="custom-control-label" for="customCheck1">Se requiere urgente?</label>
                                             </div>
+                                          <?php endif; ?>
+
                                         </div>
 
                                     </div>

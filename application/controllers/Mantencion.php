@@ -29,6 +29,21 @@ class Mantencion extends CI_Controller {
 
 		$this->load->view('dashboard',$data);
 	}
+	public function landingPage()
+	{
+
+		if (!$this->session->userdata('logged_in')) {
+			$this->load->view('index');
+		}
+		$data['data']=$this->ma->getallMaquinas();
+		$data['orden']=$this->ma->getOrden();
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
+
+		$this->load->view('dashboard-MAN',$data);
+	}
 
   public function save()
 	{
@@ -142,12 +157,131 @@ class Mantencion extends CI_Controller {
     }
 
 
+
+
+
 	}
+
+	public function saveMAN()
+	{
+    $this->load->helper('date');
+		$session_data = $this->session->userdata('logged_in');
+    $this->form_validation->set_rules('NroSolicitud', 'NroSolicitud');
+    $this->form_validation->set_rules('maquina', 'maquina','required|trim',array(
+			'required' => 'Seleccione una maquina'
+		));
+    $this->form_validation->set_rules('CodArea', 'CodArea');
+    $this->form_validation->set_rules('detalle', 'detalle', 'required', array(
+			'required' => 'Ingrese un detalle'
+		));
+    $this->form_validation->set_rules('tipomantencion', 'tipomantencion', 'required', array(
+			'required' => 'Seleccione una mantencion'
+		));
+    $this->form_validation->set_rules('urgente', 'urgente');
+    $this->form_validation->set_rules('tipotrabajo', 'tipotrabajo');
+		$this->form_validation->set_rules('phoneData', 'phoneData','required', array(
+			'required' => 'Ingrese codigo'
+		));
+
+
+    if ($this->form_validation->run()) {
+
+			$data['NroSolicitud'] = $_POST['NroSolicitud'];
+			$data['maquina'] = $_POST['maquina'];
+			$data['tipotrabajo'] = $_POST['tipotrabajo'];
+			$data['tipomantencion'] = $_POST['tipomantencion'];
+
+			$data['CodArea'] = $_POST['CodArea'];
+			$data['detalle'] = $_POST['detalle'];
+
+
+      $data['fechasolicitud'] = date('Y-m-d');
+      $data['horasolicitud'] = date('H:i:s');
+			$data['estado'] = 'ABIERTA';
+			$data['cod_detecta'] = $this->input->post('phoneData');
+
+      if ($this->ma->addData($data)) {
+					$message='Mantención  ingresada exitosamente   ';
+      } else {
+        $this->session->set_flashdata('error_msg', 'Error DB');
+      }
+			$result = $this->main->getEmail();
+			foreach ($result as $row) {
+				$recibeQuery = $row-> codigoEncargado;
+				$envia = $row-> smtp_user;
+
+				$config = Array(
+			'protocol' => $row->protocol,
+			'smtp_host' => $row->smtp_host,
+			'smtp_port' => $row->smtp_port,
+			'smtp_user' => $row->smtp_user,
+			'smtp_pass' => $row->smtp_pass,
+			'mailtype'  => $row->mailtype,
+			'charset'   => $row->charset
+			);
+			}
+			$result1 = $this->main->getCorreo($recibeQuery);
+			foreach ($result1 as $key) {
+			 $recibe = $key-> Correo;
+			}
+
+			$result3 = $this->main->getCorreo($this->input->post('phoneData'));
+			foreach ($result3 as $key) {
+				$nombrePersonal = $key-> Nombre;
+			}
+
+
+
+		$dataa['NroSolicitud'] = $_POST['NroSolicitud'];
+		$dataa['maquina'] = $_POST['maquina'];
+		$dataa['Nombre'] = $nombrePersonal;
+		$dataa['Codigo'] = $this->input->post('phoneData');
+		$dataa['CodArea'] = $_POST['CodArea'];
+		$dataa['detalle'] = $_POST['detalle'];
+		$dataa['tipotrabajo'] = $_POST['tipotrabajo'];
+		$dataa['tipomantencion'] = $_POST['tipomantencion'];
+		$dataa['urgente'] = $_POST['urgente'];
+
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+		$body = $this->load->view('email/index.php',$dataa,TRUE);
+		$this->email->from($envia, 'No responder');
+		$this->email->to($recibe);
+
+		$this->email->subject('Nueva Mantecion');
+		$this->email->message($body);
+		$this->email->set_mailtype("html");
+
+			if ($this->email->send()) {
+
+			$this->session->set_flashdata('success_msg', 'Mantención  ingresada exitosamente');
+		}else {
+			$message.= $this->email->print_debugger();
+				$this->session->set_flashdata('success_msg', $message);
+
+		}
+      return redirect('main/menu');
+    } else {
+			$data['data']=$this->ma->getallMaquinas();
+			$data['orden']=$this->ma->getOrden();
+			$session_data = $this->session->userdata('logged_in');
+			$data['Codigo'] = $session_data['Codigo'];
+      $data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
+
+      $this->load->view('dashboard',$data);
+    }
+
+	}
+
+
+
+
 	public function listado()
 	{
-		// if (!$this->session->userdata('logged_in')) {
-		// 	redirect('main/login', 'refresh');
-		// }
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$estado = 'PENDIENTE';
 		$estado2 = 'ABIERTA';
 
@@ -163,9 +297,9 @@ class Mantencion extends CI_Controller {
 	public function verMantencion($id)
 	{
 
-		// if (!$this->session->userdata('logged_in')) {
-		// 	redirect('main/login', 'refresh');
-		// }
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$data['data'] = $this->ma->getMantencionbyId($id);
 		$data['area']=$this->ma->getallArea();
 		$session_data = $this->session->userdata('logged_in');
@@ -193,9 +327,9 @@ class Mantencion extends CI_Controller {
 		}
 		public function verSeguimientoCerrado($id)
 		{
-			// if (!$this->session->userdata('logged_in')) {
-			// 	redirect('main/login', 'refresh');
-			// }
+			if (!$this->session->userdata('logged_in')) {
+				redirect('main/login', 'refresh');
+			}
 			$data['data'] = $this->ma->getMantencionbyId($id);
 			$data['area']=$this->ma->getallArea();
 			$session_data = $this->session->userdata('logged_in');
@@ -206,6 +340,7 @@ class Mantencion extends CI_Controller {
 
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
 			$this->load->view('verCerrada', $data);
 
 		}
@@ -213,9 +348,9 @@ class Mantencion extends CI_Controller {
 
 		public function buscarView()
 		{
-			// if (!$this->session->userdata('logged_in')) {
-			// 	redirect('main/login', 'refresh');
-			// }
+			if (!$this->session->userdata('logged_in')) {
+				redirect('main/login', 'refresh');
+			}
 			$session_data = $this->session->userdata('logged_in');
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
@@ -226,9 +361,9 @@ class Mantencion extends CI_Controller {
 
 		public function buscarMantencion()
 		{
-			// if (!$this->session->userdata('logged_in')) {
-			// 	redirect('main/login', 'refresh');
-			// }
+			if (!$this->session->userdata('logged_in')) {
+				redirect('main/login', 'refresh');
+			}
 				$session_data = $this->session->userdata('logged_in');
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
@@ -340,9 +475,9 @@ class Mantencion extends CI_Controller {
 
 		public function historialMaquina($maquina)
 		{
-			// if (!$this->session->userdata('logged_in')) {
-			// 	redirect('main/login', 'refresh');
-			// 	}
+			if (!$this->session->userdata('logged_in')) {
+				redirect('main/login', 'refresh');
+			}
 			$session_data = $this->session->userdata('logged_in');
 			$data['maquinas'] = $this->ma->gethistorialMaquina($maquina);
 			$data['personas']=$this->main->getallPersona();
@@ -359,6 +494,29 @@ class Mantencion extends CI_Controller {
 			$this->load->view('template/headerwith',$tittle);
 			$this->load->view('historialMaquina',$data);
 
+		}
+
+		public function listByArea()
+		{
+			if (!$this->session->userdata('logged_in')) {
+				redirect('main/login', 'refresh');
+			}
+			$session_data = $this->session->userdata('logged_in');
+			$data['personas']=$this->main->getallPersona();
+			$data['Codigo'] = $session_data['Codigo'];
+			$data['Nombre'] = $session_data['Nombre'];
+			$data['Tipo'] = $session_data['Tipo'];
+
+			$this->load->view('list-sup', $data);
+		}
+
+		public function getArea()
+		{
+			$session_data = $this->session->userdata('logged_in');
+			$area= $session_data['Codigo'];
+
+			$result =$this->ma->listByArea($area);
+				echo json_encode($result);
 		}
 
 

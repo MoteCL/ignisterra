@@ -16,7 +16,11 @@ class Seguimiento extends CI_Controller {
 
 
   public function MAN_Seguimiento()
-  {	$estado = 'TECNICA';
+  {
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
+		$estado = 'TECNICA';
     $session_data = $this->session->userdata('logged_in');
     $data['Codigo'] = $session_data['Codigo'];
     $data['Nombre'] = $session_data['Nombre'];
@@ -31,9 +35,9 @@ class Seguimiento extends CI_Controller {
 	public function verSeguimiento($id)
 	{
 
-		// if (!$this->session->userdata('logged_in')) {
-		// 	redirect('main/login', 'refresh');
-		// }
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$estado = 'TECNICA';
 		$data['datos'] = $this->ma->getMantenciones();
 		$data['personas']=$this->main->getallPersona();
@@ -62,9 +66,9 @@ class Seguimiento extends CI_Controller {
 
 	public function entreFechas()
 	{
-		// if (!$this->session->userdata('logged_in')) {
-		// 	redirect('main/login', 'refresh');
-		// }
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
@@ -127,9 +131,9 @@ class Seguimiento extends CI_Controller {
 
  public function get_fechas()
  {
-	 // if (!$this->session->userdata('logged_in')) {
-		//  redirect('main/login', 'refresh');
-	 // }
+	 if (!$this->session->userdata('logged_in')) {
+		 redirect('main/login', 'refresh');
+	 }
 	 $session_data = $this->session->userdata('logged_in');
 	 $data['Codigo'] = $session_data['Codigo'];
 	 $data['Nombre'] = $session_data['Nombre'];
@@ -169,7 +173,6 @@ class Seguimiento extends CI_Controller {
 
 	}else{
 	 $session_data = $this->session->userdata('logged_in');
-
  	 $this->load->view('entreFechas', $data);
 
 	}

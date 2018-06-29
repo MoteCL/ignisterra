@@ -18,7 +18,7 @@
             }
       ?>
       <?php foreach ($fechas as $fecha): ?>
-      <table class="table table-hover dataTable no-footer">
+      <table  class="table table-hover dataTable no-footer">
       <thead>
           <tr>
               <th>Fecha</th>
@@ -52,7 +52,8 @@
               $cadena = date("H:i", $cadena);
               echo $cadena;
                ?>
-               <input type="hidden" name="horaInicio" id="horaInicio" value="<?php echo $cadena ?>">
+               <!-- <input type="hidden" data-start="horaInicio" value="<?php echo $cadena ?>"> -->
+               <input type="hidden"  id="horaInicio" value="<?php echo $cadena ?>">
           </td>
           <td style="	width: 10%;">
               <?php
@@ -60,7 +61,8 @@
               $cadena2 = date("H:i", $cadena2);
               echo $cadena2;
                ?>
-               <input type="hidden" name="horaTermino" id="horaTermino" value="<?php echo $cadena2 ?>">
+               <!-- <input type="hidden"  data-start="horaTermino" value="<?php echo $cadena2 ?>"> -->
+               <input type="hidden"  id="horaTermino" value="<?php echo $cadena2 ?>">
           </td>
           <td style="	width: 10%;">
             <?php

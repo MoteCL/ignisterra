@@ -61,9 +61,12 @@
                             require_once(APPPATH.'views/template/nav-user.php');
                           break;
                         case 2:
-                              require_once(APPPATH.'views/template/nav-enc.php');
+                              require_once(APPPATH.'views/template/nav-sup.php');
                             break;
                         case 3:
+                                  require_once(APPPATH.'views/template/nav-enc.php');
+                            break;
+                        case 4:
                               require_once(APPPATH.'views/template/nav-adm.php');
                             break;
                     }
@@ -145,22 +148,33 @@
     });
     function ObtieneTotHoras()
     {
-            HDesde=$('#horaInicio').val();
-            HHasta=$('#horaTermino').val();
+      // var table = $(".table");
+      //
+      //    table.each(function() {
+      //
+      //        this.find('tr').each(function () {
+               HDesde=$('#horaInicio').val();
+               HHasta=$('#horaTermino').val();
 
-            hora1 = (HDesde).split(":");
-            hora2 = (HHasta).split(":");
-            HoraDesde=(hora1[0]);
-            MinutoDesde=(hora1[1]);
-            HoraHasta=(hora2[0]);
-            MinutoHasta=(hora2[1]);
-            TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
-            TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
-            RestaHoras=(TotHasta - TotDesde);
-            TotHorasTrab=(RestaHoras / 60).toFixed(2);
+                // HDesde=$('[data-start]').val();
+                // HHasta=$('[data-end]').val();
+
+               hora1 = (HDesde).split(":");
+               hora2 = (HHasta).split(":");
+               HoraDesde=(hora1[0]);
+               MinutoDesde=(hora1[1]);
+               HoraHasta=(hora2[0]);
+               MinutoHasta=(hora2[1]);
+               TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
+               TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
+               RestaHoras=(TotHasta - TotDesde);
+               TotHorasTrab=(RestaHoras / 60).toFixed(2);
 
 
-            $('#resultado').val(TotHorasTrab);
+               $('#resultado').val(TotHorasTrab);
+        //      });
+        // });
+
           }
     </script>
     </body>

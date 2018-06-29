@@ -57,50 +57,22 @@
                         </div>
                     </div>
 
-                    <ul class="nav navbar-nav">
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
-        <span class="icon voyager-documentation"></span> <span class="title">Panel</span> </a>
-                        </li>
-                        <li class="">
-                            <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:"> <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#8-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-documentation"></span> <span class="title">Encargado</span> </a>
-                            <div id="8-dropdown-element" class="panel-collapse collapse ">
-                                <div class="panel-body">
-                                    <ul class="nav navbar-nav">
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-              <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-              <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-              <span class="icon voyager-check"></span> <span class="title">List Man. asignadas</span> </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="<?php echo base_url('index.php/reportes/index');  ?>" target="_self" style="color:">
-              <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <?php
+                    switch ($Tipo) {
+                        case 1:
+                            require_once(APPPATH.'views/template/nav-user.php');
+                          break;
+                        case 2:
+                              require_once(APPPATH.'views/template/nav-sup.php');
+                            break;
+                        case 3:
+                                  require_once(APPPATH.'views/template/nav-enc.php');
+                            break;
+                        case 4:
+                              require_once(APPPATH.'views/template/nav-adm.php');
+                            break;
+                    }
+                    ?>
                 </nav>
             </div>
             <!-- Main Content -->

@@ -68,11 +68,14 @@
                             include('template/nav-user.php');
                           break;
                         case 2:
-                            include('template/nav-enc.php');
+                            include('template/nav-sup.php');
                             break;
                         case 3:
-                            include('template/nav-adm.php');
+                            include('template/nav-enc.php');
                             break;
+                        case 4:
+                            include('template/nav-adm.php');
+                          break;
 
                     }
                     ?>
@@ -208,7 +211,7 @@
                                                 <div class="divider"> </div>
                                                 <div class="row">
                                                     <div class="form-group col-md-2">
-                                                        <h5>Clasificacion :</h5>
+                                                        <h5>Especialidad :</h5>
 
                                                         <?php $clasificacion = array(
                                                   				'Electrico'         => 'Electrico',

@@ -51,18 +51,20 @@
                             </div>
                         </div>
                     </div>
-
                     <?php
                     switch ($Tipo) {
                         case 1:
                             include('template/nav-user.php');
                           break;
                         case 2:
-                            include('template/nav-enc.php');
+                            include('template/nav-sup.php');
                             break;
                         case 3:
-                            include('template/nav-adm.php');
+                            include('template/nav-enc.php');
                             break;
+                        case 4:
+                            include('template/nav-adm.php');
+                          break;
 
                     }
                     ?>
@@ -84,12 +86,12 @@
 
                                 <div class="panel panel-bordered">
                                     <!-- form start -->
-                                    <?php echo form_open('mantencion/save',['name'=>'form']); ?>
+                                    <?php echo form_open('mantencion/saveMAN',['name'=>'form']); ?>
 
                                     <div class="panel-body">
 
-                                        <div class="form-group  col-md-12">
-                                            <h2><strong>Codigo</strong></h2>
+                                        <div class="form-group  col-md-5">
+                                            <h2><strong>Numero de Solicitud</strong></h2>
                                             <h3>
                                                 <?php foreach ($orden as $key) {?>
                                                 <?php $Num =$key-> orden+1; ?>
@@ -99,6 +101,13 @@
                                                 <?php } ?>
                                             </h3>
                                         </div>
+                                        <div class="form-group col-md-5">
+                                            <h2><strong>Codigo Personal</strong></h2>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                            <input type="text" name="phoneData" id="phoneData" class="view_data form-control" value=""> <br>
+                                            <p id="phone_result"> <?php echo form_error('phoneData','<div class="text-danger">','</div>') ?>&nbsp;</p>
+                                            </div>
+                                        </div>
 
 
                                         <div class="form-group  col-md-5">
@@ -106,14 +115,14 @@
 
                                             <div class="form-group mx-sm-3 mb-2">
                                                 <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
+                                                  <option selected="">Choose...</option>
+                                                <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                        <?php if ($data) foreach ($data as $maquina) { ?>
+                                                  <option  value="<?php echo set_value('CodArea'); ?><?php echo $maquina-> CodArea ?>"> <?php echo set_value('maquina'); ?>
 
-                                          <option  value="<?php echo set_value('CodArea'); ?><?php echo $maquina-> CodArea ?>"> <?php echo set_value('maquina'); ?>
-
-                                          <?php echo $maquina-> Maquina ?></option>
-                                        <?php }?>
-                                      </select>
+                                                  <?php echo $maquina-> Maquina ?></option>
+                                                <?php }?>
+                                              </select>
                                                 <div class="col-md-5">
                                                     <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>
                                                 </div>

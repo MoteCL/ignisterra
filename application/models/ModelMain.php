@@ -94,6 +94,15 @@ class ModelMain extends CI_Model
 		}
 	}
 
+	public function persona($id)
+	{
+		$this->db->select('*');
+    $this->db->from('personal');
+    $this->db->where('Codigo',$id);
+    $res2 = $this->db->get();
+    return $res2;
+	}
+
 
 }
 
