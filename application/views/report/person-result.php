@@ -127,4 +127,41 @@
         </div>
     </div>
 
-    <?php   require_once(APPPATH.'views/template/footer.php'); ?>
+
+    <footer class="app-footer">
+        <div class="site-footer-right">
+                        Made with <i class="voyager-heart"></i>
+                                      - v1.1.0
+                </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+      ObtieneTotHoras();
+    });
+    function ObtieneTotHoras()
+    {
+            HDesde=$('#horaInicio').val();
+            HHasta=$('#horaTermino').val();
+
+            hora1 = (HDesde).split(":");
+            hora2 = (HHasta).split(":");
+            HoraDesde=(hora1[0]);
+            MinutoDesde=(hora1[1]);
+            HoraHasta=(hora2[0]);
+            MinutoHasta=(hora2[1]);
+            TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
+            TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
+            RestaHoras=(TotHasta - TotDesde);
+            TotHorasTrab=(RestaHoras / 60).toFixed(2);
+
+
+            $('#resultado').val(TotHorasTrab);
+          }
+    </script>
+    </body>
+    </html>

@@ -77,10 +77,7 @@
                     <h1 class="page-title">
                         <i class="fas fa-dolly"></i> Indice de cumplimiento de Mantencion
                     </h1>
-
                     <?php   require_once(APPPATH.'views/template/msg.php'); ?>
-
-
                     <div class="page-content edit-add container-fluid">
                         <div class="row">
                             <div class="col-md-12">
@@ -89,6 +86,7 @@
                                     <!-- form start -->
                                     <div class="panel-body ">
                                       <h2 class="text-center"> Correctiva </h2>
+                                      <p><strong>Desde </strong> <?php echo date('j M Y',strtotime($desde));  ?> <strong>Hasta </strong> <?php echo date('j M Y',strtotime($hasta)); ?></p>
                                         <?php if ($correctivas): ?>
                                           <?php $contador = count($correctivas);
                                                 $contador2 = 0;
@@ -109,7 +107,8 @@
                                             total <?php echo $contador2 ?> <br>
                                             <?php echo $contador3 ?>  <br>
                                             <?php echo $contador4 ?> <br>
-                                            <?php echo $contador*100%$contador2; ?>
+                                            <?php $calculo = ($contador*100)%$contador2; ?>
+                                            <?php echo $calculo; ?>
 
                                         <?php endif; ?>
                                       <h2 class="text-center"> Mejora </h2>

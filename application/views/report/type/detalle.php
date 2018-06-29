@@ -47,17 +47,28 @@
               <?php echo $seguimiento-> Comentario; ?>
           </td>
           <td style="	width: 10%;">
-              <?php echo $seguimiento-> horaInicio; ?>
+              <?php
+              $cadena = strtotime($seguimiento->horaInicio);
+              $cadena = date("H:i", $cadena);
+              echo $cadena;
+               ?>
+               <input type="hidden" name="horaInicio" id="horaInicio" value="<?php echo $cadena ?>">
           </td>
           <td style="	width: 10%;">
-              <?php echo $seguimiento-> horaTermino; ?>
+              <?php
+              $cadena2 = strtotime($seguimiento->horaTermino);
+              $cadena2 = date("H:i", $cadena2);
+              echo $cadena2;
+               ?>
+               <input type="hidden" name="horaTermino" id="horaTermino" value="<?php echo $cadena2 ?>">
           </td>
           <td style="	width: 10%;">
             <?php
-            $hora= $seguimiento->horaTermino - $seguimiento->horaInicio;
-            echo $hora;
+            $hora= $cadena2 - $cadena;
+          //  echo $hora;
             $totalsub+=$hora;
             ?>
+            <input type="text" name="resultado"  class="form-control" id="resultado" value="">
           </td>
       </tr>
 
@@ -72,10 +83,16 @@
                 <?php
                   echo $totalsub;
                   $totalhrs+=$totalsub;
-                  $totalsub=0;
+
                 ?></h5>
                 <h5> Horas turno :    9</h5>
-                <h5> % Ocupacion por fecha:</h5>
+                <h5> % Ocupacion por fecha:
+                  <?php
+                    $calculo =($totalsub*9)%100;
+                    echo $calculo;
+                    $totalsub=0;
+                   ?></h5>
+
             </div>
           </div>
 
@@ -87,7 +104,10 @@
           <div class="col-4 col-md-2" style="border: 1px solid #9d9f9d;">
               <h5>Total horas : <?php echo $totalhrs ?></h5>
               <h5>Horas turno (5 dias) : 45.00</h5>
-              <h5>% Ocupacidad por fecha</h5>
+              <h5>% Ocupacidad por fecha
+              <?php
+              echo ($totalhrs*45.00)%100;
+               ?></h5>
           </div>
       </div>
       <?php endif; ?>
