@@ -220,12 +220,12 @@
                                                         <?php echo $data-> horaTermino; ?>
                                                     </p>
                                                 </div>
-                                                <div class="col-4 col-md-2">HH
+                                                <div class="col-4 col-md-1">HH
                                                     <p>
                                                         <?php echo $data-> HH; ?>
                                                     </p>
                                                 </div>
-                                                <div class="col-4 col-md-2">HM
+                                                <div class="col-4 col-md-1">HM
                                                     <p>
                                                         <?php echo $data-> HM; ?>
                                                     </p>

@@ -11,8 +11,6 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 
 
 <script>
@@ -112,6 +110,13 @@
                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"    
        }
    }
+</script>
+<script>
+$(document).ready(function() {
+// get current URL path and assign 'active' class
+var pathname = window.location.pathname;
+$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+})
 </script>
 </body>
 </html>

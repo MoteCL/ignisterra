@@ -76,7 +76,7 @@ class ModelMantencion extends CI_Model
       return $query->result();
     }
     }
-
+    
   public function getMantencionbyId($id)
 	{
     $query = $this->db->get_where('MAN_Solicitud', array(

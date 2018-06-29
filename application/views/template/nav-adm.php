@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
     <li class="active">
-        <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
+        <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
 <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
     </li>
     <li class="">
@@ -56,7 +56,7 @@
 <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
                     </li>
                     <li class="">
-                        <a href="#" target="_self" style="color:">
+                        <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
 <span class="icon voyager-check"></span> <span class="title">Indice de cumplimiento</span> </a>
                     </li>
                     <li class="">
@@ -64,11 +64,11 @@
 <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
                     </li>
                     <li class="">
-                        <a href="#" target="_self" style="color:">
+                      <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
 <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
                     </li>
                     <li class="">
-                        <a href="#" target="_self" style="color:">
+                      <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
 <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
                     </li>
                     <li class="">

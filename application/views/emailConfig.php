@@ -19,11 +19,12 @@
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                                <i class="voyager-home"></i> Panel
+                                <i class="voyager-home"></i>
                                  <a href="<?php echo base_url('index.php/main/index'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
 
                             <li class="active">
+                              <i class="voyager-mail"></i> 
                                 Config Email
                             </li>
                         </ol>

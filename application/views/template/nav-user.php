@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
     <li class="active">
-        <a href="<?php echo base_url('index.php/main/menu'); ?>" target="_self" style="color:">
+        <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
 <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
     </li>
     <li class="">
