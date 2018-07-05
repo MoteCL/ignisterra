@@ -2,10 +2,10 @@
 
 <body class="voyager">
 
-    <div id="voyager-loader">
+    <!-- <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
-    </div>
+    </div> -->
     <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
@@ -145,36 +145,49 @@
     <script>
     $(document).ready(function() {
       ObtieneTotHoras();
+
     });
     function ObtieneTotHoras()
     {
-      // var table = $(".table");
-      //
-      //    table.each(function() {
-      //
-      //        this.find('tr').each(function () {
-               HDesde=$('#horaInicio').val();
-               HHasta=$('#horaTermino').val();
 
-                // HDesde=$('[data-start]').val();
-                // HHasta=$('[data-end]').val();
+      //Creamos variables para recorrer fechas
+// var afecha; var fecha = ""; var i = 0;
+// var atotal;
+  var total = 0;
 
-               hora1 = (HDesde).split(":");
-               hora2 = (HHasta).split(":");
-               HoraDesde=(hora1[0]);
-               MinutoDesde=(hora1[1]);
-               HoraHasta=(hora2[0]);
-               MinutoHasta=(hora2[1]);
-               TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
-               TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
-               RestaHoras=(TotHasta - TotDesde);
-               TotHorasTrab=(RestaHoras / 60).toFixed(2);
+    $(".td-calcular").each(function (){
+       var HDesde = $(this).data("inicio");
+       var HHasta = $(this).data("fin");
 
+       //recoges el valor del día y en la primera entrada lo asignada a la var fecha
+       // var dia = $(this).data("dia");
+       // if (i=0) { fecha = dia; }
 
-               $('#resultado').val(TotHorasTrab);
-        //      });
-        // });
+       hora1 = (HDesde).split(":");
+       hora2 = (HHasta).split(":");
+       HoraDesde=(hora1[0]);
+       MinutoDesde=(hora1[1]);
+       HoraHasta=(hora2[0]);
+       MinutoHasta=(hora2[1]);
+       TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
+       TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
+       RestaHoras=(TotHasta - TotDesde);
+       TotHorasTrab=(RestaHoras / 60).toFixed(2);
 
+       $(this).html(TotHorasTrab);
+
+       //Ahora en el momento que cambies la fecha guardas los valores de fecha y total en dos arrays y pones total a 0
+       // if (fecha != dia) {
+       //    afecha[i] = día;
+       //    atotal[i] = total;
+       //    i++;
+       //    total=O;
+       // }
+       //Incrementas total
+       total += parseFloat(TotHorasTrab);
+       $('#subtotal').html(total);
+
+    });
           }
     </script>
     </body>

@@ -44,7 +44,7 @@
 
                     <li class="">
                         <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-<span class="icon voyager-check"></span> <span class="title">List Man. asignadas</span> </a>
+<span class="icon voyager-check"></span> <span class="title">List por Recepcionar</span> </a>
                     </li>
 
 
@@ -84,6 +84,10 @@
                 </ul>
             </div>
         </div>
+    </li>
+    <li class="">
+        <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
+<span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
     </li>
     <li class="">
         <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">

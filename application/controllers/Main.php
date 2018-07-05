@@ -14,6 +14,7 @@ class Main extends CI_Controller {
  		parent::__construct();
  		$this->load->model('ModelMain', 'm');
 		$this->load->model('ModelMantencion', 'ma');
+		$this->load->model('ModelReportes', 'report');
  	}
 
 	/**
@@ -198,9 +199,9 @@ class Main extends CI_Controller {
 		public function editConfig()
 		{
 
-				// if (!$this->session->userdata('logged_in')) {
-				// 	redirect('main/login', 'refresh');
-				// }
+				if (!$this->session->userdata('logged_in')) {
+					redirect('main/login', 'refresh');
+				}
 				$this->form_validation->set_rules('protocol', 'protocol','required',array(
 					'required' => 'Falta protocol'
 				));
@@ -271,6 +272,90 @@ class Main extends CI_Controller {
 		        	 echo $output .= 'ERROR 404 ';
 		        }
 		 		}
+				public function otherActivities()
+				{
+					if (!$this->session->userdata('logged_in')) {
+						redirect('main/login', 'refresh');
+					}
+					$session_data = $this->session->userdata('logged_in');
+					$data['Codigo'] = $session_data['Codigo'];
+					$data['Nombre'] = $session_data['Nombre'];
+					$data['Tipo'] = $session_data['Tipo'];
+					$data['orden']=$this->ma->getOrden();
+					$data['tecnicos']= $this->report->getTecnicos();
+					$this->load->view('otherActivities',$data);
+
+					}
+					public function saveActividades()
+					{
+						if (!$this->session->userdata('logged_in')) {
+							redirect('main/login', 'refresh');
+						}
+						$this->form_validation->set_rules('actividad', 'actividad', 'required', array(
+							'required' => 'Seleccione una actvidad'
+						));
+						$this->form_validation->set_rules('Comentario', 'Comentario', 'required', array(
+							'required' => 'Agrege un comentario'
+						));
+						$this->form_validation->set_rules('horaInicio', 'horaInicio', 'required', array(
+							'required' => 'Falta hora de Inicio'
+						));
+						$this->form_validation->set_rules('horaTermino', 'horaTermino', 'required', array(
+							'required' => 'Falta hora de Termino'
+						));
+
+						if ($this->form_validation->run()) {
+							$data = $this->input->post();
+							$data['fecha'] = date('Y-m-d');
+							$data['orden'] = $this->input->post('orden');
+							if ($this->m->saveActividad($data)) {
+								$this->session->set_flashdata('success_msg', 'Actividad  ingresada exitosamente');
+
+							}else {
+							$this->session->set_flashdata('error_msg', 'ERROR BD');
+							}
+							return redirect('main/otherActivities');
+						}
+						$session_data = $this->session->userdata('logged_in');
+						$data['Codigo'] = $session_data['Codigo'];
+						$data['Nombre'] = $session_data['Nombre'];
+						$data['Tipo'] = $session_data['Tipo'];
+						$data['orden']=$this->ma->getOrden();
+						$data['tecnicos']= $this->report->getTecnicos();
+						$this->load->view('otherActivities',$data);
+
+						}
+
+						public function listPersonal()
+						{
+							if (!$this->session->userdata('logged_in')) {
+								redirect('main/login', 'refresh');
+							}
+							$session_data = $this->session->userdata('logged_in');
+							$data['Codigo'] = $session_data['Codigo'];
+							$data['Nombre'] = $session_data['Nombre'];
+							$data['Tipo'] = $session_data['Tipo'];
+							$data['personals'] = $this->m->getAllPersonal();
+							$this->load->view('list-personal',$data);
+
+						}
+
+						public function changeUser()
+						{
+							if (!$this->session->userdata('logged_in')) {
+								redirect('main/login', 'refresh');
+							}
+							$update['tipo_usuario'] =  $this->input->post('tipo_usuario');
+							$id = $this->input->post('usuario_idd');
+							if ($this->m->editUser($id,$update)) {
+										$this->session->set_flashdata('success_msg', 'Usuario Actualizado');
+							} else {
+									$this->session->set_flashdata('error_msg', 'ERROR DB');
+							}
+								redirect('main/listPersonal', 'refresh');
+
+
+						}
 
 
 

@@ -93,12 +93,18 @@
                                         <div class="form-group  col-md-5">
                                             <h2><strong>Numero de Solicitud</strong></h2>
                                             <h3>
-                                                <?php foreach ($orden as $key) {?>
-                                                <?php $Num =$key-> orden+1; ?>
+                                              <?php if ($orden): ?>
+                                                <?php $Num =0; ?>
+                                                <?php foreach ($orden as $key): ?>
+                                                  <?php $Num =   $key-> total; ?>
+                                                  <?php  $Num+=1; ?>
+                                                <?php endforeach; ?>
+
                                                 <?php echo 'M'.$Num; ?>
                                                 <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
+                                                <input type="hidden" name="orden" value="<?php echo $Num; ?>">
+                                              <?php endif; ?>
 
-                                                <?php } ?>
                                             </h3>
                                         </div>
                                         <div class="form-group col-md-5">

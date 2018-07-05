@@ -22,9 +22,12 @@
                                 <i class="voyager-home"></i>
                                 <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
                             </li>
-
+                            <li class="">
+                              <i class="voyager-list"></i>
+                                <a href="<?php echo base_url('index.php/mantencion/listado'); ?>" target="_self" style="color:">Listado</a>
+                            </li>
                             <li class="active">
-                                Listado
+                                Resultado
                             </li>
                         </ol>
                     </div>
@@ -59,30 +62,31 @@
 
                     </div>
                     <?php
-                    switch ($Tipo) {
-                        case 1:
-                            include('template/nav-user.php');
-                          break;
-                        case 2:
-                            include('template/nav-sup.php');
-                            break;
-                        case 3:
-                            include('template/nav-enc.php');
-                            break;
-                        case 4:
-                            include('template/nav-adm.php');
-                          break;
+        switch ($Tipo) {
+            case 1:
+                include('template/nav-user.php');
+              break;
+            case 2:
+                include('template/nav-sup.php');
+                break;
+            case 3:
+                include('template/nav-enc.php');
+                break;
+            case 4:
+                include('template/nav-adm.php');
+              break;
 
-                    }
-                    ?>
+        }
+        ?>
                 </nav>
             </div>
             <div class="container-fluid">
                 <div class="side-body padding-top">
                     <div class="container-fluid">
                         <h1 class="page-title">
-                            <i class="voyager-settings"></i> Listado de Mantenciones por Recepcionar
+                            <i class="voyager-search"></i> Busqueda Avanzada
                         </h1>
+
 
                     </div>
                     <div id="voyager-notifications"></div>
@@ -94,78 +98,68 @@
                             <div class="col-md-12">
                                 <div class="panel panel-bordered">
                                     <div class="panel-body">
+                                      <?php if ($datos): ?>
                                         <div class="table-responsive">
                                             <table id="tbl_personal" class="table table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Orden</th>
                                                         <th>NroSolicitud</th>
-
+                                                        <th>Maquina</th>
+                                                        <th>Tipo</th>
+                                                        <th>Tipo de Trabajo</th>
                                                         <th>Fecha</th>
-                                                        <th>Clasificacion</th>
-                                                        <th>Tipo Detencion</th>
                                                         <th>Estado</th>
+                                                        <th>Urgente</th>
 
-                                                        <th></th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if ($tecnicos): ?>
 
-                                                    <?php foreach ($tecnicos as $tecnico): ?>
-
-                                                    <tr>
+                                                    <?php foreach ($datos as $dato): ?>
+                                                      <tr>
                                                         <td>
-                                                            <?php echo $tecnico -> idMan_Tecnico; ?>
+                                                          <?php echo $dato-> orden ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $tecnico -> NroSolicitud; ?>
+                                                          <?php echo $dato-> NroSolicitud ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $tecnico -> fecha; ?>
+                                                          <?php echo $dato-> maquina ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $tecnico -> clasificacion; ?>
+                                                          <?php echo $dato-> tipomantencion ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $tecnico -> tipo_detencion; ?>
+                                                          <?php echo $dato-> tipotrabajo ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $tecnico -> estado; ?>
+                                                          <?php echo $dato-> fechasolicitud ?>
                                                         </td>
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/seguimiento/verSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-primary">
-                                        <i class="icon voyager-documentation"></i>Ver</a>
-                                                            <a href="#" class="label label-success"> Editar</a>
-                                                            <a href="#" class="label label-danger" onclick=" return confirm('¿Estas seguro que deseas eliminar la publicación?');"> Eliminar</a>
+                                                          <?php echo $dato-> estado ?>
                                                         </td>
-
-                                                    </tr>
-
-
-
+                                                        <td>
+                                                          <?php echo $dato-> urgente ?>
+                                                        </td>
+                                                      </tr>
                                                     <?php endforeach; ?>
-                                                    <?php endif; ?>
+
                                                 </tbody>
                                             </table>
-
                                         </div>
+                                        <?php else: ?>
+                                          <h2>**** NO DATA ****</h2>
+                                          <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
 
-    <?php include("template/footertable.php"); ?>
+    <?php include("template/footertable.php"); ?> 

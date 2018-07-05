@@ -38,11 +38,11 @@ class ModelMantencion extends CI_Model
 
   public function getOrden()
 	{
-		$this->db->select_max('orden');
-		$this->db->from('MAN_Solicitud');
-		$this->db->limit(1);
-		$query = $this->db->get();
-		if ($query->num_rows() == 1) {
+
+    $sql = "SELECT MAX(orden) as total FROM(SELECT  orden FROM MAN_Solicitud UNION ALL SELECT orden FROM Actividades) as foo";
+    $query = $this->db->query($sql);
+
+		if ($query->num_rows() > 0) {
 			return $query->result();
 		} else {
 			return false;
@@ -79,6 +79,7 @@ class ModelMantencion extends CI_Model
 
   public function getMantencionbyId($id)
 	{
+    $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
     $query = $this->db->get_where('MAN_Solicitud', array(
 			'NroSolicitud' => $id
 		));
@@ -86,6 +87,17 @@ class ModelMantencion extends CI_Model
 			return $query->row();
 		}
 	}
+  public function getMantecionUrgente($id)
+  {
+
+    $query = $this->db->get_where('MAN_Solicitud', array(
+      'NroSolicitud' => $id
+    ));
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    }
+  }
+
   public function updateMantencion($data, $id)
 	{
 		return $this->db->where('NroSolicitud', $id)->update('MAN_Solicitud', $data);
@@ -107,7 +119,7 @@ class ModelMantencion extends CI_Model
     $hoy = date('Y-m-d');
     $mes=date('Y-m-d',strtotime("-2 month"));
     $var = urldecode($maquina);
-    // $query = $this->db->from('MAN_IngresoSolicitud')->where('maquina', $maquina)->where("fechasolicitud BETWEEN '$mes' AND '$hoy'")->get();
+
     $sql = "SELECT * FROM MAN_Solicitud WHERE maquina='$var' AND fechasolicitud BETWEEN '$mes' AND '$hoy'";
     $query = $this->db->query($sql);
 		if ($query->num_rows() > 0) {
@@ -117,13 +129,21 @@ class ModelMantencion extends CI_Model
 
   public function listByArea($area)
   {
+    $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
     $query = $this->db->get_where('MAN_Solicitud', array(
-      'CodArea' => 'PB'
+      'CodArea' => $area
     ));
 
     if ($query->num_rows() > 0) {
       return $query->result();
     }
+  }
+
+  public function updateUrgente($id,$data)
+  {
+    $this->db->set('urgente', $data);
+    $this->db->where('NroSolicitud',$id);
+    $this->db->update('MAN_Solicitud');
   }
 
 }

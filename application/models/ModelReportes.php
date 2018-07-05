@@ -73,18 +73,23 @@ class ModelReportes extends CI_Model {
 
  }
 
- public function getSeguimientoJoin()
+ public function getSeguimientoJoin($minvalue,$maxvalue)
  {
+   // $this->db->select('*');
+   // $this->db->from('Seguimiento_Detalle as detalle');
+   // $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
+   // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
+   // $this->db->join('personal as p','p.Codigo= tecnico.id_tecnico');
+
    $this->db->select('*');
-   $this->db->from('Seguimiento_Detalle as detalle');
-   $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
+   $this->db->from('MAN_Seguimiento as MAN');
+   $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
    $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
    $this->db->join('personal as p','p.Codigo= tecnico.id_tecnico');
-
+   $this->db->where('MAN.fecha >=',$minvalue);
+   $this->db->where('MAN.fecha <=',$maxvalue);
 
    $query = $this->db->get();
-   // $this->db->order_by('id_detalle', 'desc');
-   // $query = $this->db->get('Seguimiento_Detalle');
 
    if ($query->num_rows() > 0) {
      return $query->result();
@@ -135,9 +140,19 @@ class ModelReportes extends CI_Model {
     if ($query->num_rows() > 0) {
       return $query->result();
     }
-
-
  }
+
+ // public function getAdvanced($keyword){
+ //    $this->db->or_like('item_name', $keyword);
+ //    $this->db->or_like('item_description', $keyword);
+ //    $this->db->or_like('item_category', $keyword);
+ //    $qery = $this->db->get('MAN_Solicitud');
+ //
+ //
+ //    if ($query->num_rows() > 0) {
+ //      return $query->result();
+ //    }
+ // }
 
 
 

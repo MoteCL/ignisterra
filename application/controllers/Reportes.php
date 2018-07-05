@@ -131,11 +131,11 @@ class Reportes extends CI_Controller {
 			$data['maquina'] = $maquina;
 		 // $data['results'] = $this->report->getHistorial($desde,$hasta,$maquina);
 		 	$result = $this->report->getHistorial($desde,$hasta,$maquina);
-			$data['seguimientos']= $this->report->getSeguimientoJoin();
+			$data['seguimientos']= $this->report->getSeguimientoJoin($desde,$hasta);
 
 			$data['results'] =$result;
 
-			// print_r($data);
+			 print_r($data);
 
 
 			$this->load->view('report/historial-result',$data);
@@ -236,13 +236,47 @@ class Reportes extends CI_Controller {
 			$data['hasta'] = $hasta;
 			$tipo= 'Correctiva';
 			$data['correctivas']= $this->report->getIndice($tipo,$desde,$hasta);
-			
 			$this->load->view('report/indice-result',$data);
 		}else {
 			$this->load->view('report/indice-cumplimiento',$data);
 		}
+	}
 
+	public function advancedSearch(){
+		if (!$this->session->userdata('logged_in')) {
+			redirect('main/login', 'refresh');
+		}
+		$session_data = $this->session->userdata('logged_in');
+		$data['Codigo'] = $session_data['Codigo'];
+		$data['Nombre'] = $session_data['Nombre'];
+		$data['Tipo'] = $session_data['Tipo'];
+		$desde = $this->input->post('desde');
+		$hasta =$this->input->post('hasta');
+		$urgente = $this->input->post('urgente');
+		$tipomantencion =$this->input->post('tipomantencion');
+		$this->db->select('*');
+		$this->db->from('MAN_Solicitud');
+		if ( ! empty($desde) && ! empty($hasta))
+			{
+			  $this->db->where('fechasolicitud >=',$desde);
+				$this->db->where('fechasolicitud <=',$hasta);
+			}
+			if (! empty($urgente))
+			{
+			  $this->db->where('urgente','SI');
+			}
+			if (! empty($tipomantencion))
+			{
+			   $this->db->where('tipomantencion',$tipomantencion);
+			}
+			$query = $this->db->get();
 
+	    if ($query->num_rows() > 0) {
+	      $data['datos'] = $query->result();
+	    }
+		
+
+			$this->load->view('advanced-search',$data);
 
 	}
 

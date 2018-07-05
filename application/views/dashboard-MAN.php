@@ -17,7 +17,8 @@
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                              <i class="voyager-home"></i> <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
+                              <i class="voyager-home"></i>
+                              <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
                             </li>
                             <li class="active">
                                 <i class="voyager-tag"></i> Solicitar Mantencion
@@ -86,36 +87,40 @@
 
                                 <div class="panel panel-bordered">
                                     <!-- form start -->
-                                    <?php echo form_open('mantencion/save',['name'=>'form']); ?>
+                                    <?php echo form_open('mantencion/save'); ?>
 
                                     <div class="panel-body">
 
                                         <div class="form-group  col-md-12">
                                             <h2><strong>Codigo</strong></h2>
                                             <h3>
-                                                <?php foreach ($orden as $key) {?>
-                                                <?php $Num =$key-> orden+1; ?>
-                                                <?php echo 'M'.$Num; ?>
-                                                <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
+                                            <?php if ($orden): ?>
+                                              <?php $Num =0; ?>
+                                              <?php foreach ($orden as $key): ?>
+                                                <?php $Num =   $key-> total; ?>
+                                                <?php  $Num+=1; ?>
+                                              <?php endforeach; ?>
 
-                                                <?php } ?>
+                                              <?php echo 'M'.$Num; ?>
+                                              <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
+                                              <input type="hidden" name="orden" value="<?php echo $Num; ?>">
+                                            <?php endif; ?>
+
                                             </h3>
                                         </div>
-
-
                                         <div class="form-group  col-md-5">
                                             <h3>Maquina</h3>
 
                                             <div class="form-group mx-sm-3 mb-2">
                                                 <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-                                                  <option selected="">Choose...</option>
-                                        <?php if ($data) foreach ($data as $maquina) { ?>
+                                                            <option selected="">Choose...</option>
+                                                  <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                          <option  value="<?php echo set_value('CodArea'); ?><?php echo $maquina-> CodArea ?>"> <?php echo set_value('maquina'); ?>
+                                                    <option  value="<?php echo $maquina-> CodArea ?>">
 
-                                          <?php echo $maquina-> Maquina ?></option>
-                                        <?php }?>
-                                      </select>
+                                                    <?php echo $maquina-> Maquina ?></option>
+                                                  <?php }?>
+                                                </select>
                                                 <div class="col-md-5">
                                                     <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>
                                                 </div>
@@ -186,7 +191,7 @@
                                           <?php if ($Tipo==2||$Tipo==3): ?>
                                             <label>Urgente</label>
                                             <div class="custom-control custom-checkbox">
-                                                <?php echo form_checkbox('urgente', 'Si'); ?>
+                                                <?php echo form_checkbox('urgente', 'SI'); ?>
                                                 <label class="custom-control-label" for="customCheck1">Se requiere urgente?</label>
                                             </div>
                                           <?php endif; ?>

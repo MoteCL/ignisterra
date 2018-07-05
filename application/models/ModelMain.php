@@ -102,10 +102,26 @@ class ModelMain extends CI_Model
     $res2 = $this->db->get();
     return $res2;
 	}
+	public function saveActividad($data)
+	{
+		return $this->db->insert('Actividades', $data);
+	}
+	public function getAllPersonal()
+	{
+		$this->db->order_by('Codigo', 'asc');
+		$query = $this->db->get('personal');
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+	public function editUser($id,$data)
+	{
+		return $this->db->where('Codigo', $id)->update('personal', $data);
+	}
 
 
 }
-
-
 
 ?>

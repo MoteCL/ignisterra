@@ -16,8 +16,16 @@
           <span class="hamburger-inner"></span>
           </button>
                         <ol class="breadcrumb hidden-xs">
+                            <li class="">
+                                <i class="voyager-home"></i>
+                                    <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
+                            </li>
+                            <li class="">
+                                <i class="voyager-list"></i>
+                                    <a href="<?php echo base_url('index.php/main/listPersonal'); ?>" target="_self" style="color:">Listo Personal</a>
+                            </li>
                             <li class="active">
-                                <i class="voyager-home"></i> Panel
+                                <i class="voyager-edit"></i> Dar Permisos
                             </li>
                         </ol>
                     </div>
@@ -71,7 +79,7 @@
             <div class="container-fluid">
                 <div class="side-body padding-top">
                     <h1 class="page-title">
-                        <i class="voyager-star"></i> Pagina de Inicio
+                        <i class="fas fa-unlock-alt"></i> Permisos
                     </h1>
 
                     <?php include('template/msg.php'); ?>
@@ -84,23 +92,32 @@
                                 <div class="panel panel-bordered">
                                     <!-- form start -->
                                     <div class="panel-body">
-                                        <?php
-                                        switch ($Tipo) {
-                                            case 1:
-                                                include('profile/user.php');
-                                              break;
-                                            case 2:
-                                                include('profile/sup.php');
-                                                break;
-                                            case 3:
-                                                include('profile/enc.php');
-                                                break;
-                                            case 4:
-                                                include('profile/adm.php');
-                                                break;
+                                      <div class="form-group  col-md-12">
+                                      <h5>Codigo </h5>
+                                      <!--    <?php echo form_input(['name'=>'protocol','class'=>'form-control','value'=>set_value('protocol',$user-> Codigo)]); ?> -->
+                                      <p> <?php echo $user-> Codigo ?></p>
+                                      </div>
+                                      <div class="form-group  col-md-12">
+                                      <h5>Nombre </h5>
+                                      <p> <?php echo $user-> Nombre ?></p>
 
-                                        }
-                                        ?>
+                                      </div>
+                                      <div class="form-group col-md-12">
+                                          <h5>Permiso </h5>
+                                          <?php
+                                            $options = array(
+
+                                              '1'         => 'Normal',
+                                              '2'           => 'Supervisor',
+                                              '3'           => 'Encargado',
+                                              '4'           => 'Administrador',
+                                            );
+                                           ?>
+                                              <div class="col-md-3">
+                                                  <?php echo form_dropdown('tipo_usuario', $options,set_value('tipo_usuario',$user->tipo_usuario),['class'=>'form-control']);?>
+                                              </div>
+                                      </div>
+
                                     </div>
                                 </div>
                             </div>

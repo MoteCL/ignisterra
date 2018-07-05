@@ -158,7 +158,7 @@
                                                             <h4 class="modal-title" id="myModalLabel">Detalle de Mantencion</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <!-- Place to print the fetched phone -->
+                                                            <!-- Place to print the fetched data -->
                                                             <div id="phone_result"></div>
                                                         </div>
                                                         <div class="modal-footer">

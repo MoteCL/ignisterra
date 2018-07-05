@@ -159,7 +159,10 @@
                                               ?>
                                             </td>
                                             <td>
-                                              <?php echo $machine->horasolicitud; ?>
+                                              <?php
+                                              $HSolicitud = strtotime($machine->horasolicitud);
+                                              $newHSolicitud = date("H:i", $HSolicitud);
+                                              echo $newHSolicitud; ?>
                                             </td>
                                             <td>
                                               <?php echo $machine->detalle; ?>
@@ -173,21 +176,7 @@
                                       <br>
                                     <div class="row">
                                       <div class="col-4 col-sm-4">
-                                        <div class="col-4 col-sm-4">Req. desde
-                                            <p>
-                                                x
-                                            </p>
-                                        </div>
-                                        <div class="col-4 col-sm-4">Req. Hasta
-                                            <p>
-                                                x
-                                            </p>
-                                        </div>
-                                        <div class="col-4 col-sm-4">Requision dias
-                                            <p>
-                                              x
-                                            </p>
-                                        </div>
+
 
                                       </div>
                                       <div class="col-4 col-sm-8">
@@ -210,7 +199,7 @@
 
                                             <?php foreach ($seguimientos as $seguimiento): ?>
 
-                                              <?php if ($seguimiento->NroSolicitud ==  $machine-> NroSolicitud): ?>
+                                              <?php if ($seguimiento-> NroSolicitud ==  $machine-> NroSolicitud): ?>
                                                 <tr>
                                                   <td>
                                                     <?php
@@ -218,10 +207,17 @@
                                                     echo $newdate;  ?>
                                                   </td>
                                                   <td>
-                                                    <?php echo $seguimiento-> horaInicio; ?>
+                                                    <?php
+                                                    $Inicio = strtotime($seguimiento-> horaInicio);
+                                                    $newInicio = date("H:i", $Inicio);
+                                                    echo $newInicio; ?>
                                                   </td>
                                                   <td>
-                                                    <?php echo $seguimiento-> horaTermino; ?>
+                                                    <?php
+                                                    $Termino = strtotime($seguimiento-> horaTermino);
+                                                    $newTermino = date("H:i", $Termino);
+                                                    echo $newTermino; ?>
+
                                                   </td>
                                                   <td>
                                                     <?php echo $seguimiento-> Comentario; ?>
@@ -252,16 +248,7 @@
                                       </div>
                                       <div class="row">
                                         <div class="col">
-                                          <div class="col-4 col-sm-5"><u>Total Requision</u>
-                                            <p>
-                                              <strong>x</strong>
-                                            </p>
-                                          </div>
-                                          <div class="col-4 col-sm-4"><u>Total Intervercion</u>
-                                            <p>
-                                              <strong>x</strong>
-                                            </p>
-                                          </div>
+
                                           </div>
                                         <div class="col  float-right">
                                           <div class="col-4 col-sm-5">Total HH
