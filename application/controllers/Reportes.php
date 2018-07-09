@@ -50,7 +50,7 @@ class Reportes extends CI_Controller {
 	}
 
 	public function getdata(){
-		$result = $this->report->getIngresos();
+		$result = $this->report->getdataa();
 		//print_r($result);
 		echo json_encode($result);
 	}
@@ -83,6 +83,8 @@ class Reportes extends CI_Controller {
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
+		$data['results'] = $this->report->getdataa();
+
 		$this->load->view('report/status',$data);
 	}
 	public function getStatus(){
@@ -274,7 +276,7 @@ class Reportes extends CI_Controller {
 	    if ($query->num_rows() > 0) {
 	      $data['datos'] = $query->result();
 	    }
-		
+
 
 			$this->load->view('advanced-search',$data);
 

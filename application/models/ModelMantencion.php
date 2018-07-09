@@ -79,6 +79,7 @@ class ModelMantencion extends CI_Model
 
   public function getMantencionbyId($id)
 	{
+    $this->db->join('area as a', 'a.CodArea = MAN_Solicitud.CodArea');
     $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
     $query = $this->db->get_where('MAN_Solicitud', array(
 			'NroSolicitud' => $id

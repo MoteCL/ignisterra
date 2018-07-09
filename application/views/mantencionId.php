@@ -19,7 +19,7 @@
           </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                                <i class="voyager-home"></i> panel
+                                <i class="voyager-home"></i>
                                 <a href="<?php echo base_url('index.php/main/index'); ?>"  target="_self" style="color:">Panel</a>
                             </li>
 
@@ -97,6 +97,28 @@
                 Regresar al Buscador
             </a>
                     </h1>
+                    <style type="text/css">
+                          @media print {
+                              .btn-success{
+                                display: none;
+                              }
+                              .btn-warning{
+                                display: none;
+                              }
+                              .app-footer{
+                                display: none;
+                              }
+                              .col-4{
+                              float: left;
+                              }
+                              .table{
+                                 font-size: 7.5pt;
+                              }
+                              .card-body {
+                                font-size: 9.5pt;
+                              }
+                          }
+                      </style>
 
                     <div class="page-content container-fluid">
                         <div class="row">
@@ -105,72 +127,79 @@
                                     <div class="panel-body">
                                         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Numero de Solicitud
+                                            <div class="col-4 col-md-4"><h4>Numero de Solicitud</h4>
                                                 <p>
                                                     <?php echo $data-> NroSolicitud; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Fecha
+                                            <div class="col-4 col-md-4"><h4>Fecha</h4>
                                                 <p>
-                                                    <?php echo $data-> fechasolicitud; ?>
+                                                    <?php echo date('j M Y',strtotime($data->fechasolicitud)); ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Hora
+                                            <div class="col-4 col-md-4"><h4>Hora</h4>
                                                 <p>
-                                                    <?php echo $data-> horasolicitud; ?>
+                                                    <?php
+                                                    $Termino = strtotime($data-> horasolicitud);
+                                                    $newTermino = date("H:i", $Termino);
+                                                    echo $newTermino; ?>
+
                                                 </p>
                                             </div>
                                         </div>
                                         <hr style="margin:0;">
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Maquina
+                                            <div class="col-4 col-md-4"><h4>Maquina</h4>
                                                 <p>
                                                     <?php echo $data-> maquina; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Codigo Area
-                                                <?php foreach ($area as $row) {   ?>
-                                                <?php if ($row-> CodArea == $data-> CodArea): ?>
-                                                <p>
-                                                    <?php echo $row-> DescArea; ?>
-                                                </p>
-                                                <?php endif; ?>
-                                                <?php } ?>
+                                            <div class="col-4 col-md-4"><h4>Codigo Area</h4>
+                                              <p>
+                                                <?php echo $data-> DescArea; ?>
+                                              </p>
+                                            </div>
+                                            <div class="col-4 col-md-4"><h4>Urgente</h4>
+                                              <p>
+                                                <?php echo $data-> urgente; ?>
+                                              </p>
+                                            </div>
 
-                                            </div>
-                                            <div class="col-4 col-md-4">Extra
-                                                <p></p>
-                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Tipo de Mantencion
+                                            <div class="col-4 col-md-4"><h4>Tipo de Mantencion</h4>
                                                 <p>
                                                     <?php echo $data-> tipomantencion; ?>
                                                 </p>
                                             </div>
                                             <?php if ($data-> tipotrabajo): ?>
-                                            <div class="col-4 col-md-4">Tipo de Trabajo
+                                            <div class="col-4 col-md-4"><h4>Tipo de Trabajo</h4>
                                                 <p>
                                                     <?php echo $data-> tipotrabajo; ?>
                                                 </p>
                                             </div>
                                             <?php endif; ?>
+                                            <div class="col-4 col-md-4"><h4>Estado</h4>
+                                                <p>
+                                                    <?php echo $data-> estado; ?>
+                                                </p>
+                                            </div>
                                         </div>
                                         <hr style="margin:0;">
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Solicitante Codigo
+                                            <div class="col-4 col-md-4"><h4>Solicitante Codigo</h4>
                                                 <p>
                                                     <?php echo $data-> cod_detecta; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Nombre
+                                            <div class="col-4 col-md-4"><h4>Nombre</h4>
                                                 <p>
-                                                    <?php echo $persona-> Nombre; ?>
+                                                    <?php echo $data-> Nombre; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Area de Solicitante
+                                            <div class="col-4 col-md-4"><h4>Area de Solicitante</h4>
                                                 <p>
-                                                    <?php echo $persona-> Area; ?>
+                                                    <?php echo $data-> Area; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -188,8 +217,8 @@
 
 
                                             <button type="submit" name="button" class="btn btn-success" value="" onclick="window.print();">
-                  <span class="voyager-documentation"></span> Imprimir &nbsp;
-                </button>
+                                              <span class="voyager-documentation"></span> Imprimir &nbsp;
+                                            </button>
                                         </div>
                                     </div>
 

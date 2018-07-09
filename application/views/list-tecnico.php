@@ -24,7 +24,7 @@
                             </li>
 
                             <li class="active">
-                                Listado
+                                Listado Ejecutadas
                             </li>
                         </ol>
                     </div>
@@ -81,7 +81,7 @@
                 <div class="side-body padding-top">
                     <div class="container-fluid">
                         <h1 class="page-title">
-                            <i class="voyager-settings"></i> Listado de Mantenciones por Recepcionar
+                            <i class="voyager-settings"></i> Listado de Mantenciones por Ejecutar
                         </h1>
 
                     </div>

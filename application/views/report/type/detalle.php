@@ -58,7 +58,6 @@
           <td style="	width: 10%;">
               <?php
               $cadena2 = strtotime($seguimiento->horaTermino);
-
               $cadena2 = date("H:i", $cadena2);
               echo $cadena2;
                ?>
@@ -66,7 +65,7 @@
                <input type="hidden"  id="horaTermino" value="<?php echo $cadena2 ?>">
           </td>
 
-          <td class="td-calcular" data-inicio="<?php echo $cadena;?>" data-fin="<?php echo $cadena2;?>"  >
+          <td class="td-calcular" data-inicio="<?php echo $seguimiento->horaInicio;?>" data-fin="<?php echo $seguimiento->horaTermino;?>" data-dia="<?php echo $seguimiento->fecha;?>" >
         </td>
 
       </tr>
@@ -75,13 +74,12 @@
           </table>
           <div class="row">
             <div class="col-4 col-sm-9">
-              <?php
-              $totalhrs+=$totalsub;
-                 $totalsub=0; ?>
             </div>
             <div class="col-4 col-md-2">
 
-              <h5> Total horas por fecha : <p data-dia="<?php echo $seguimiento->fecha;?>"></p> </h5>
+              <h5> Total horas por fecha : <div class="div-calcular" data-sub-total="">
+
+              </div> </h5>
                 <h5> Horas turno :    9</h5>
                 <h5> % Ocupacion por fecha: </h5>
 
@@ -94,9 +92,9 @@
 
           </div>
           <div class="col-4 col-md-2" style="border: 1px solid #9d9f9d;">
-              <h5>Total horas :  <p id="subtotal" style="float:right;"></p>  </h5>
-              <h5>Horas turno (5 dias) : 45.00</h5>
-              <h5>% Ocupacidad por fecha</h5>
+              <h5>Total horas :  <p id="totalhrs" style="float:right;"></p>  </h5>
+              <h5>Horas turno : <p id="countTotal" style="float:right;"></p> </h5>
+              <h5>% Ocupacidad por fecha<p id="totalResultado" style="float:right;"></p> </h5>
           </div>
       </div>
       <?php endif; ?>

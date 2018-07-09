@@ -33,8 +33,8 @@ class Main extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
-			$data['Tipo'] = $session_data['Tipo'];
-
+		$data['Tipo'] = $session_data['Tipo'];
+			$data['result'] =  $this->report->getdataa();
 		$this->load->view('landing-page',$data);
 	}
 
@@ -163,9 +163,7 @@ class Main extends CI_Controller {
 			$this->form_validation->set_rules('smtp_user', 'smtp_user','required',array(
 				'required' => 'Falta user'
 			));
-			$this->form_validation->set_rules('smtp_pass', 'smtp_pass','required',array(
-				'required' => 'Falta password'
-			));
+
 			$this->form_validation->set_rules('codigoEncargado', 'codigoEncargado','required',array(
 							'required' => 'Falta correo'
 			));
@@ -192,7 +190,7 @@ class Main extends CI_Controller {
 			$data['Codigo'] = $session_data['Codigo'];
 			$data['Nombre'] = $session_data['Nombre'];
 			$data['Tipo'] = $session_data['Tipo'];
-
+			$data['email'] = false;
 			$this->load->view('emailConfig',$data);
 		}
 
@@ -214,9 +212,7 @@ class Main extends CI_Controller {
 				$this->form_validation->set_rules('smtp_user', 'smtp_user','required',array(
 					'required' => 'Falta user'
 				));
-				$this->form_validation->set_rules('smtp_pass', 'smtp_pass','required',array(
-					'required' => 'Falta password'
-				));
+
 					$id= 1;
 			  if ($this->form_validation->run()) {
 					$data = $this->input->post();
@@ -235,6 +231,7 @@ class Main extends CI_Controller {
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
 				$data['Tipo'] = $session_data['Tipo'];
+				$data['email'] = false;
 
 				$this->load->view('emailConfig',$data);
 		}

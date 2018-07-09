@@ -86,6 +86,10 @@
                         <h1 class="page-title">
                             <i class="voyager-search"></i> Busqueda Avanzada
                         </h1>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        <span class="fas fa-search-plus"></span>&nbsp;
+                        Busqueda Avazanda
+                      </button>
 
 
                     </div>
@@ -157,9 +161,131 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Busqueda Avanzada</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <?php echo form_open('reportes/advancedSearch'); ?>
+                                        <div class="form-group col-md-12">
+                                            <h5>Fecha</h5>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Desde:</label>
+                                                <input type="date" name="desde" class="form-control">
+                                            </div>
+                                              <?php echo form_error('desde','<div class="text-danger">','</div>') ?>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Hasta:</label>
+                                                <input type="date" name="hasta" class="form-control">
+                                            </div>
+                                            <?php echo form_error('hasta','<div class="text-danger">','</div>') ?>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <h5>Urgente</h5>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="urgente" >
+                                                <label class="custom-control-label" >Urgente  </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <h5>Tipo Mantencion :</h5>
+                                            <input class="form-check-input" name="tipomantencion" value="Correctiva" type="radio">
+                                            <label class="form-check-label">Correctiva</label>
+                                            <input class="form-check-input" name="tipomantencion" value="Mejora" type="radio">
+                                            <label class="form-check-label">Mejora</label>
+                                            <input class="form-check-input" name="tipomantencion" value="Preventiva" type="radio">
+                                            <label class="form-check-label">Preventiva</label>
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                      <?php echo form_submit(['name'=>'submit','value'=>'Buscar','class'=>'btn btn-primary']); ?>
+                                </div>
+                                  <?php echo form_close(); ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php include("template/footertable.php"); ?> 
+
+    <footer class="app-footer">
+        <div class="site-footer-right">
+                        Made with <i class="voyager-heart"></i>
+                                        - v1.1.0
+                </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+
+
+    <script>
+       $(document).ready(function(){
+        $('#tbl_personal').DataTable({
+          "order": [
+                      [0, "desc"]
+                  ],
+          "columnDefs" :[{
+              "targets": [0],
+              "searchable": false,
+              "sortable": false
+          }],
+          dom: 'Bfrtip',
+          buttons: [
+              'excel', 'print'
+              
+
+            ],
+          "language": idioma_espanol
+          });
+          });
+    var idioma_espanol = {    
+        "sProcessing":      "Procesando...",
+            "sLengthMenu":      "Mostrar _MENU_ registros",
+            "sZeroRecords":     "No se encontraron resultados",
+            "sEmptyTable":      "Ningún dato disponible en esta tabla",
+            "sInfo":            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":       "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":    "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":     "",
+            "sSearch":          "Buscar:",
+            "sUrl":             "",
+            "sInfoThousands":   ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {        
+            "sFirst":     "Primero",
+                    "sLast":      "Último",
+                    "sNext":      "Siguiente",
+                    "sPrevious": "Anterior"    
+        },
+            "oAria": {        
+            "sSortAscending":   ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"    
+        }
+    }
+    </script>
+
+
+
+    </body>
+    </html>

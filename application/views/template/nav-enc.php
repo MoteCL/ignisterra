@@ -44,7 +44,7 @@
 
                     <li class="">
                         <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-<span class="icon voyager-check"></span> <span class="title">List por Recepcionar</span> </a>
+<span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
                     </li>
 
 

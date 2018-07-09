@@ -150,44 +150,60 @@
     function ObtieneTotHoras()
     {
 
-      //Creamos variables para recorrer fechas
-// var afecha; var fecha = ""; var i = 0;
-// var atotal;
-  var total = 0;
+      //Creamos variables para recorrer fechas y agrupar total x día
+        var afecha = new Array(); var fecha = ""; var i = 0; var firsttime = 1;
+        var atotal = new Array(); var total = 0; var totaltotal = 0; var contartotal = 0; var multi =0;
 
-    $(".td-calcular").each(function (){
-       var HDesde = $(this).data("inicio");
-       var HHasta = $(this).data("fin");
 
-       //recoges el valor del día y en la primera entrada lo asignada a la var fecha
-       // var dia = $(this).data("dia");
-       // if (i=0) { fecha = dia; }
+      $(".td-calcular").each(function (){
+         var HDesde = $(this).data("inicio");
+         var HHasta = $(this).data("fin");
 
-       hora1 = (HDesde).split(":");
-       hora2 = (HHasta).split(":");
-       HoraDesde=(hora1[0]);
-       MinutoDesde=(hora1[1]);
-       HoraHasta=(hora2[0]);
-       MinutoHasta=(hora2[1]);
-       TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
-       TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
-       RestaHoras=(TotHasta - TotDesde);
-       TotHorasTrab=(RestaHoras / 60).toFixed(2);
+         //recoges el valor del día y en la primera entrada lo asignada a la var fecha
+         var dia = $(this).data("dia");
+         if (firsttime==1) { fecha = dia; firsttime = 0; }
 
-       $(this).html(TotHorasTrab);
+         hora1 = (HDesde).split(":");
+         hora2 = (HHasta).split(":");
+         HoraDesde=(hora1[0]);
+         MinutoDesde=(hora1[1]);
+         HoraHasta=(hora2[0]);
+         MinutoHasta=(hora2[1]);
+         TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
+         TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
+         RestaHoras=(TotHasta - TotDesde);
+         TotHorasTrab=(RestaHoras / 60).toFixed(2);
 
-       //Ahora en el momento que cambies la fecha guardas los valores de fecha y total en dos arrays y pones total a 0
-       // if (fecha != dia) {
-       //    afecha[i] = día;
-       //    atotal[i] = total;
-       //    i++;
-       //    total=O;
-       // }
-       //Incrementas total
-       total += parseFloat(TotHorasTrab);
-       $('#subtotal').html(total);
+         $(this).html(TotHorasTrab);
 
-    });
+         //Ahora en el momento que cambies la fecha guardas los valores de fecha y total en dos arrays y pones total a 0
+         if (fecha != dia) {
+        afecha[i] = fecha;
+        atotal[i] = total;
+        i++;
+        total = 0;
+     }
+     fecha = dia;
+         //Incrementas total
+         total = parseFloat(total) + parseFloat(TotHorasTrab);
+
+      });
+      //Añadimos el valor del último día y mostramos resultados alamacenados en el aray
+      afecha[i] = fecha;
+      atotal[i] = total;
+      for (j=0; j<afecha.length; j++) {
+          //$(".div-calcular").data("sub-total").html(atotal[j]);
+          totaltotal+=atotal[j];
+
+        }
+
+        contartotal = afecha.length;
+        multi = parseFloat(afecha.length*9);
+        totalResultado = (contartotal* multi)/100;
+        $('#totalhrs').html(totaltotal);
+        $('#countTotal').html('  ['+contartotal+' dias ]  '+multi);
+        $('#totalResultado').html(totalResultado);
+
           }
     </script>
     </body>

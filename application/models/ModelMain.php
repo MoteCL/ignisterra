@@ -30,6 +30,17 @@ class ModelMain extends CI_Model
 			return $query->row();
 		}
 	}
+	public function checkUser($id)
+	{
+    $query = $this->db->get_where('personal', array(
+			'Codigo' => $id
+		));
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	public function getallPersona()
 	{
 		$this->db->order_by('Codigo', 'asc');

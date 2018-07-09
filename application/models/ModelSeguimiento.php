@@ -24,6 +24,17 @@ class ModelSeguimiento extends CI_Model
     } else { return false; }
   }
 
+  public function getTecnicoSeguimiento()
+  {
+    $this->db->join('personal as p', 'p.Codigo = Tecnico_Seguimiento.id_tecnico');
+    $this->db->order_by('id_detalle', 'desc');
+    $query = $this->db->get('Tecnico_Seguimiento');
+
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else { return false; }
+  }
+
   public function getSeguimientoJoin()
   {
     $this->db->select('*');
@@ -80,11 +91,7 @@ class ModelSeguimiento extends CI_Model
 
     public function getDetalleById($id)
     {
-      // $this->db->select('*');
-      // $this->db->from('Seguimiento_Detalle as detalle');
-      // $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
-      // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
-      // $this->db->where('MAN.idMan_Tecnico',$id);
+
       $this->db->select('*');
       $this->db->from('MAN_Seguimiento as MAN');
       $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
@@ -96,6 +103,24 @@ class ModelSeguimiento extends CI_Model
   		}
 
     }
+
+    public function getDetallePorID($id)
+    {
+
+      $this->db->select('*');
+      $this->db->from('MAN_Seguimiento as MAN');
+      $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
+      $this->db->join('MAN_Solicitud as s','s.NroSolicitud = MAN.NroSolicitud');
+      $this->db->join('personal as p','p.Codigo = s.cod_detecta');
+      $this->db->where('MAN.idMan_Tecnico',$id);
+      $query = $this->db->get();
+      if ($query->num_rows() > 0) {
+        return $query->row();
+      }
+
+    }
+
+
     public function getTecnicos($id)
     {
       $query = $this->db->get_where('Tecnico_Seguimiento', array(
@@ -125,11 +150,14 @@ class ModelSeguimiento extends CI_Model
     // }
 	}
 
-  public function get_search_date($start,$end)
+  public function get_search_date($minvalue,$maxvalue)
 {
-  $sql = "SELECT * FROM MAN_Solicitud WHERE fechasolicitud BETWEEN '$end' AND '$start'";
-  // $sql.= $this->db->or_like('estado', $estado);
-  $query = $this->db->query($sql);
+     $this->db->select('*');
+     $this->db->from('MAN_Solicitud as MAN');
+     $this->db->join('personal as p','p.Codigo = MAN.cod_detecta');
+     $this->db->where('MAN.fechasolicitud >=',$minvalue);
+     $this->db->where('MAN.fechasolicitud <=',$maxvalue);
+     $query = $this->db->get();
   if ($query->num_rows() > 0) {
     return $query->result();
   }

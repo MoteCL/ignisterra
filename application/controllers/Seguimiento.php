@@ -39,15 +39,14 @@ class Seguimiento extends CI_Controller {
 			redirect('main/login', 'refresh');
 		}
 		$estado = 'TECNICA';
-		$data['datos'] = $this->ma->getMantenciones();
-		$data['personas']=$this->main->getallPersona();
-		$data['data'] = $this->seguimiento->getDetalleById($id);
 
+		$data['data'] = $this->seguimiento->getDetallePorID($id);
+		$data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
-
+	//	print_r($data);
 		$this->load->view('verManTecnico', $data);
 	}
 
@@ -143,39 +142,57 @@ class Seguimiento extends CI_Controller {
  }
  public function get_fecha_result()
  {
-	 $this->load->helper('date');
-	 $this->form_validation->set_rules('inicio', 'inicio','required',array(
-		 'required' => 'Seleccione una fecha!'
-	 ));
-	 $this->form_validation->set_rules('fin', 'fin','required',array(
-		'required' => 'Seleccione una fecha'
-	));
-	$session_data = $this->session->userdata('logged_in');
-	$data['Codigo'] = $session_data['Codigo'];
-	$data['Nombre'] = $session_data['Nombre'];
-	$data['Tipo'] = $session_data['Tipo'];
-
-	  if ($this->form_validation->run()) {
-			$inicio= $this->input->post('inicio');
-			$fin= $this->input->post('fin');
-			$estado= $this->input->post('$estado');
-			if ($inicio<$fin) {
-				$this->session->set_flashdata('error_msg', 'Error fecha');
-				$this->load->view('entreFechas', $data);
-			}else {
-			 $data['datos'] =$this->seguimiento->get_search_date($inicio,$fin);
-	 		 $data['start'] = $inicio;
-	 		 $data['end'] = $fin;
-
-
-	 	 	 $this->load->view('verEntreFechas', $data);
-			}
-
-	}else{
+	 if (!$this->session->userdata('logged_in')) {
+		 redirect('main/login', 'refresh');
+	 }
 	 $session_data = $this->session->userdata('logged_in');
- 	 $this->load->view('entreFechas', $data);
+	 $data['Codigo'] = $session_data['Codigo'];
+	 $data['Nombre'] = $session_data['Nombre'];
+	 $data['Tipo'] = $session_data['Tipo'];
+	 $desde = $this->input->post('desde');
+	 $hasta =$this->input->post('hasta');
+	 $urgente = $this->input->post('urgente');
+	 $tipomantencion =$this->input->post('tipomantencion');
+	 $abierta =$this->input->post('estado');
+	 $cerrada =$this->input->post('estado2');
+	 $this->db->select('*');
+	 $this->db->from('MAN_Solicitud');
+	 $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
 
-	}
+	 if ( ! empty($desde) && ! empty($hasta))
+		 {
+			 $this->db->where('fechasolicitud >=',$desde);
+			 $this->db->where('fechasolicitud <=',$hasta);
+		 }
+		 if (! empty($urgente))
+		 {
+			 $this->db->where('urgente','SI');
+		 }
+		 
+		 if (! empty($abierta))
+		{
+			$this->db->where('estado','ABIERTA');
+		}
+		if (! empty($cerrada))
+		{
+			$this->db->where('estado','CERRADA');
+		}
+
+		 if (! empty($tipomantencion))
+		 {
+				$this->db->where('tipomantencion',$tipomantencion);
+		 }
+		 $query = $this->db->get();
+
+		 if ($query->num_rows() > 0) {
+			 $data['datos'] = $query->result();
+		 }
+
+		 $data['start'] = $desde;
+		 $data['end'] = $hasta;
+		 $this->load->view('verEntreFechas', $data);
+
+
 	}
 
 

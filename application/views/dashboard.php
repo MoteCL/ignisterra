@@ -124,9 +124,7 @@
                                                   <option selected="">Choose...</option>
                                                 <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                  <option  value="<?php echo set_value('CodArea'); ?><?php echo $maquina-> CodArea ?>"> <?php echo set_value('maquina'); ?>
-
-                                                  <?php echo $maquina-> Maquina ?></option>
+                                                  <option  value="<?php echo $maquina-> CodArea ?>">  <?php echo $maquina-> Maquina ?></option>
                                                 <?php }?>
                                               </select>
                                                 <div class="col-md-5">
@@ -199,7 +197,7 @@
                                           <?php if ($Tipo==2): ?>
                                             <label>Urgente</label>
                                             <div class="custom-control custom-checkbox">
-                                                <?php echo form_checkbox('urgente', 'Si'); ?>
+                                                <?php echo form_checkbox('urgente', 'SI'); ?>
                                                 <label class="custom-control-label" for="customCheck1">Se requiere urgente?</label>
                                             </div>
                                           <?php endif; ?>

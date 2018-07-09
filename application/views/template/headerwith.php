@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/tcg/voyager/assets/css/app.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-all.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.timepicker.css'); ?>">
     <style>

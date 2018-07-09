@@ -45,9 +45,8 @@
       $("#divhidden").hide(100);
       $("input[name=tipotrabajo]:checked").prop('checked', false);
         });
-  mostrar_mensaje();
+  //mostrar_mensaje();
    });
-
 
 
 

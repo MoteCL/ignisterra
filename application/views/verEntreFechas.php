@@ -2,13 +2,11 @@
 
 <body class="voyager">
 
-    <div id="voyager-loader expanded">
+    <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
     </div>
-
-
-    <div class="app-container">
+    <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
@@ -17,6 +15,7 @@
                         <button class="hamburger btn-link is-active">
           <span class="hamburger-inner"></span>
           </button>
+
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
                                 <i class="voyager-home"></i>
@@ -90,9 +89,9 @@
                         <h1 class="page-title">
                             <i class="voyager-news"></i> Listado entre fechas
 
-                            <?php $datestring = 'Day: %d Month: %m Year: %Y'; ?>
+
                         </h1>
-                        <!-- <?php echo 'Desde '.mdate($datestring,$start).' Hasta '.$end; ?> -->
+
                           <?php echo 'Desde '.$start.' Hasta '.$end; ?>
                     </div>
                     <div id="voyager-notifications"></div>
@@ -144,7 +143,7 @@
                                                           <?php echo $dato-> urgente ?>
                                                         </td>
                                                         <td>
-                                                          <?php echo $dato-> cod_detecta ?>
+                                                          <?php echo $dato-> Nombre ?>
                                                         </td>
 
                                                       </tr>

@@ -85,7 +85,7 @@
                             <span class="glyphicon glyphicon-list"></span>&nbsp;
                             Listar CERRADAS
                         </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                           <span class="fas fa-search-plus"></span>&nbsp;
                           Busqueda Avazanda
                         </button>
@@ -113,9 +113,7 @@
                                                         <th>Fecha</th>
                                                         <th>Estado</th>
                                                         <th>Urgente</th>
-
                                                         <th></th>
-
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -146,9 +144,8 @@
                                                             <?php echo $row -> tipotrabajo; ?>
                                                         </td>
                                                         <td>
-                                                            <?php $nestedData = date('j M Y',strtotime($row-> fechasolicitud));
-                                                  echo $nestedData;
-                                                  ?>
+                                                            <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
+                                                            <?php echo  $row-> fechasolicitud;  ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> estado; ?>
@@ -187,7 +184,8 @@
                                                             <?php echo $row -> tipotrabajo; ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo date('j M Y',strtotime($row-> fechasolicitud)); ?>
+                                                          <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
+                                                          <?php echo  $row-> fechasolicitud;  ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> estado; ?>
@@ -248,7 +246,7 @@
                                                                     <input class="form-check-input" name="tipomantencion" value="Preventiva" type="radio">
                                                                     <label class="form-check-label">Preventiva</label>
                                                                 </div>
-
+                                                              
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>

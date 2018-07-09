@@ -103,95 +103,89 @@
                                     <div class="panel-body">
 
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Numero de Solicitud
+                                            <div class="col-4 col-md-4"><h5>Numero de Solicitud</h5>
                                                 <p>
                                                     <?php echo $data-> NroSolicitud; ?>
                                                 </p>
                                             </div>
 
-                                            <?php if ($datos): ?>
-                                            <?php foreach ($datos as $dato): ?>
-                                            <?php if ($dato -> NroSolicitud == $data-> NroSolicitud): ?>
-                                            <div class="col-4 col-md-4">Fecha de Solicitud Emitida
+
+                                            <div class="col-4 col-md-4"><h5>Fecha de Solicitud Emitida</h5>
                                                 <p>
-                                                    <?php echo $dato-> fechasolicitud; ?>
+                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud)); ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Maquina
+                                            <div class="col-4 col-md-4"><h5>Maquina</h5>
                                                 <p>
-                                                    <?php echo $dato-> maquina; ?>
+                                                    <?php echo $data-> maquina; ?>
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="row">
 
-                                            <div class="col-4 col-md-4">Codigo de Solicitante
+                                            <div class="col-4 col-md-4"><h5>Codigo de Solicitante</h5>
                                                 <p>
-                                                    <?php echo $dato-> cod_detecta; ?> </p>
+                                                    <?php echo $data-> cod_detecta; ?> </p>
                                             </div>
-                                            <?php if ($personas): ?>
-                                            <?php foreach ($personas as $persona): ?>
-                                            <?php if ($persona-> Codigo == $dato-> cod_detecta): ?>
-                                            <div class="col-4 col-md-4">Nombre
+
+                                            <div class="col-4 col-md-4"><h5>Nombre</h5>
                                                 <p>
-                                                    <?php echo $persona-> Nombre; ?>
+                                                    <?php echo $data-> Nombre; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Area de Solicitante
+                                            <div class="col-4 col-md-4"><h5>Area de Solicitante</h5>
                                                 <p>
-                                                    <?php echo $persona-> Area ?>
+                                                    <?php echo $data-> Area ?>
                                                 </p>
                                             </div>
                                         </div>
-                                        <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        <?php endif; ?>
-                                        <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        <?php endif; ?>
+
                                         <div class="row">
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-4 col-md-4">Clasificacion
+                                            <div class="col-4 col-md-4"><h5>Clasificacion</h5>
                                                 <p>
                                                     <?php echo $data-> clasificacion; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Tipo de detencion
+                                            <div class="col-4 col-md-4"><h5>Tipo de detencion</h5>
                                                 <p>
                                                     <?php echo $data-> tipo_detencion; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-4">Fecha Mantencion Realizada
+                                            <div class="col-4 col-md-4"><h5>Fecha Mantencion Realizada</h5>
                                                 <p>
-                                                    <?php echo $data-> fecha; ?>
+                                                    <?php echo date('j M Y',strtotime($data-> fecha)); ?>
+
                                                 </p>
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="col-4 col-md-4">ID Tecnico
-                                                <p>
-                                                    <?php echo $data-> id_tecnico; ?>
-                                                </p>
+                                        <?php if ($tecnicos): ?>
+                                            <?php foreach ($tecnicos as $tecnico): ?>
+                                              <?php if ($tecnico->id_detalle==$data->id_detalle): ?>
+                                                <div class="row">
 
-                                            </div>
-                                            <?php if ($personas): ?>
-                                            <?php foreach ($personas as $persona): ?>
-                                            <?php if ($persona-> Codigo == $data->id_tecnico): ?>
-                                            <div class="col-4 col-md-4">Nombre Tecnico
-                                                <p>
-                                                    <?php echo $persona-> Nombre; ?>
-                                                </p>
+                                                    <div class="col-4 col-md-4"><h5>Codigo Tecnico</h5>
+                                                        <p>
+                                                            <?php echo $tecnico-> id_tecnico; ?>
+                                                        </p>
 
-                                            </div>
-                                            <?php endif; ?>
+                                                    </div>
 
+                                                    <div class="col-4 col-md-4"><h5>Nombre Tecnico</h5>
+                                                        <p>
+                                                            <?php echo $tecnico-> Nombre; ?>
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+                                              <?php endif; ?>
                                             <?php endforeach; ?>
-                                            <?php endif; ?>
+                                        <?php endif; ?>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +212,7 @@
                                                         <?php echo $data-> horaInicio; ?>
                                                     </p>
                                                 </div>
-                                                <div class="col-4 col-md-1">Hora de Termino
+                                                <div class="col-4 col-md-2">Hora de Termino
                                                     <p>
                                                         <?php echo $data-> horaTermino; ?>
                                                     </p>

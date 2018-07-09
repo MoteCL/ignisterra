@@ -121,13 +121,18 @@ class Mantencion extends CI_Controller {
 		$this->load->library('email',$config);
 		$this->email->set_newline("\r\n");
 		$body = $this->load->view('email/index.php',$dataa,TRUE);
-		$this->email->from($envia, 'No responder');
 		$this->email->to($recibe);
 		if ($this->input->post('urgente')) {
 
 				$this->email->cc($recibeUr);
+				$this->email->from($envia,'[Urgente]');
+				$this->email->subject('Nueva Mantencion maquina '.$_POST['maquina']);
+		}else {
+			$this->email->from($envia,'');
+				$this->email->subject('Nueva Mantencion maquina '.$_POST['maquina']);
 		}
-		$this->email->subject('Nueva Mantecion');
+
+
 		$this->email->message($body);
 		$this->email->set_mailtype("html");
 
@@ -174,8 +179,8 @@ class Mantencion extends CI_Controller {
 			'required' => 'Ingrese codigo'
 		));
 
-
-    if ($this->form_validation->run()) {
+		$check = $this->input->post('phoneData');
+    if ($this->form_validation->run() && $this->main->checkUser($check)) {
 
 			$data['NroSolicitud'] = $_POST['NroSolicitud'];
 			$data['maquina'] = $_POST['maquina'];
@@ -188,7 +193,7 @@ class Mantencion extends CI_Controller {
       $data['horasolicitud'] = date('H:i:s');
 			$data['estado'] = 'ABIERTA';
 			$data['cod_detecta'] = $this->input->post('phoneData');
-
+			$data['urgente'] = 'NO';
       if ($this->ma->addData($data)) {
 					$message='Mantención  ingresada exitosamente   ';
       } else {
@@ -230,14 +235,14 @@ class Mantencion extends CI_Controller {
 		$dataa['tipotrabajo'] = $_POST['tipotrabajo'];
 		$dataa['tipomantencion'] = $_POST['tipomantencion'];
 		$dataa['urgente'] = $_POST['urgente'];
+		$machine = $this->input->post('maquina');
 
 		$this->load->library('email',$config);
 		$this->email->set_newline("\r\n");
 		$body = $this->load->view('email/index.php',$dataa,TRUE);
-		$this->email->from($envia, 'No responder');
+		$this->email->from($envia,'');
 		$this->email->to($recibe);
-
-		$this->email->subject('Nueva Mantecion');
+		$this->email->subject('Nueva Mantencion maquina '.$machine);
 		$this->email->message($body);
 		$this->email->set_mailtype("html");
 
@@ -251,6 +256,7 @@ class Mantencion extends CI_Controller {
 		}
       return redirect('main/menu');
     } else {
+				$this->session->set_flashdata('error_msg', 'Codigo Invalido');
 			$data['data']=$this->ma->getallMaquinas();
 			$data['orden']=$this->ma->getOrden();
 			$session_data = $this->session->userdata('logged_in');
@@ -354,7 +360,7 @@ class Mantencion extends CI_Controller {
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
 				$data['Tipo'] = $session_data['Tipo'];
-			$this->form_validation->set_rules('NroSolicitud', 'NroSolicitud', 'required', array(
+				$this->form_validation->set_rules('NroSolicitud', 'NroSolicitud', 'required', array(
 				'required' => 'Ingrese un codigo!'
 			));
 
@@ -362,8 +368,6 @@ class Mantencion extends CI_Controller {
 				$id = $_POST['NroSolicitud'];
 				if ($this->ma->getMantencionbyId($id)) {
 					$data['data'] = $this->ma->getMantencionbyId($id);
-					$data['area']=$this->ma->getallArea();
-					$data['persona']=$this->main->getPersona($session_data['Codigo']);
 					$this->load->view('mantencionId', $data);
 				} else {
 					$this->session->set_flashdata('error_msg', 'Error Numero Invalido');
@@ -522,7 +526,7 @@ class Mantencion extends CI_Controller {
 					$this->session->set_flashdata('error_msg', 'Ya se encuentra en estado Urgente');
 					return redirect('mantencion/listByArea');
 			}else {
-				
+
 				$session_data = $this->session->userdata('logged_in');
 				$data['Codigo'] = $session_data['Codigo'];
 				$data['Nombre'] = $session_data['Nombre'];
@@ -582,6 +586,7 @@ class Mantencion extends CI_Controller {
 					$dataa['tipomantencion'] = $key-> tipomantencion;
 					$dataa['urgente'] = $key-> urgente;
 					$dataa['fechasolicitud'] = $key-> fechasolicitud;
+					$maquina = $key-> maquina;
 
 				}
 				$session_data = $this->session->userdata('logged_in');
@@ -593,7 +598,7 @@ class Mantencion extends CI_Controller {
 			$this->load->library('email',$config);
 			$this->email->set_newline("\r\n");
 			$body = $this->load->view('email/edit.php',$dataa,TRUE);
-			$this->email->from($envia, 'No responder');
+			$this->email->from($envia,'');
 			$this->email->to($recibe);
 			$this->email->cc($recibeUr);
 			$this->email->subject('Modificacion Mantencion');

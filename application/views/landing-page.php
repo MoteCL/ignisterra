@@ -110,5 +110,41 @@
             </div>
         </div>
     </div>
+    <?php if ($Tipo==3): ?>
+      <footer class="app-footer">
+          <div class="site-footer-right">
+                          Made with <i class="voyager-heart"></i>
+                                        - v1.1.0
+                  </div>
+      </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+       google.charts.load('current', {'packages':['corechart']});
+       google.charts.setOnLoadCallback(drawChart);
+       function drawChart() {
+                 var data = google.visualization.arrayToDataTable([
+                     [{type: 'string', label: 'Nombre'}, {type: 'number', label: 'Horas'}],
+                   <?php
+                   foreach ($result as $row) {
+                      echo '[ \'' . $row->estado . '\' , ' . $row->contador. '],' ;
+                   }
+                   ?>
+                 ]);
 
-    <?php include("template/footer.php"); ?>
+                 var options = {
+           title: 'Calendario de actividades, acuerdo a un mes'
+         };
+
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+         chart.draw(data, options);
+       }
+        </script>
+      <?php else: ?>
+      <?php include("template/footer.php"); ?>
+    <?php endif; ?>

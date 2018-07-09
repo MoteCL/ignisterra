@@ -94,6 +94,17 @@
                                       <div id="canvas-holder" style="width:30%">
                                     		<canvas id="chart-area"></canvas>
                                     	</div>
+                                     <table>
+                                       <tr>
+                                         <td>
+                                           <div id="piechart_div" style="border:1px solid #ccc"> </div>
+                                           <div id="barchart_div" style="border:1px solid #ccc"> </div>
+                                         </td>
+                                       </tr>
+                                     </table>
+
+                                     <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
 
                                 </div>
                             </div>
@@ -115,6 +126,78 @@
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+   <script>
+     $(document).ready(function(){
+       $.ajax({
+          url : "<?php echo base_url();?>index.php/Reportes/getStatus",
+          dataType: "JSON",
+          success: function(result){
+            google.charts.load('current',{
+              'packages' : ['corechart']
+            });
+            google.charts.setOnLoadCallback(function () {
+              drawChart(result);
+            });
+          }
+       });
+
+       function  drawChart (result){
+         var data = new google.visualization.DataTable();
+         data.addColumn('string','Maquina');
+         data.addColumn('string','Contador');
+         var dataArray=[];
+         $.each(result, function (i,obj) {
+           dataArray.push([obj.maquina, parseInt(obj.contador)]);
+
+         });
+         data.addRows(dataArray);
+         var piechart_options= {
+           title : 'Titulo',
+           width: 400,
+           height: 300
+         };
+         var piechart = new google.visualization.pieChart(document.getElementById('piechart_div'));
+         pieChart.draw(data,piechart_options);
+         var barchart_options = {
+           title : 'Titulo 2',
+           width: 400,
+           height: 300,
+           legend : 'none'
+         };
+         var  barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+         barchart.draw(data,barchart_options);
+       }
+     });
+   </script>
+
+   <script type="text/javascript">
+     google.charts.load('current', {'packages':['bar']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+       var data = google.visualization.arrayToDataTable([
+         ['Year', 'Sales', 'Expenses', 'Profit'],
+         ['2014', 1000, 400, 200],
+         ['2015', 1170, 460, 250],
+         ['2016', 660, 1120, 300],
+         ['2017', 1030, 540, 350]
+       ]);
+
+       var options = {
+         chart: {
+           title: 'Company Performance',
+           subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+         },
+         bars: 'horizontal' // Required for Material Bar Charts.
+       };
+
+       var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+       chart.draw(data, google.charts.Bar.convertOptions(options));
+     }
+   </script>
 
 
 <script>
