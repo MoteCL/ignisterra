@@ -16,6 +16,9 @@ class ModelMantencion extends CI_Model
 
   public function getallMaquinas()
 	{
+
+    $this->db->join('Centro_Costo as c', 'c.CodCC = Maquinas.Centro_Costo');
+    $this->db->join('area as a', 'a.CodArea = c.Area');
 		$this->db->order_by('Maquina', 'asc');
 		$query = $this->db->get('Maquinas');
 		if ($query->num_rows() > 0) {
@@ -29,6 +32,18 @@ class ModelMantencion extends CI_Model
 	{
 		$this->db->order_by('CodArea', 'asc');
 		$query = $this->db->get('area');
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+  public function getAllCentroCosto()
+	{
+    $this->db->join('area as a', 'a.CodArea = Centro_Costo.Area');
+		$this->db->order_by('CodCC', 'asc');
+		$query = $this->db->get('Centro_Costo');
 		if ($query->num_rows() > 0) {
 			return $query->result();
 		} else {
@@ -79,9 +94,10 @@ class ModelMantencion extends CI_Model
 
   public function getMantencionbyId($id)
 	{
-    $this->db->join('area as a', 'a.CodArea = MAN_Solicitud.CodArea');
-    $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
-    $query = $this->db->get_where('MAN_Solicitud', array(
+    $this->db->select('m.orden, m.NroSolicitud, m.cod_detecta, m.detalle, m.fechasolicitud, m.horasolicitud, m.tipomantencion, m.estado, m.maquina, m.urgente, m.tipotrabajo, m.CodArea, p.Nombre as username, p.Codigo, a.DescArea as area  ');
+    $this->db->join('personal as p', 'p.Codigo = m.cod_detecta');
+    $this->db->join('area as a', 'a.CodArea = p.Area');
+    $query = $this->db->get_where('MAN_Solicitud as m', array(
 			'NroSolicitud' => $id
 		));
 		if ($query->num_rows() > 0) {
@@ -130,9 +146,11 @@ class ModelMantencion extends CI_Model
 
   public function listByArea($area)
   {
+
     $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
+    $this->db->join('area as a', 'a.CodArea = p.Area');
     $query = $this->db->get_where('MAN_Solicitud', array(
-      'CodArea' => $area
+      'p.Area' => $area
     ));
 
     if ($query->num_rows() > 0) {

@@ -21,6 +21,7 @@ class Mantencion extends CI_Controller {
 			$this->load->view('index');
 		}
 		$data['data']=$this->ma->getallMaquinas();
+		$data['costos']=$this->ma->getAllCentroCosto();
 		$data['orden']=$this->ma->getOrden();
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
@@ -36,6 +37,7 @@ class Mantencion extends CI_Controller {
 			$this->load->view('index');
 		}
 		$data['data']=$this->ma->getallMaquinas();
+		$data['costos']=$this->ma->getAllCentroCosto();
 		$data['orden']=$this->ma->getOrden();
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
@@ -293,12 +295,13 @@ class Mantencion extends CI_Controller {
 			redirect('main/login', 'refresh');
 		}
 		$data['data'] = $this->ma->getMantencionbyId($id);
-		$data['area']=$this->ma->getallArea();
+
 		$session_data = $this->session->userdata('logged_in');
-		$data['personas']=$this->main->getallPersona();
+		//$data['personas']=$this->main->getallPersona();
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
+	//	print_r($data);
 		$this->load->view('verMantencion', $data);
 	}
 

@@ -32,7 +32,11 @@
 
           <div class="row">
             <div class="col-4 col-sm-9">
+              <h5> Total horas por fecha : <div class="div-calcular" data-div-calcular="">
 
+              </div> </h5>
+             <h5> Horas turno :    9</h5>
+             <h5> % Ocupacion por fecha: </h5>
             </div>
             <div class="col-4 col-md-2">
 

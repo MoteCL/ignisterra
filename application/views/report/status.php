@@ -91,19 +91,9 @@
                                     <span class="voyager-documentation"></span> Imprimir &nbsp;
                                   </button>
                                     <div class="panel-body">
-                                      <div id="canvas-holder" style="width:30%">
-                                    		<canvas id="chart-area"></canvas>
-                                    	</div>
-                                     <table>
-                                       <tr>
-                                         <td>
-                                           <div id="piechart_div" style="border:1px solid #ccc"> </div>
-                                           <div id="barchart_div" style="border:1px solid #ccc"> </div>
-                                         </td>
-                                       </tr>
-                                     </table>
 
-                                     <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
+                                     <div id="chart_div" style="width: 1500px; height: 1200px;"></div>
 
 
                                 </div>
@@ -127,7 +117,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+<!--
    <script>
      $(document).ready(function(){
        $.ajax({
@@ -170,33 +160,42 @@
          barchart.draw(data,barchart_options);
        }
      });
-   </script>
+   </script> -->
 
    <script type="text/javascript">
-     google.charts.load('current', {'packages':['bar']});
-     google.charts.setOnLoadCallback(drawChart);
+   google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
 
-     function drawChart() {
-       var data = google.visualization.arrayToDataTable([
-         ['Year', 'Sales', 'Expenses', 'Profit'],
-         ['2014', 1000, 400, 200],
-         ['2015', 1170, 460, 250],
-         ['2016', 660, 1120, 300],
-         ['2017', 1030, 540, 350]
-       ]);
+function drawBasic() {
 
-       var options = {
-         chart: {
-           title: 'Company Performance',
-           subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-         },
-         bars: 'horizontal' // Required for Material Bar Charts.
-       };
+     var data = google.visualization.arrayToDataTable([
+       ['Maquina', 'Fecha',],
+       <?php
+         if ($maquinas) {
+          foreach ($maquinas as $maquina) {
+            echo '[ \'' . $maquina->maquina . '\' , ' . $maquina->contador. '],' ;
+                }
+            }
 
-       var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+           ?>
+     ]);
 
-       chart.draw(data, google.charts.Bar.convertOptions(options));
-     }
+     var options = {
+       title: 'Historial de Maquina',
+       chartArea: {width: '50%'},
+       hAxis: {
+         title: 'Total',
+         minValue: 0
+       },
+       vAxis: {
+         title: 'Maquina'
+       }
+     };
+
+     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+     chart.draw(data, options);
+   }
    </script>
 
 

@@ -100,13 +100,13 @@
                                                     <tr>
                                                         <th>Orden</th>
                                                         <th>NroSolicitud</th>
-
+                                                        <th>Maquina</th>
                                                         <th>Fecha</th>
                                                         <th>Clasificacion</th>
                                                         <th>Tipo Detencion</th>
                                                         <th>Estado</th>
 
-                                                        <th></th>
+                                                        <th>--</th>
 
                                                     </tr>
                                                 </thead>
@@ -121,6 +121,9 @@
                                                         </td>
                                                         <td>
                                                             <?php echo $tecnico -> NroSolicitud; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $tecnico -> maquina; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $tecnico -> fecha; ?>
@@ -138,8 +141,7 @@
                                                             <a href="<?php echo base_url( '/index.php/seguimiento/verSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-primary">
                                         <i class="icon voyager-documentation"></i>Ver</a>
                                                             <a href="#" class="label label-success"> Editar</a>
-                                                            <a href="#" class="label label-danger" onclick=" return confirm('¿Estas seguro que deseas eliminar la publicación?');"> Eliminar</a>
-                                                        </td>
+                                                          </td>
 
                                                     </tr>
 

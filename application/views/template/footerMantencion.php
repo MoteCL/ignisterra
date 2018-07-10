@@ -37,10 +37,10 @@ $(document).ready(function(){
 
      $("#horaTermino").keypress(function(event)
      {
-
+       ObtieneTotHoras();
      })
      $(document).on('click', '.btn_add', function(){
-        ObtieneTotHoras();
+
      });
 
      function ObtieneTotHoras()
@@ -65,17 +65,10 @@ $(document).ready(function(){
               }
               else{
                   TotHorasTrab=(RestaHoras / 60).toFixed(2);
-                  //RestaHoras1 =RestaHoras
+
               }
 
-             // if(TotDesde<=780 && TotHasta>=810)
-             // {
-             //         var Resta=(RestaHoras / 60);
-             //         TotHorasTrab=(Resta-0.5).toFixed(2);
-             // }
-             // else {
-             //
-             // }
+
              if ($('#id_tecnico1').val().length != 0) {
                 contar+=1;
              }

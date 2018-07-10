@@ -192,7 +192,7 @@
       afecha[i] = fecha;
       atotal[i] = total;
       for (j=0; j<afecha.length; j++) {
-          //$(".div-calcular").data("sub-total").html(atotal[j]);
+          $( ".div-calcular" ).data( ".div-calcular", atotal[j])
           totaltotal+=atotal[j];
 
         }

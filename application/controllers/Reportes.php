@@ -83,7 +83,12 @@ class Reportes extends CI_Controller {
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
-		$data['results'] = $this->report->getdataa();
+		$sql ="SELECT distinct(maquina), count(*) as contador FROM `MAN_Solicitud` WHERE fechasolicitud BETWEEN '2018-01-01' AND '2018-06-06' GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` asc ";
+    $query = $this->db->query($sql);
+
+		if ($query->num_rows() > 0) {
+			$data['maquinas'] = $query->result();
+		}
 
 		$this->load->view('report/status',$data);
 	}

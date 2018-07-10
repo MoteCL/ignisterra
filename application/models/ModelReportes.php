@@ -147,7 +147,7 @@ class ModelReportes extends CI_Model {
     }
  }
 
- public function getdataa(){
+ public function landing_page_enc(){
    $hoy = date('Y-m-d');
    $mes=date('Y-m-d',strtotime("-1 month"));
    $sql = "SELECT estado, COUNT(*) as contador FROM MAN_Solicitud  WHERE estado IN ('ABIERTA','CERRADA') AND fechasolicitud BETWEEN '$mes' AND '$hoy' GROUP BY estado";

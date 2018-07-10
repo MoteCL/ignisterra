@@ -165,9 +165,9 @@
                                         <?php if ($tecnicos): ?>
                                             <?php foreach ($tecnicos as $tecnico): ?>
                                               <?php if ($tecnico->id_detalle==$data->id_detalle): ?>
-                                                <div class="row">
+                                                  <div class="row">
 
-                                                    <div class="col-4 col-md-4"><h5>Codigo Tecnico</h5>
+                                                      <div class="col-4 col-md-4"><h5>Codigo Tecnico</h5>
                                                         <p>
                                                             <?php echo $tecnico-> id_tecnico; ?>
                                                         </p>
@@ -267,6 +267,7 @@
                         <div class="modal-body">
                             ¿Estas seguro que deseas autorizar mantencion
                             <?php echo $data-> NroSolicitud ?>?
+                            <p>Este enviara un correo al supervisor del Area <?php $data-> CodArea; ?></p>
                         </div>
                         <?php echo form_open("seguimiento/save/{$data->NroSolicitud}"); ?>
                         <div class="modal-footer">

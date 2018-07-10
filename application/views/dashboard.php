@@ -121,11 +121,17 @@
 
                                             <div class="form-group mx-sm-3 mb-2">
                                                 <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-                                                  <option selected="">Choose...</option>
-                                                <?php if ($data) foreach ($data as $maquina) { ?>
+                                                  <option selected="" disabled> --- Maquinas ---</option>
+                                                  <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                  <option  value="<?php echo $maquina-> CodArea ?>">  <?php echo $maquina-> Maquina ?></option>
-                                                <?php }?>
+                                                    <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
+                                                  <?php }?>
+                                                  <option  disabled> --- Centro Costo ---</option>
+                                                  <?php if ($costos) foreach ($costos as $costo) { ?>
+
+                                                    <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
+                                                  <?php }?>
+
                                               </select>
                                                 <div class="col-md-5">
                                                     <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>

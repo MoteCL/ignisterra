@@ -28,13 +28,14 @@ class Main extends CI_Controller {
 			redirect('main/login', 'refresh');
 		}
 
-		$data['data']=$this->ma->getallMaquinas();
-		$data['orden']=$this->ma->getOrden();
+		
 		$session_data = $this->session->userdata('logged_in');
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
-			$data['result'] =  $this->report->getdataa();
+		$data['result'] =  $this->report->landing_page_enc();
+
+
 		$this->load->view('landing-page',$data);
 	}
 

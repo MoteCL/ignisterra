@@ -80,8 +80,9 @@ class ModelSeguimiento extends CI_Model
     }
     public function getSeguimientoWhere($data)
     {
-      $query = $this->db->get_where('MAN_Seguimiento', array(
-        'estado' => $data
+      $this->db->join('MAN_Solicitud as m','m.NroSolicitud = s.NroSolicitud');
+      $query = $this->db->get_where('MAN_Seguimiento as s', array(
+        's.estado' => $data
       ));
       if ($query->num_rows() > 0) {
         return $query->result();

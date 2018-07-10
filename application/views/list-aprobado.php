@@ -122,12 +122,7 @@
                                       <td>
                                           <?php echo $row -> maquina; ?></td>
                                       <td>
-                                          <?php foreach ($area as $key): ?>
-                                            <?php if ($row-> CodArea == $key-> CodArea): ?>
-                                            <?php echo $key-> DescArea ?>
-                                            <?php endif; ?>
-                                          <?php endforeach; ?>
-                                        </td>
+                                            <?php echo $row -> CodArea; ?></td>
                                       <td>
                                           <?php echo $row -> tipomantencion; ?></td>
                                       <td>
@@ -154,11 +149,7 @@
                                       <td>
                                           <?php echo $row -> maquina; ?></td>
                                       <td>
-                                          <?php foreach ($area as $key): ?>
-                                            <?php if ($row-> CodArea == $key-> CodArea): ?>
-                                            <?php echo $key-> DescArea ?>
-                                            <?php endif; ?>
-                                          <?php endforeach; ?>
+                                          <?php echo $row -> CodArea; ?>
                                         </td>
                                       <td>
                                           <?php echo $row -> tipomantencion; ?></td>

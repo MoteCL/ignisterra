@@ -81,7 +81,6 @@
                     ?>
                 </nav>
             </div>
-
             <!-- Main Content -->
             <div class="container-fluid">
                 <div class="side-body padding-top">
@@ -90,11 +89,10 @@
                         <i class="voyager-truck"></i> Editar Mantencion
                         <?php echo $data-> NroSolicitud ?> &nbsp;
 
-
                         <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" class="btn btn-warning">
-                <span class="glyphicon glyphicon-list"></span>&nbsp;
-                Regresar a listado
-            </a>
+                          <span class="glyphicon glyphicon-list"></span> &nbsp;
+                          Regresar a listado
+                      </a>
 
                         </form>
                     </h1>

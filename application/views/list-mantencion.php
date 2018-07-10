@@ -131,11 +131,7 @@
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
                                                         <td>
-                                                            <?php foreach ($area as $key): ?>
-                                                            <?php if ($row-> CodArea == $key-> CodArea): ?>
-                                                            <?php echo $key-> DescArea ?>
-                                                            <?php endif; ?>
-                                                            <?php endforeach; ?>
+                                                              <?php echo $row -> CodArea; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>
@@ -171,11 +167,7 @@
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
                                                         <td>
-                                                            <?php foreach ($area as $key): ?>
-                                                            <?php if ($row-> CodArea == $key-> CodArea): ?>
-                                                            <?php echo $key-> DescArea ?>
-                                                            <?php endif; ?>
-                                                            <?php endforeach; ?>
+                                                              <?php echo $row -> CodArea; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>
@@ -246,7 +238,7 @@
                                                                     <input class="form-check-input" name="tipomantencion" value="Preventiva" type="radio">
                                                                     <label class="form-check-label">Preventiva</label>
                                                                 </div>
-                                                              
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
