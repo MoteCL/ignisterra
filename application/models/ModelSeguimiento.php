@@ -44,8 +44,7 @@ class ModelSeguimiento extends CI_Model
 
 
     $query = $this->db->get();
-    // $this->db->order_by('id_detalle', 'desc');
-    // $query = $this->db->get('Seguimiento_Detalle');
+
 
     if ($query->num_rows() > 0) {
       return $query->result();
@@ -97,6 +96,7 @@ class ModelSeguimiento extends CI_Model
       $this->db->from('MAN_Seguimiento as MAN');
       $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
       $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
+
       $this->db->where('MAN.idMan_Tecnico',$id);
       $query = $this->db->get();
   		if ($query->num_rows() > 0) {
@@ -112,6 +112,7 @@ class ModelSeguimiento extends CI_Model
       $this->db->from('MAN_Seguimiento as MAN');
       $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
       $this->db->join('MAN_Solicitud as s','s.NroSolicitud = MAN.NroSolicitud');
+    //  $this->db->join('area as a','a.DescArea = s.CodArea');
       $this->db->join('personal as p','p.Codigo = s.cod_detecta');
       $this->db->where('MAN.idMan_Tecnico',$id);
       $query = $this->db->get();
@@ -135,20 +136,14 @@ class ModelSeguimiento extends CI_Model
 
     public function get_search_phone($phoneData)
 	{
-		// $this->db->select('*');
-    // $this->db->from('Seguimiento_Detalle');
-    // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = Seguimiento_Detalle.id_detalle');
-		// $this->db->where('Seguimiento_Detalle.id_detalle',$phoneData);
-    // $query = $this->db->get();
+
     $this->db->select('*');
     $this->db->from('MAN_Seguimiento');
     $this->db->join('Seguimiento_Detalle as detalle','detalle.id_detalle = MAN_Seguimiento.idMan_Tecnico');
     $this->db->where('NroSolicitud',$phoneData);
     $res2 = $this->db->get();
     return $res2;
-    // if ($query->num_rows() > 0) {
-    //   return $query->result();
-    // }
+
 	}
 
   public function get_search_date($minvalue,$maxvalue)
@@ -162,6 +157,36 @@ class ModelSeguimiento extends CI_Model
   if ($query->num_rows() > 0) {
     return $query->result();
   }
+}
+
+public function getArea($area)
+{
+  $query = $this->db->get_where('area', array(
+    'DescArea' => $area
+  ));
+  if ($query->num_rows() > 0) {
+    return $query->result();
+  }
+}
+
+public function getSupervisor($supervisorArea)
+{
+  $query = $this->db->get_where('personal', array(
+    'Cargo' => 'S',
+    'Area' => $supervisorArea
+  ));
+  if ($query->num_rows() > 0) {
+    return $query->result();
+  }
+}
+
+public function cambio($data)
+{
+  return $this->db->insert('Cambio_Estado', $data);
+}
+public function cerrarSolicitud($data)
+{
+  return $this->db->insert('MAN_Cierre', $data);
 }
 
 }

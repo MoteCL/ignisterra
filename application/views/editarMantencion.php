@@ -74,7 +74,110 @@
                 include('template/nav-enc.php');
                 break;
             case 4:
-                include('template/nav-adm.php');
+            ?>
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
+            <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
+                </li>
+                <li class="">
+                    <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
+                    <div id="3-dropdown-element" class="panel-collapse collapse " >
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
+            <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
+            <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
+                    <div id="1-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li class="active">
+                                    <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
+            <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
+                                </li>
+
+
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
+            <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                    <div id="2-dropdown-element" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li class="">
+                                    <a href="#" target="_self" style="color:">
+            <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
+            <span class="icon voyager-check"></span> <span class="title">Indice de cumplimiento</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="#" target="_self" style="color:">
+            <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
+            <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
+            <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
+                                </li>
+                                <li class="">
+                                    <a href="#" target="_self" style="color:">
+            <span class="icon voyager-laptop"></span> <span class="title">Programa Mantencion</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="">
+                    <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
+            <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
+                </li>
+                <li class="">
+                    <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
+            <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
+                </li>
+                <li class="">
+                    <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:">
+                      <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="<?php echo base_url('index.php/main/listPersonal'); ?>" target="_self" style="color:">
+                      <span class="icon fas fa-user-secret"></span> <span class="title">Privacidad<span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <?php
               break;
 
         }
@@ -104,7 +207,7 @@
                                                 <div class="form-group  col-md-12">
                                               <h4>Numero Solicitud : <strong> <?php echo $dato->NroSolicitud; ?> </strong></h4>
                                               <h5>Fecha Solicitud : <strong> <?php echo  date('j M Y',strtotime($dato-> fechasolicitud)); ?></strong></h5>
-                                              <h5>Solicitante : <?php echo $dato-> Nombre; ?></h5>
+                                              <h5>Solicitante : <?php echo $dato-> username; ?></h5>
 
                                             </div>
 
@@ -118,7 +221,7 @@
                                                         <option value=" <?php echo $dato-> CodArea ?>"><?php echo $dato->maquina; ?></option>
                                                           <?php if ($maquinas) foreach ($maquinas as $maquina) { ?>
 
-                                                            <option  value="<?php echo $maquina-> CodArea ?>">  <?php echo $maquina-> Maquina ?></option>
+                                                            <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
                                                           <?php }?>
                                                         </select>
                                                       </div>
@@ -190,36 +293,15 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="titulo" class="col-md-2 control-label">Urgente</label>
-                                                    <?php
-                                                      $urgente = array(
-                                                        'SI'         => 'SI',
-                                                        'NO'         => 'NO',
-                                                      );
-                                                     ?>
-                                                        <div class="col-md-5">
-                                                            <?php echo form_dropdown('urgente',$urgente,set_value('urgente',$dato->urgente),['class'=>'form-control']);?>
-                                                        </div>
-                                                        
-                                                </div>
-                                            </div>
-
-
 
                                             <div class="form-group">
                                                 <div class="col-md-10 col-md-offset-2">
                                                     <?php echo form_submit(['name'=>'submit','value'=>'Actualizar','class'=>'btn btn-success']); ?>
-
                                                 </div>
                                             </div>
 
                                         </fieldset>
-
                                         <?php echo form_close(); ?>
-
-
                                     </div>
                                 </div>
                             </div>

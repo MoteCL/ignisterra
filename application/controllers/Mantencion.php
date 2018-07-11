@@ -555,6 +555,17 @@ class Mantencion extends CI_Controller {
 
 				$this->session->set_flashdata('error_msg', 'ERROR DB');
 			} else {
+				$session_data = $this->session->userdata('logged_in');
+				$dataa['Nombre'] = $session_data['Nombre'];
+				$dataa['Codigo'] = $session_data['Codigo'];
+				$dataa['Area'] = $session_data['Area'];
+				$insert['NroSolicitud']= $id;
+				$insert['Codigo']= $session_data['Codigo'];
+				$insert['fecha']= date('Y-m-d');
+				$insert['hora']= date('H:i:s');
+
+				$this->seguimiento->cambio($insert);
+
 
 				$result = $this->main->getEmail();
 				foreach ($result as $row) {
@@ -592,21 +603,16 @@ class Mantencion extends CI_Controller {
 					$maquina = $key-> maquina;
 
 				}
-				$session_data = $this->session->userdata('logged_in');
-				$dataa['Nombre'] = $session_data['Nombre'];
-				$dataa['Codigo'] = $session_data['Codigo'];
-				$dataa['Area'] = $session_data['Area'];
 
-
-			$this->load->library('email',$config);
-			$this->email->set_newline("\r\n");
-			$body = $this->load->view('email/edit.php',$dataa,TRUE);
-			$this->email->from($envia,'');
-			$this->email->to($recibe);
-			$this->email->cc($recibeUr);
-			$this->email->subject('Modificacion Mantencion');
-			$this->email->message($body);
-			$this->email->set_mailtype("html");
+				$this->load->library('email',$config);
+				$this->email->set_newline("\r\n");
+				$body = $this->load->view('email/edit.php',$dataa,TRUE);
+				$this->email->from($envia,'');
+				$this->email->to($recibe);
+				$this->email->cc($recibeUr);
+				$this->email->subject('Modificacion Mantencion');
+				$this->email->message($body);
+				$this->email->set_mailtype("html");
 
 				if ($this->email->send()) {
 
@@ -634,6 +640,7 @@ class Mantencion extends CI_Controller {
 			$data['Area'] = $session_data['Area'];
 			$data['dato'] =  $this->ma->getMantencionbyId($id);
 			$data['maquinas'] = $this->ma->getallMaquinas();
+			//print_r($data);
 			$this->load->view('editarMantencion',$data);
 		}
 		public function getEditado($id)

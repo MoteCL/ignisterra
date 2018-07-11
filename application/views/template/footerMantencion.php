@@ -35,10 +35,7 @@ $(document).ready(function(){
      $('#horaTermino').timepicker({ 'scrollDefault': 'now' , 'timeFormat': 'G:i' });
 
 
-     $("#horaTermino").keypress(function(event)
-     {
-       ObtieneTotHoras();
-     })
+     
      $(document).on('click', '.btn_add', function(){
 
      });

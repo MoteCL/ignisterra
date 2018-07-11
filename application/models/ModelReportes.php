@@ -52,12 +52,25 @@ class ModelReportes extends CI_Model {
  {
 
    //$sql = "SELECT * FROM MAN_Solicitud INNER JOIN MAN_Seguimiento ON MAN_Solicitud.NroSolicitud = MAN_Seguimiento.NroSolicitud WHERE MAN_Solicitud.maquina='Otros' AND MAN_Solicitud.fechasolicitud BETWEEN '$desde' AND '$hasta'";
-   $sql = "SELECT * FROM MAN_Solicitud WHERE maquina='$maquina' AND fechasolicitud BETWEEN '$desde' AND '$hasta'";
-   $query = $this->db->query($sql);
+   // $sql = "SELECT * FROM MAN_Solicitud WHERE maquina='$maquina' AND fechasolicitud BETWEEN '$desde' AND '$hasta'";
+   // $query = $this->db->query($sql);
+
+   // if ($query->num_rows() > 0) {
+   //   return $query->result();
+   // }
+   $this->db->select('*');
+   $this->db->from('MAN_Solicitud as MAN');
+   $this->db->join('MAN_Seguimiento as s', 's.NroSolicitud = MAN.NroSolicitud');
+   $this->db->where('MAN.maquina',$maquina);
+   $this->db->where('MAN.fechasolicitud >=',$desde);
+   $this->db->where('MAN.fechasolicitud <=',$hasta);
+
+
+   $query = $this->db->get();
 
    if ($query->num_rows() > 0) {
      return $query->result();
-   }
+   } else { return false; }
 
  }
 
@@ -75,24 +88,30 @@ class ModelReportes extends CI_Model {
 
  public function getSeguimientoJoin($minvalue,$maxvalue)
  {
-   // $this->db->select('*');
-   // $this->db->from('Seguimiento_Detalle as detalle');
-   // $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
-   // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
-   // $this->db->join('personal as p','p.Codigo= tecnico.id_tecnico');
-   // $this->db->select('*');
-   // $this->db->from('MAN_Seguimiento as MAN');
-   // $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
-   // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
-   // $this->db->join('personal as p','p.Codigo= tecnico.id_tecnico');
 
    $this->db->select('*');
    $this->db->from('MAN_Seguimiento as MAN');
    $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
-   $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
-   $this->db->join('personal as p','p.Codigo= tecnico.id_tecnico');
+
    $this->db->where('MAN.fecha >=',$minvalue);
    $this->db->where('MAN.fecha <=',$maxvalue);
+
+   $query = $this->db->get();
+
+   if ($query->num_rows() > 0) {
+     return $query->result();
+   } else { return false; }
+ }
+
+ public function getTecnicosSeguimiento()
+ {
+
+   $this->db->select('*');
+   $this->db->from('Tecnico_Seguimiento as d');
+   // $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
+   // $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
+   $this->db->join('personal as p','p.Codigo= d.id_tecnico');
+
 
    $query = $this->db->get();
 

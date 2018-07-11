@@ -83,7 +83,7 @@ class Reportes extends CI_Controller {
 		$data['Codigo'] = $session_data['Codigo'];
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
-		$sql ="SELECT distinct(maquina), count(*) as contador FROM `MAN_Solicitud` WHERE fechasolicitud BETWEEN '2018-01-01' AND '2018-06-06' GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY `fechasolicitud` asc ";
+		$sql ="SELECT distinct(maquina), count(*) as contador FROM `MAN_Solicitud` WHERE fechasolicitud BETWEEN '2018-01-01' AND '2018-06-06' GROUP BY `fechasolicitud` HAVING count(*) > 0 ORDER BY contador desc ";
     $query = $this->db->query($sql);
 
 		if ($query->num_rows() > 0) {
@@ -137,12 +137,13 @@ class Reportes extends CI_Controller {
 			$data['hasta'] = $hasta;
 			$data['maquina'] = $maquina;
 		 // $data['results'] = $this->report->getHistorial($desde,$hasta,$maquina);
-		 	$result = $this->report->getHistorial($desde,$hasta,$maquina);
+		 	$data['results']= $this->report->getHistorial($desde,$hasta,$maquina);
 			$data['seguimientos']= $this->report->getSeguimientoJoin($desde,$hasta);
+			$data['tecnicos']= $this->report->getTecnicosSeguimiento();
 
-			$data['results'] =$result;
 
-			 print_r($data);
+
+			print_r($data);
 
 
 			$this->load->view('report/historial-result',$data);

@@ -54,7 +54,20 @@
                     <?php
                     switch ($Tipo) {
                         case 1:
-                            include('template/nav-user.php');
+                          ?>
+                          <ul class="nav navbar-nav">
+                              <li class="">
+                                  <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
+                          <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
+                              </li>
+                              <li class="active">
+                                  <a href="<?php echo base_url('index.php/mantencion/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                  </a>
+                              </li>
+                          </ul>
+
+
+                          <?php
                           break;
                         case 2:
                             include('template/nav-sup.php');
@@ -120,17 +133,17 @@
                                             <h3>Maquina</h3>
 
                                             <div class="form-group mx-sm-3 mb-2">
-                                                <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-                                                  <option selected="" disabled> --- Maquinas ---</option>
-                                                  <?php if ($data) foreach ($data as $maquina) { ?>
+                                              <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
+                                                          <option selected="" disabled> --- Maquinas ---</option>
+                                                          <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                    <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
-                                                  <?php }?>
-                                                  <option  disabled> --- Centro Costo ---</option>
-                                                  <?php if ($costos) foreach ($costos as $costo) { ?>
+                                                            <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
+                                                          <?php }?>
+                                                          <option  disabled> --- Centro Costo ---</option>
+                                                          <?php if ($costos) foreach ($costos as $costo) { ?>
 
-                                                    <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
-                                                  <?php }?>
+                                                            <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
+                                                          <?php }?>
 
                                               </select>
                                                 <div class="col-md-5">

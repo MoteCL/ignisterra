@@ -54,13 +54,63 @@ class Seguimiento extends CI_Controller {
 	{
 		$update['estado'] = 'CERRADA';
 		$id_seguimiento = $this->input->post('id_seguimiento');
+		$area = $this->input->post('area');
 		if ($this->ma->updateMantencion($update, $id)) {
+				$insert['NroSolicitud'] = $id;
+				$insert['fecha']= date('Y-m-d');
+				$insert['hora']= date('H:i:s');
+				$this->seguimiento->cerrarSolicitud($insert);
 				$this->seguimiento->updateSeguimiento($update,$id_seguimiento);
-				$this->session->set_flashdata('success_msg', 'Mantencion Autorizada');
+				$message = 'Mantencion Ejecutada  ';
+
+				$result = $this->main->getEmail();
+				foreach ($result as $row) {
+
+					$envia = $row-> smtp_user;
+
+					$config = Array(
+				'protocol' => $row->protocol,
+				'smtp_host' => $row->smtp_host,
+				'smtp_port' => $row->smtp_port,
+				'smtp_user' => $row->smtp_user,
+				'smtp_pass' => $row->smtp_pass,
+				'mailtype'  => $row->mailtype,
+				'charset'   => $row->charset
+				);
+			}
+				$result3 = $this->seguimiento->getArea($area);
+				foreach ($result3 as $row) {
+					$areaSupervisor = $row-> CodArea;
+				}
+
+				$result2 = $this->seguimiento->getSupervisor($areaSupervisor);
+				foreach ($result2 as $row) {
+						$recibe = $row-> Correo;
+				}
+				$data['fecha'] = date('Y-m-d');
+				$data['area'] = $this->input->post('area');
+				$data['maquina'] = $this->input->post('maquina');
+				$this->load->library('email',$config);
+				$this->email->set_newline("\r\n");
+				$body = $this->load->view('email/supervisor.php',$data,TRUE);
+				$this->email->from($envia,'');
+				$this->email->to($recibe);
+				$this->email->subject('Mantencion cerrada');
+				$this->email->message($body);
+				$this->email->set_mailtype("html");
+				if ($this->email->send()) {
+					$message.= 'Correo enviado';
+					$this->session->set_flashdata('success_msg',$message );
+				}else {
+					$message = 'ERROR DB';
+				}
+
+
 		}else {
-			$this->session->set_flashdata('error_msg', 'Error BD');
+			$this->session->set_flashdata('error_msg',$message);
 		}
-		redirect('seguimiento/MAN_Seguimiento', 'refresh');
+
+   redirect('seguimiento/MAN_Seguimiento', 'refresh');
 	}
 
 	public function entreFechas()

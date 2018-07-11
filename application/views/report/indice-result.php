@@ -100,12 +100,14 @@
                                               <?php if ($correctiva->estado=='CERRADA'): ?>
                                               <?php     $contador2 += 1; ?>
                                               <?php endif; ?>
-                                              <?php if ($correctiva->urgente=='SI'): ?>
-                                              <?php     $contador3 += 1; ?>
-                                              <?php if ($correctiva->estado=='CERRADA'): ?>
-                                                  <?php     $contador4 += 1; ?>
-                                              <?php endif; ?>
-                                              <?php endif; ?>
+
+                                              <?php if ($correctiva->urgente=='SI') {
+                                                 $contador3 += 1;
+                                                 if ($correctiva->estado=='CERRADA') {
+                                                     $contador4 += 1;
+                                                 }
+                                              } ?>
+                                            
                                             <?php endforeach; ?>
                                             total <?php echo $contador2 ?> <br>
                                             <?php echo $contador3 ?>  <br>
@@ -115,7 +117,9 @@
 
                                         <?php endif; ?>
                                       <h2 class="text-center"> Mejora </h2>
+                                          <p><strong>Desde </strong> <?php echo date('j M Y',strtotime($desde));  ?> <strong>Hasta </strong> <?php echo date('j M Y',strtotime($hasta)); ?></p>
                                       <h2 class="text-center"> Preventiva </h2>
+                                          <p><strong>Desde </strong> <?php echo date('j M Y',strtotime($desde));  ?> <strong>Hasta </strong> <?php echo date('j M Y',strtotime($hasta)); ?></p>
                                     </div>
                                 </div>
                             </div>
