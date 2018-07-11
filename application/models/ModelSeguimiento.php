@@ -17,7 +17,7 @@ class ModelSeguimiento extends CI_Model
   public function getSeguimientoDetalle()
   {
     $this->db->order_by('id_detalle', 'desc');
-    $query = $this->db->get('Seguimiento_Detalle');
+    $query = $this->db->get('MAN_SeguimientoDetalle');
 
     if ($query->num_rows() > 0) {
       return $query->result();
@@ -38,7 +38,7 @@ class ModelSeguimiento extends CI_Model
   public function getSeguimientoJoin()
   {
     $this->db->select('*');
-    $this->db->from('Seguimiento_Detalle as detalle');
+    $this->db->from('MAN_SeguimientoDetalle as detalle');
     $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
     $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
 
@@ -94,7 +94,7 @@ class ModelSeguimiento extends CI_Model
 
       $this->db->select('*');
       $this->db->from('MAN_Seguimiento as MAN');
-      $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
+      $this->db->join('MAN_SeguimientoDetalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
       $this->db->join('Tecnico_Seguimiento as tecnico','tecnico.id_detalle = detalle.id_detalle');
 
       $this->db->where('MAN.idMan_Tecnico',$id);
@@ -110,7 +110,7 @@ class ModelSeguimiento extends CI_Model
 
       $this->db->select('*');
       $this->db->from('MAN_Seguimiento as MAN');
-      $this->db->join('Seguimiento_Detalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
+      $this->db->join('MAN_SeguimientoDetalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
       $this->db->join('MAN_Solicitud as s','s.NroSolicitud = MAN.NroSolicitud');
     //  $this->db->join('area as a','a.DescArea = s.CodArea');
       $this->db->join('personal as p','p.Codigo = s.cod_detecta');
@@ -139,7 +139,7 @@ class ModelSeguimiento extends CI_Model
 
     $this->db->select('*');
     $this->db->from('MAN_Seguimiento');
-    $this->db->join('Seguimiento_Detalle as detalle','detalle.id_detalle = MAN_Seguimiento.idMan_Tecnico');
+    $this->db->join('MAN_SeguimientoDetalle as detalle','detalle.id_detalle = MAN_Seguimiento.idMan_Tecnico');
     $this->db->where('NroSolicitud',$phoneData);
     $res2 = $this->db->get();
     return $res2;

@@ -143,7 +143,7 @@ class Reportes extends CI_Controller {
 
 
 
-			print_r($data);
+			//print_r($data);
 
 
 			$this->load->view('report/historial-result',$data);
