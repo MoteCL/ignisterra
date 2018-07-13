@@ -26,7 +26,7 @@
 
                    <?php echo form_open_multipart('main/user_login_process'); ?>
 
-                    <div class="form-group form-group-default" id="emailGroup">
+                    <div class="form-group form-group-default">
                         <label>Nombre Usuario</label>
                         <div class="controls">
                              <?php echo form_input(['name'=>'username','placeholder'=>'Username','class'=>'form-control']); ?>
@@ -35,7 +35,7 @@
                          <span class="text-danger"><?php echo form_error('username'); ?></span>
                     </div>
 
-                    <div class="form-group form-group-default" id="passwordGroup">
+                    <div class="form-group form-group-default">
                         <label>Password</label>
                         <div class="controls">
                             <?php echo form_password(['name'=>'pwd','placeholder'=>'Password','class'=>'form-control']); ?>

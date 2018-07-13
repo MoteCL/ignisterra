@@ -27,8 +27,6 @@ class Seguimiento extends CI_Controller {
 		$data['Tipo'] = $session_data['Tipo'];
 		$data['tecnicos']=$this->seguimiento->getSeguimientoWhere($estado);
 
-		//$data['datos']=$this->seguimiento->getWhereEstado($estado);
-
     $this->load->view('list-tecnico',$data);
 
   }

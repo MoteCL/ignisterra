@@ -474,7 +474,7 @@ class Mantencion extends CI_Controller
         }
 
         $session_data   = $this->session->userdata('logged_in');
-        $area           = $session_data['Area'];
+        $area           = $session_data['DescArea'];
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];
@@ -626,7 +626,6 @@ class Mantencion extends CI_Controller
         if ($this->form_validation->run()) {
             $data['detalle']        = $this->input->post('detalle');
             $data['maquina']        = $this->input->post('maquina');
-            $data['urgente']        = $this->input->post('urgente');
             $data['CodArea']        = $this->input->post('CodArea');
             $data['tipomantencion'] = $this->input->post('tipomantencion');
             $data['tipotrabajo']    = $this->input->post('tipotrabajo');
