@@ -28,8 +28,6 @@ class Main extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('main/login', 'refresh');
         }
-
-
         $session_data   = $this->session->userdata('logged_in');
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
@@ -124,6 +122,7 @@ class Main extends CI_Controller
         session_destroy();
         redirect('main/login', 'refresh');
     }
+
 
     public function configEmail()
     {
@@ -360,6 +359,11 @@ class Main extends CI_Controller
         }
         redirect('main/listPersonal', 'refresh');
 
+    }
+
+    public function back()
+    {
+        redirect('http://192.168.0.180/Produccion/Home/Menu/index.php');
     }
 
 

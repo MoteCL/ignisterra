@@ -16,15 +16,48 @@
           <span class="hamburger-inner"></span>
           </button>
                         <ol class="breadcrumb hidden-xs">
-                            <li class="">
-                              <i class="voyager-home"></i> <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
-                            </li>
                             <li class="active">
-                                <i class="voyager-tag"></i> Solicitar Mantencion
+                              <i class="voyager-home"></i> Panel
                             </li>
+
                         </ol>
                     </div>
-                    <?php include('template/nav-top.php'); ?>
+
+                    <ul class="nav navbar-nav  navbar-right ">
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
+
+                               aria-expanded="false"><img src="<?php echo base_url('assets/img/default.png'); ?>" class="profile-img"> <span
+                                        class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-animated">
+                                <li class="profile-img">
+                                    <img src="<?php echo base_url('assets/img/default.png'); ?>" class="profile-img">
+
+
+                                    <div class="profile-body">
+                                        <h5>Ignisterra</h5>
+
+                                    </div>
+
+                                </li>
+                                <li class="divider"></li>
+
+
+
+                                    <li>
+                                       <?php echo form_open_multipart('main/back'); ?>
+                                        <button type="submit" class="btn btn-success btn-block">
+                                      <i class="fas fa-sign-in-alt"></i> Salir
+                                        </button>
+                                      <?php echo form_close(); ?>
+                                      <!-- <a href="http://192.168.0.180/Produccion/Home/Menu/index.php" class="btn btn-success btn-block" >
+                                          <i class="fas fa-sign-in-alt"></i> Salir
+                                      </a> -->
+                                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+
                 </div>
             </nav>
             <div class="side-menu sidebar-inverse">
@@ -45,42 +78,25 @@
                             <div class="panel-content">
                                 <img src="<?php echo base_url('assets/img/default.png'); ?>" class="avatar" alt="Admin Web avatar">
                                 <h4>
-                                    <?php echo $Nombre ?> </h4>
+                                    Ignisterra </h4>
                                 <a href="#" class="btn btn-primary">Perfil</a>
                                 <div style="clear:both"></div>
                             </div>
                         </div>
                     </div>
-                    <?php
-                    switch ($Tipo) {
-                        case 1:
-                          ?>
+
                           <ul class="nav navbar-nav">
-                              <li class="">
-                                  <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
-                          <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
-                              </li>
+
                               <li class="active">
                                   <a href="<?php echo base_url('index.php/mantencion/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
                                   </a>
                               </li>
+                              <li class="">
+                                  <a href="<?php echo base_url('index.php/main/login'); ?>" target="_self" style="color:"> <span class="icon voyager-person"></span> <span class="title">Acceder.<span>
+                                  </a>
+                              </li>
                           </ul>
 
-
-                          <?php
-                          break;
-                        case 2:
-                            include('template/nav-sup.php');
-                            break;
-                        case 3:
-                            include('template/nav-enc.php');
-                            break;
-                        case 4:
-                            include('template/nav-adm.php');
-                          break;
-
-                    }
-                    ?>
                 </nav>
             </div>
             <!-- Main Content -->
@@ -213,13 +229,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group  col-md-12">
-                                          <?php if ($Tipo==2): ?>
-                                            <label>Urgente</label>
-                                            <div class="custom-control custom-checkbox">
-                                                <?php echo form_checkbox('urgente', 'SI'); ?>
-                                                <label class="custom-control-label" for="customCheck1">Se requiere urgente?</label>
-                                            </div>
-                                          <?php endif; ?>
+
 
                                         </div>
 

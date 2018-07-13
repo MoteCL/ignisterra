@@ -258,6 +258,10 @@
                                            Nombre de la Maquina : <strong> <?php echo $maquina; ?>. </strong>
 
                                         </p>
+                                        <p style="line-height: 24px;margin-bottom:10px;">
+                                           Area : <strong> <?php echo $CodArea; ?>. </strong>
+
+                                        </p>
 
                                         <p style="line-height: 24px;margin-bottom:10px;"> <strong></strong>
                                            Tipo de Mantencion : <strong> <?php echo $tipomantencion; ?>. </strong>  <?php if ($tipotrabajo): ?>
@@ -274,9 +278,27 @@
                                            $nestedData = date('j M Y',strtotime($hoy)); ?>
                                             Mantencion ingresada fecha  <?php echo $nestedData; ?>.
                                         </p>
+                                        <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
+                                          <tr>
+                                              <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                                          </tr>
 
+                                          <tr>
+                                              <td align="center" style="color: #ffffff; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 22px; letter-spacing: 2px;">
+                                                  <!-- main section button -->
 
+                                                  <div style="line-height: 22px;">
+                                                      <a href="http://192.168.0.180/Produccion/Home/Menu/Mantencion/index.php/main/login" style="color: #ffffff; text-decoration: none;">Ir a Portal web</a>
+                                                  </div>
+                                              </td>
+                                          </tr>
+
+                                            <tr>
+                                                <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                                            </tr>
+
+                                      </table>
                                     </td>
                                 </tr>
                             </table>

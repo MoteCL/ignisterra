@@ -218,7 +218,6 @@ class ModelSeguimiento extends CI_Model
     {
         return $this->db->where('id_detalle', $id)->update('MAN_SeguimientoDetalle', $data);
     }
-    
 
 }
 

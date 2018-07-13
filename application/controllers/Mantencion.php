@@ -10,6 +10,7 @@ class Mantencion extends CI_Controller
         $this->load->model('ModelMantencion', 'ma');
         $this->load->model('ModelMain', 'main');
         $this->load->model('ModelSeguimiento', 'seguimiento');
+        $this->load->model('ModelMaquina', 'maquina');
     }
 
     public function index()
@@ -25,6 +26,7 @@ class Mantencion extends CI_Controller
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];
+      //  print_r($data);
         $this->load->view('dashboard', $data);
     }
 
@@ -122,7 +124,7 @@ class Mantencion extends CI_Controller
             $this->email->to($recibe);
             if ($this->input->post('urgente')) {
                 $this->email->cc($recibeUr);
-                $this->email->from($envia, '[Urgente]');
+                $this->email->from($envia, '');
                 $this->email->subject('Nueva Mantencion maquina ' . $_POST['maquina']);
             } else {
                 $this->email->from($envia, '');
@@ -166,8 +168,7 @@ class Mantencion extends CI_Controller
         $this->form_validation->set_rules('tipomantencion', 'tipomantencion', 'required', array(
             'required' => 'Seleccione una mantencion'
         ));
-        $this->form_validation->set_rules('urgente', 'urgente');
-        $this->form_validation->set_rules('tipotrabajo', 'tipotrabajo');
+
         $this->form_validation->set_rules('phoneData', 'phoneData', 'required', array(
             'required' => 'Ingrese codigo'
         ));
@@ -208,12 +209,21 @@ class Mantencion extends CI_Controller
 
             $result1 = $this->main->getCorreo($recibeQuery);
             foreach ($result1 as $key) {
-                $recibe = $key->Correo;
+                $recibe = $key-> Correo;
             }
 
             $result3 = $this->main->getCorreo($this->input->post('phoneData'));
             foreach ($result3 as $key) {
-                $nombrePersonal = $key->Nombre;
+                $nombrePersonal = $key-> Nombre;
+            }
+            $result5 = $this->maquina->getArea($this->input->post('CodArea'));
+            foreach ($result5 as $key) {
+                $area = $key-> CodArea;
+            }
+
+            $result6 = $this->maquina->getSupervisor($area);
+            foreach ($result6 as $key) {
+                $supervisor = $key-> Correo;
             }
 
             $dataa['NroSolicitud']   = $_POST['NroSolicitud'];
@@ -230,7 +240,9 @@ class Mantencion extends CI_Controller
             $this->email->set_newline("\r\n");
             $body = $this->load->view('email/index.php', $dataa, TRUE);
             $this->email->from($envia, '');
-            $this->email->to($recibe);
+            $this->email->to(
+              array($recibe,$supervisor)
+            );
             $this->email->subject('Nueva Mantencion maquina ' . $machine);
             $this->email->message($body);
             $this->email->set_mailtype("html");
@@ -241,7 +253,7 @@ class Mantencion extends CI_Controller
                 $this->session->set_flashdata('success_msg', $message);
             }
 
-            return redirect('main/menu');
+           return redirect('main/menu');
         } else {
             $this->session->set_flashdata('error_msg', 'Codigo Invalido');
             $data['data']   = $this->ma->getallMaquinas();
@@ -280,9 +292,6 @@ class Mantencion extends CI_Controller
 
         $data['data'] = $this->ma->getMantencionbyId($id);
         $session_data = $this->session->userdata('logged_in');
-
-        // $data['personas']=$this->main->getallPersona();
-
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];

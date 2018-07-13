@@ -132,7 +132,7 @@ class ModelMain extends CI_Model
 	{
 		return $this->db->where('Codigo', $id)->update('personal', $data);
 	}
-
+	
 
 }
 

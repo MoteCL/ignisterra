@@ -93,4 +93,9 @@
         <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
 <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
     </li>
+    <li class="">
+        <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
+<span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
+    </li>
+
 </ul>

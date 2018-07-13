@@ -6,8 +6,6 @@
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
     </div>
-
-
     <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
@@ -15,21 +13,17 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button class="hamburger btn-link is-active">
-          <span class="hamburger-inner"></span>
-          </button>
+                            <span class="hamburger-inner"></span>
+                        </button>
+
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
                                 <i class="voyager-home"></i>
-                                <a href="<?php echo base_url('index.php/main/index'); ?>"  target="_self" style="color:">Panel</a>
+                                <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
                             </li>
 
-                            <li class="">
-                                <i class="voyager-list"></i>
-                                <a href="<?php echo base_url('index.php/mantencion/buscarView'); ?>" target="_self" style="color:">Buscar</a>
-                            </li>
                             <li class="active">
-                                Mantencion N
-                                <?php echo $data-> NroSolicitud; ?>
+                                Buscar
                             </li>
                         </ol>
                     </div>
@@ -46,15 +40,15 @@
                                 </div>
                                 <div class="title">Bienvenido</div>
                             </a>
-                        </div>
-                        <!-- .navbar-header -->
+                        </div><!-- .navbar-header -->
 
                         <div class="panel widget center bgimage" style="background-image:url(assets/img/bg.jpg); background-size: cover; background-position: 0px;">
                             <div class="dimmer"></div>
                             <div class="panel-content">
                                 <img src="<?php echo base_url('assets/img/default.png'); ?>" class="avatar" alt="Admin Web avatar">
                                 <h4>
-                                    <?php echo $Nombre ?> </h4>
+                                    <?php echo $Nombre ?>
+                                </h4>
 
 
                                 <a href="#" class="btn btn-primary">Perfil</a>
@@ -83,12 +77,12 @@
                                 </a>
                             </li>
                             <li class="dropdown">
-                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
-                                <div id="3-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
+                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
+                                <div id="3-dropdown-element" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
 
-                                            <li class="active">
+                                            <li class="">
                                                 <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
                         <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
                                             </li>
@@ -128,7 +122,7 @@
                                         <ul class="nav navbar-nav">
                                             <!-- <li class="">
                                                 <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
+                        <span class="icon voyager-list"></span> <span class="title">Desempeño Maquinas</span> </a>
                                             </li>
                                             <li class="">
                                                 <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
@@ -162,11 +156,10 @@
                                 <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
                         <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
                             </li>
-                            <li class="">
+                            <li class="active">
                                 <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
                         <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
                             </li>
-
 
                         </ul>
 
@@ -190,7 +183,7 @@
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
 
-                                            <li class="active">
+                                            <li class="">
                                                 <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
                         <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
                                             </li>
@@ -264,11 +257,10 @@
                                 <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
                         <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
                             </li>
-                            <li class="">
+                            <li class="active">
                                 <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
-                        <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
+                        <span class="icon fas fa-fill-drip"></span> <span class="title">Maquinas</span> </a>
                             </li>
-
                             <li class="">
                                 <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:">
                                   <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
@@ -289,148 +281,77 @@
                     ?>
                 </nav>
             </div>
-
-            <!-- Main Content -->
             <div class="container-fluid">
                 <div class="side-body padding-top">
+                    <div class="container-fluid">
+                        <h1 class="page-title">
+                            <i class="fas fa-tachometer-alt"></i> Listado de Maquinas
+                        </h1>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          <span class="far fa-plus-square"></span>&nbsp;
+                          Nueva Maquina
+                        </button>
 
-                    <h1 class="page-title">
-                        <i class="voyager-truck"></i> Mantencion
-                        <?php echo $data-> NroSolicitud ?> &nbsp;
-
-
-                        <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" class="btn btn-warning">
-                <span class="glyphicon glyphicon-list"></span>&nbsp;
-                Regresar al Buscador
-            </a>
-                    </h1>
-                    <style type="text/css">
-                          @media print {
-                              .btn-success{
-                                display: none;
-                              }
-                              .btn-warning{
-                                display: none;
-                              }
-                              .app-footer{
-                                display: none;
-                              }
-                              .col-4{
-                              float: left;
-                              }
-                              .table{
-                                 font-size: 7.5pt;
-                              }
-                              .card-body {
-                                font-size: 9.5pt;
-                              }
-                          }
-                      </style>
-
-                    <div class="page-content container-fluid">
+                    </div>
+                    <div id="voyager-notifications"></div>
+                    <div class="page-content browse container-fluid">
+                        <div class="alerts">
+                            <?php include("template/msg.php"); ?>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-bordered">
                                     <div class="panel-body">
-                                        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-                                        <div class="row">
-                                            <div class="col-4 col-md-4"><h4>Numero de Solicitud</h4>
-                                                <p>
-                                                    <?php echo $data-> NroSolicitud; ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Fecha</h4>
-                                                <p>
-                                                    <?php echo date('j M Y',strtotime($data->fechasolicitud)); ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Hora</h4>
-                                                <p>
-                                                    <?php
-                                                    $Termino = strtotime($data-> horasolicitud);
-                                                    $newTermino = date("H:i", $Termino);
-                                                    echo $newTermino; ?>
+                                        <div class="table-responsive">
+                                            <table id="tbl_personal" class="table table-hover dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>CodigoMaquina</th>
+                                                        <th>Maquina</th>
+                                                        <th>Centro Costo</th>
+                                                        <th>Horometro</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <hr style="margin:0;">
-                                        <div class="row">
-                                            <div class="col-4 col-md-4"><h4>Maquina</h4>
-                                                <p>
-                                                    <?php echo $data-> maquina; ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Codigo Area</h4>
-                                              <p>
-                                                <?php echo $data-> area; ?>
-                                              </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Urgente</h4>
-                                              <p>
-                                                <?php echo $data-> urgente; ?>
-                                              </p>
-                                            </div>
+                                                    <?php if ($maquinas): ?>
+                                                    <?php foreach ($maquinas as $maquina): ?>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4 col-md-4"><h4>Tipo de Mantencion</h4>
-                                                <p>
-                                                    <?php echo $data-> tipomantencion; ?>
-                                                </p>
-                                            </div>
-                                            <?php if ($data-> tipotrabajo): ?>
-                                            <div class="col-4 col-md-4"><h4>Tipo de Trabajo</h4>
-                                                <p>
-                                                    <?php echo $data-> tipotrabajo; ?>
-                                                </p>
-                                            </div>
-                                            <?php endif; ?>
-                                            <div class="col-4 col-md-4"><h4>Estado</h4>
-                                                <p>
-                                                    <?php echo $data-> estado; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <hr style="margin:0;">
-                                        <div class="row">
-                                            <div class="col-4 col-md-4"><h4>Solicitante Codigo</h4>
-                                                <p>
-                                                    <?php echo $data-> cod_detecta; ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Nombre</h4>
-                                                <p>
-                                                    <?php echo $data-> username; ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-4"><h4>Area de Solicitante</h4>
-                                                <p>
-                                                    <?php echo $data-> areT; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="panel-heading" style="border-bottom:0;">
-                                            <h3 class="panel-title">Detalle de Mantencion</h3>
-                                        </div>
-                                        <div class="panel-body" style="padding-top:0;">
-                                            <p>
-                                                <?php echo $data -> detalle; ?>
-                                            </p>
-                                        </div>
-                                        <!-- panel-body -->
-                                        <hr style="margin:0;">
-                                        <div class="panel-footer">
+                                                        <tr>
 
+                                                            <td>
+                                                                <?php echo $maquina-> id; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $maquina-> CodMaquina; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $maquina-> Maquina; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $maquina-> DescArea; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $maquina-> Horometro; ?>
+                                                            </td>
+                                                            <td>
 
-                                            <button type="submit" name="button" class="btn btn-success" value="" onclick="window.print();">
-                                              <span class="voyager-documentation"></span> Imprimir &nbsp;
-                                            </button>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/editarUrgente/'.$maquina->id); ?>"  class="badge badge-success" >
+                                                            <i class="icon voyager-edit">Editar </i></a>
+                                                            </td>
+                                                        </tr>
+
+                                                    <?php endforeach; ?>
+
+                                                    <?php endif; ?>
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -438,12 +359,113 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">  <span class="voyager-truck"></span>&nbsp;Nueva Maquina </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">Nombre Maquina</div>
+        <div class="col-md-6 ml-auto">
+          <input type="text" name="" value="" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">Area</div>
+        <div class="col-md-6 ml-auto">
+          <select class="form-control" id="id_maquinaria" name="" tabindex="-1" >
+                <?php if ($areas) foreach ($areas as $area) { ?>
+                <option  value="<?php echo $area-> CodArea ?>">  <?php echo $area-> DescArea ?></option>
+                <?php }?>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">Horometro</div>
+        <div class="col-md-7 ml-auto">
+          <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label">Si</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label">No</label>
+        </div>
+        </div>
+      </div>
     </div>
-
-    <?php include("template/footer.php"); ?>
-
-
-    <div class="col-md-12">
-
-
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+        <button type="button" class="btn btn-success">Ingresar Maquina</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+    <footer class="app-footer">
+        <div class="site-footer-right">
+            Made with <i class="voyager-heart"></i> - v1.1.0
+        </div>
+    </footer>
+
+    <!-- Javascript Libs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script>
+    $(document).ready(function(){
+     $('#tbl_personal').DataTable({
+    "order": [
+                [0, "asc"]
+            ],
+
+    "language": idioma_espanol
+    });
+      mostrar_mensaje();
+    });
+    var mostrar_mensaje = function() {
+        $(".mensaje").fadeOut(5000, function() {
+            $(this).html("");
+            $(this).fadeIn(1000);
+        });
+    }
+    var idioma_espanol = {    
+        "sProcessing":      "Procesando...",
+            "sLengthMenu":      "Mostrar _MENU_ registros",
+            "sZeroRecords":     "No se encontraron resultados",
+            "sEmptyTable":      "Ningún dato disponible en esta tabla",
+            "sInfo":            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":       "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":    "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":     "",
+            "sSearch":          "Buscar:",
+            "sUrl":             "",
+            "sInfoThousands":   ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {        
+            "sFirst":     "Primero",
+                    "sLast":      "Último",
+                    "sNext":      "Siguiente",
+                    "sPrevious": "Anterior"    
+        },
+            "oAria": {        
+            "sSortAscending":   ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"    
+        }
+    }
+    </script>
+
+
+</body>
+
+</html>
