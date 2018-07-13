@@ -313,7 +313,7 @@
 
 
                                        <select multiple class="form-control" name="id_tecnico">
-                                         <option selected="">Todos</option>
+                                         <!-- <option selected="">Todos</option> -->
                                          <?php if ($tecnicos): ?>
                                            <?php foreach ($tecnicos as $tecnico): ?>
                                              <option value=" <?php echo $tecnico-> Codigo; ?>"><?php echo $tecnico-> Nombre; ?></option>
@@ -359,11 +359,19 @@
                                                 <?php echo form_error('horaInicio','<div class="text-danger">','</div>') ?>
                                             </div>
                                           </div>
+
                                           <div class="form-group  col-md-1">
                                             <h5>Termino</h5>
                                             <input type="text" class="form-control" name="horaTermino" id="horaTermino" placeholder="00:00" value="">
                                             <div class="col-md-5">
                                                 <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
+                                            </div>
+                                          </div>
+                                          <div class="form-group  col-md-2">
+                                            <h5>Resultado</h5>
+                                            <input name="TotalHrs" id="resultado" class="form-control" type="text" readonly>
+                                            <div class="col-md-5">
+                                                <?php echo form_error('TotalHrs','<div class="text-danger">','</div>') ?>
                                             </div>
                                           </div>
                                         </div>
@@ -410,6 +418,32 @@
 
          $('#horaTermino').timepicker({ 'scrollDefault': 'now' , 'timeFormat': 'G:i' });
 
+         $("#horaTermino").keypress(function(event)
+         {
+           ObtieneTotHoras();
+           $("input[name=Comentarioo]").focus();
+         })
+
+         function ObtieneTotHoras()
+         {
+                 HDesde=$('#horaInicio').val();
+                 HHasta=$('#horaTermino').val();
+
+                 hora1 = (HDesde).split(":");
+                 hora2 = (HHasta).split(":");
+                 HoraDesde=(hora1[0]);
+                 MinutoDesde=(hora1[1]);
+                 HoraHasta=(hora2[0]);
+                 MinutoHasta=(hora2[1]);
+                 TotDesde=parseInt((HoraDesde*60)) + parseInt(MinutoDesde);
+                 TotHasta=parseInt(HoraHasta*60) + parseInt(MinutoHasta);
+                 RestaHoras=(TotHasta - TotDesde);
+                 TotHorasTrab=(RestaHoras / 60).toFixed(2);
+
+
+                 $('#resultado').val(TotHorasTrab);
+
+         }
 
 
 

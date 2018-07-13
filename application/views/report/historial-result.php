@@ -365,10 +365,28 @@
                                               <?php echo $machine->detalle; ?>
                                             </td>
                                             <td>
-                                                <?php echo $machine->fecha; ?>
+                                                <?php echo date('j M Y',strtotime($machine->fecha));?>
+
                                             </td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                              <?php
+                                              $counter = 0;
+                                              $fecha1= $machine->fechasolicitud; $fecha2 = $machine->fecha; //ejemplo de fechas
+
+                                              for($i=$fecha1; $i<$fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))) {
+                                                 if (date("w",strtotime($i)) != 5 && date("w",strtotime($i)) != 6) { $counter++;}
+                                              }
+                                              echo $counter;
+                                              ?>
+                                            </td>
+                                            <td>
+                                              <?php
+                                              $time1 = new DateTime($machine->horasolicitud);
+                                              $time2 = new DateTime($machine->hora);
+                                              $interval = $time1->diff($time2);
+                                              echo $interval->format('%H:%i');
+                                              ?>
+                                            </td>
 
                                           </tr>
                                       </table>

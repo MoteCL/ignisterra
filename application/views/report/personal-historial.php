@@ -288,11 +288,11 @@
                                             <h3> Tipo de Informe</h3>
 
                                             <div class="custom-control custom-radio">
-                                            <input type="radio"  name="customRadio" class="custom-control-input" value="1">
+                                            <input type="radio"  name="customRadio" class="custom-control-input" value="1" disabled>
                                             <label class="custom-control-label">Resumen</label>
                                           </div>
                                           <div class="custom-control custom-radio">
-                                            <input type="radio"  name="customRadio" class="custom-control-input" value="0">
+                                            <input type="radio"  name="customRadio" class="custom-control-input" value="0" checked>
                                             <label class="custom-control-label">Detalle</label>
                                           </div>
 

@@ -17,10 +17,10 @@ class ModelMantencion extends CI_Model
   public function getallMaquinas()
 	{
 
-    $this->db->join('Centro_Costo as c', 'c.CodCC = Maquinas.Centro_Costo');
+    $this->db->join('Centro_Costo as c', 'c.CodCC = Maestro_Maquinas.Centro_Costo');
     $this->db->join('area as a', 'a.CodArea = c.Area');
 		$this->db->order_by('Maquina', 'asc');
-		$query = $this->db->get('Maquinas');
+		$query = $this->db->get('Maestro_Maquinas');
 		if ($query->num_rows() > 0) {
 			return $query->result();
 		} else {
@@ -54,7 +54,7 @@ class ModelMantencion extends CI_Model
   public function getOrden()
 	{
 
-    $sql = "SELECT MAX(orden) as total FROM(SELECT  orden FROM MAN_Solicitud UNION ALL SELECT orden FROM Actividades) as foo";
+    $sql = "SELECT MAX(orden) as total FROM(SELECT  orden FROM MAN_Solicitud UNION ALL SELECT orden FROM MAN_Actividades) as foo";
     $query = $this->db->query($sql);
 
 		if ($query->num_rows() > 0) {
@@ -94,7 +94,7 @@ class ModelMantencion extends CI_Model
 
   public function getMantencionbyId($id)
 	{
-    $this->db->select('m.orden, m.NroSolicitud, m.cod_detecta, m.detalle, m.fechasolicitud, m.horasolicitud, m.tipomantencion, m.estado, m.maquina, m.urgente, m.tipotrabajo, m.CodArea, p.Nombre as username, p.Codigo, a.DescArea as area  ');
+    $this->db->select('m.orden, m.NroSolicitud, m.cod_detecta, m.detalle, m.fechasolicitud, m.horasolicitud, m.tipomantencion, m.estado, m.maquina, m.urgente, m.tipotrabajo, m.CodArea, p.Nombre as username, p.Codigo, p.Area as areT,a.DescArea as area');
     $this->db->join('personal as p', 'p.Codigo = m.cod_detecta');
     $this->db->join('area as a', 'a.CodArea = p.Area');
     $query = $this->db->get_where('MAN_Solicitud as m', array(
@@ -150,7 +150,8 @@ class ModelMantencion extends CI_Model
     $this->db->join('personal as p', 'p.Codigo = MAN_Solicitud.cod_detecta');
     $this->db->join('area as a', 'a.CodArea = p.Area');
     $query = $this->db->get_where('MAN_Solicitud', array(
-      'p.Area' => $area
+      'p.Area' => $area,
+      'MAN_Solicitud.estado' => 'ABIERTA'
     ));
 
     if ($query->num_rows() > 0) {

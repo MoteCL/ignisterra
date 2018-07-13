@@ -337,8 +337,9 @@
                                                         <td>
                                                             <a href="<?php echo base_url( '/index.php/seguimiento/verSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-primary">
                                         <i class="icon voyager-documentation"></i>Ver</a>
-                                                            <a href="#" class="label label-success"> Editar</a>
-                                                          </td>
+
+                                                            <!-- <a href="<?php echo base_url( '/index.php/seguimiento/editarSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-success"> Editar</a>
+                                                          </td> -->
 
                                                     </tr>
 

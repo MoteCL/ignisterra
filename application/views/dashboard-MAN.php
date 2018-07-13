@@ -85,6 +85,10 @@
                                 <a href="<?php echo base_url('index.php/mantencion/listByArea'); ?>" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">List Solicitud<span>
                                 </a>
                             </li>
+                            <li class="">
+                                <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerradas<span>
+                                </a>
+                            </li>
                         </ul>
 
 
@@ -181,7 +185,7 @@
                                 <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
                         <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
                             </li>
-                            
+
                         </ul>
 
 

@@ -9,14 +9,17 @@
         <?php echo $nombre->Nombre; ?>
       <?php endif; ?></h4>
 
-
-    <?php if ($seguimientos): ?>
-      <?php $fechas = array();
+      <?php $fechas = array(); ?>
+      <!-- <?php $fechass = array(); ?> -->
+      <?php if ($seguimientos): ?>
+      <?php
             foreach ($seguimientos as $seguimiento) {
                $fechas[$seguimiento-> fecha][] = $seguimiento;
 
             }
+
       ?>
+
       <?php foreach ($fechas as $fecha): ?>
       <table  class="table table-hover dataTable no-footer">
       <thead>
@@ -31,7 +34,7 @@
 
           </tr>
       </thead>
-      <?php $subtotal ?>
+
       <?php   foreach ($fecha as $seguimiento): ?>
       <tr>
           <td style="	width:8%;">
@@ -66,14 +69,18 @@
           <td class="td-calcular" data-inicio="<?php echo $seguimiento->horaInicio;?>" data-fin="<?php echo $seguimiento->horaTermino;?>" data-dia="<?php echo $seguimiento->fecha;?>" >
         </td>
       </tr>
+
       <?php endforeach; ?>
           </table>
           <div class="row">
             <div class="col-4 col-sm-9">
+
             </div>
             <div class="col-4 col-md-2">
               <h5> Total horas por fecha :
-              <div class="div-calcular" data-calcular="">  </div> </h5>
+                <div class="div-calcular float-right" id="<?php echo $seguimiento->fecha;?>"></div>
+                
+               </h5>
                 <h5> Horas turno :    9</h5>
                 <h5> % Ocupacion por fecha: </h5>
             </div>
@@ -83,6 +90,7 @@
           <div class="col-4 col-sm-9">
           </div>
           <div class="col-4 col-md-2" style="border: 1px solid #9d9f9d;">
+
               <h5>Total horas :  <p id="totalhrs" style="float:right;"></p>  </h5>
               <h5>Horas turno : <p id="countTotal" style="float:right;"></p> </h5>
               <h5>% Ocupacidad por fecha<p id="totalResultado" style="float:right;"></p> </h5>

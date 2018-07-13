@@ -353,7 +353,7 @@
                                             </div>
                                             <div class="col-4 col-md-4"><h4>Codigo Area</h4>
                                               <p>
-                                                <?php echo $data-> DescArea; ?>
+                                                <?php echo $data-> area; ?>
                                               </p>
                                             </div>
                                             <div class="col-4 col-md-4"><h4>Urgente</h4>
@@ -391,12 +391,12 @@
                                             </div>
                                             <div class="col-4 col-md-4"><h4>Nombre</h4>
                                                 <p>
-                                                    <?php echo $data-> Nombre; ?>
+                                                    <?php echo $data-> username; ?>
                                                 </p>
                                             </div>
                                             <div class="col-4 col-md-4"><h4>Area de Solicitante</h4>
                                                 <p>
-                                                    <?php echo $data-> Area; ?>
+                                                    <?php echo $data-> areT; ?>
                                                 </p>
                                             </div>
                                         </div>

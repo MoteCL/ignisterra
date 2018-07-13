@@ -245,5 +245,38 @@ class Seguimiento extends CI_Controller {
 
 	}
 
+	public function editarSeguimiento($id)
+	{
+	if (!$this->session->userdata('logged_in')) {
+		redirect('main/login', 'refresh');
+	}
+	$session_data = $this->session->userdata('logged_in');
+	$data['Codigo'] = $session_data['Codigo'];
+	$data['Nombre'] = $session_data['Nombre'];
+	$data['Tipo'] = $session_data['Tipo'];
+	$data['Area'] = $session_data['Area'];
+	$data['data'] = $this->seguimiento->getDetallePorID($id);
+	$data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
+
+	//print_r($data);
+	$this->load->view('editarSeguimiento',$data);
+}
+
+public function editarSeguimientoPorId($id)
+{
+if (!$this->session->userdata('logged_in')) {
+	redirect('main/login', 'refresh');
+}
+$session_data = $this->session->userdata('logged_in');
+$data['Codigo'] = $session_data['Codigo'];
+$data['Nombre'] = $session_data['Nombre'];
+$data['Tipo'] = $session_data['Tipo'];
+$data['Area'] = $session_data['Area'];
+
+
+$this->load->view('editarSeguimiento',$data);
+}
+
+
 
 }

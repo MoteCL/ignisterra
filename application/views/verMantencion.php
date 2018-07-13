@@ -469,7 +469,8 @@
                                                                     <div class="col-sm-8">
                                                                         <div class="form-group row">
                                                                             <label class="form-label">Hasta:</label>
-                                                                            <input name="horaTerminoo" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
+                                                                            <input name="horaTerminoo" id="horaTermino" placeholder="00:00" class="end form-control" type="text"
+                                                                             value="<?php echo set_value('horaTermino') ?>">
                                                                             <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
                                                                         </div>
                                                                     </div>
@@ -490,7 +491,7 @@
                                                                         <div class="form-group row">
                                                                             <label class="form-label">HM:</label>
                                                                             <!-- <input name="HM[]"  class="form-control" type="number"> -->
-                                                                            <input name="HMM" id="resultado" class="form-control" type="text" readonly>
+                                                                            <input name="HMM" id="resultado" class="form-control" type="text" readonly >
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -510,7 +511,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <textarea name="Comentarioo" rows="2" placeholder="Comentario" class="form-control" cols="60"></textarea>
+                                                                    <textarea name="Comentarioo" rows="2" placeholder="Comentario" class="form-control" id="mytext" cols="60"></textarea>
                                                                     <?php echo form_error('Comentario','<div class="text-danger">','</div>') ?>
                                                                 </td>
                                                             </tr>
@@ -721,8 +722,11 @@
             if ($('#id_tecnico3').val().length != 0) {
                contar+=1;
             }
+
             $('#resultado').val(TotHorasTrab);
             $('#resultadoFinal').val(TotHorasTrab * contar);
+            document.getElementById("mytext").focus();
+
     }
     </script>
     </body>

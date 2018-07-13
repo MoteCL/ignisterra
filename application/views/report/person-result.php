@@ -389,10 +389,13 @@
       afecha[i] = fecha;
       atotal[i] = total;
       for (j=0; j<afecha.length; j++) {
-         $( ".div-calcular" ).data( "calcular", atotal[j]);
+        var fecid = "#"+afecha[j];
+        
+        $(fecid).html(atotal[j]);
 
           totaltotal+=atotal[j];
-          alert(atotal[j]);
+
+        //  alert(atotal[j]);
 
         }
 

@@ -7,8 +7,9 @@ class ModelMain extends CI_Model
 
 	public function login($codigo)
 	{
-		$this->db->select('Codigo, Nombre, Area, Password, tipo_usuario');
+		$this->db->select('*');
 		$this->db->from('personal');
+		$this->db->join('area as a', 'a.CodArea = personal.Area');
 		$this->db->where('NomUser', $codigo);
 		// $this->db->where('password',$pwd));
 		$this->db->limit(1);
@@ -115,7 +116,7 @@ class ModelMain extends CI_Model
 	}
 	public function saveActividad($data)
 	{
-		return $this->db->insert('Actividades', $data);
+		return $this->db->insert('MAN_Actividades', $data);
 	}
 	public function getAllPersonal()
 	{

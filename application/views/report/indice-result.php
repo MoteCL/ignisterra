@@ -107,7 +107,7 @@
                                                      $contador4 += 1;
                                                  }
                                               } ?>
-                                            
+
                                             <?php endforeach; ?>
                                             total <?php echo $contador2 ?> <br>
                                             <?php echo $contador3 ?>  <br>
@@ -118,6 +118,32 @@
                                         <?php endif; ?>
                                       <h2 class="text-center"> Mejora </h2>
                                           <p><strong>Desde </strong> <?php echo date('j M Y',strtotime($desde));  ?> <strong>Hasta </strong> <?php echo date('j M Y',strtotime($hasta)); ?></p>
+                                          <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label  class="col-md-2 control-label">Cantidad para realizar Normal</label>
+                                                <div class="col-md-8">
+                                                          xxx
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label  class="col-md-2 control-label">Cantidad Cerrada Normal</label>
+                                                <div class="col-md-8">
+                                                          xxx
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <!-- <label  class="col-md-2 control-label">Cantidad para realizar Normal</label>
+                                                <div class="col-md-5">
+                                                          xxx
+                                                </div> -->
+
+                                            </div>
+                                          </div>
+
                                       <h2 class="text-center"> Preventiva </h2>
                                           <p><strong>Desde </strong> <?php echo date('j M Y',strtotime($desde));  ?> <strong>Hasta </strong> <?php echo date('j M Y',strtotime($hasta)); ?></p>
                                     </div>

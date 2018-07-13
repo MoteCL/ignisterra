@@ -51,7 +51,7 @@ class Reportes extends CI_Controller {
 
 	public function getdata(){
 		$result = $this->report->getdataa();
-		//print_r($result);
+
 		echo json_encode($result);
 	}
 
@@ -107,6 +107,7 @@ class Reportes extends CI_Controller {
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
 		$data['maquinas']= $this->ma->getallMaquinas();
+		//$data['costos']=$this->ma->getAllCentroCosto();
 		$this->load->view('report/maquina-historial',$data);
 	}
 
@@ -197,6 +198,8 @@ class Reportes extends CI_Controller {
 			$data['tipo'] = $this->input->post('customRadio');
 			$data['nombre'] =$this->m->verificarCodigo($persona);
 			$data['seguimientos']= $this->report->getSeguimientoTecnico($desde,$hasta,$persona);
+		//	$data['actividades']= $this->report->getActividades($desde,$hasta);
+		//print_r($data);
 
 			$this->load->view('report/person-result',$data);
 		}else {
