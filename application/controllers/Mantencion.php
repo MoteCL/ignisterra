@@ -396,6 +396,8 @@ class Mantencion extends CI_Controller
         if ($this->form_validation->run() || $this->main->verificarCodigo($_POST['id_tecnico1'])) {
             $data['clasificacion']  = $_POST['clasificacion'];
             $data['tipo_detencion'] = $_POST['tipo_detencion'];
+            $data['horometro'] = $_POST['horometro'];
+            $data['reparacion'] = $_POST['reparacion'];
             $data['NroSolicitud']   = $id;
             $data['fecha']          = date('Y-m-d');
             $data['estado']         = 'TECNICA';

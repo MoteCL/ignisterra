@@ -178,8 +178,8 @@
                                 </a>
                             </li>
                             <li class="dropdown">
-                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
-                                <div id="3-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
+                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
+                                <div id="3-dropdown-element" class="panel-collapse collapse" aria-expanded="false">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
 
@@ -259,7 +259,7 @@
                             </li>
                             <li class="active">
                                 <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
-                        <span class="icon fas fa-fill-drip"></span> <span class="title">Maquinas</span> </a>
+                        <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
                             </li>
                             <li class="">
                                 <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:">
