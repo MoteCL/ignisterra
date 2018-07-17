@@ -70,22 +70,6 @@ class ModelReportes extends CI_Model {
  }
 
 
- public function getActividades($minvalue,$maxvalue)
- {
-
-   $this->db->select('*');
-   $this->db->from('MAN_Actividades');
-   $this->db->where('fecha >=',$minvalue);
-   $this->db->where('fecha <=',$maxvalue);
-
-   $query = $this->db->get();
-
-   if ($query->num_rows() > 0) {
-     return $query->result();
-   } else { return false; }
- }
-
-
  public function getSguimientos($id)
  {
    $query = $this->db->get_where('MAN_Seguimiento', array(
@@ -142,17 +126,26 @@ class ModelReportes extends CI_Model {
  }
  public function getSeguimientoTecnico($minvalue,$maxvalue,$id)
  {
-   $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina');
+   $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina, d.total');
    $this->db->from('Tecnico_Seguimiento as t');
    $this->db->join('personal as p','p.Codigo = t.id_tecnico');
    $this->db->join('MAN_SeguimientoDetalle as d','d.id_detalle = t.id_detalle');
    $this->db->join('MAN_Seguimiento as s','s.idMan_Tecnico = d.id_man_tecnico');
    $this->db->join('MAN_Solicitud as m','m.NroSolicitud = s.NroSolicitud');
-   //$this->db->join('MAN_Actividades as act', 'act.NroSolicitud = s.NroSolicitud');
    $this->db->where('t.id_tecnico',$id);
    $this->db->where('s.fecha >=',$minvalue);
    $this->db->where('s.fecha <=',$maxvalue);
    $this->db->order_by('s.fecha', 'asc');
+   // $query1 = $this->db->get_compiled_select();
+   //
+   //
+   // $this->db->select('act.NroSolicitud as NroAct, act.fecha,act.actividad,act.Comentario, act.TotalHrs, act.orden, act.horaActividad, act.id_tecnico ');
+   // $this->db->from('MAN_Actividades as act');
+   // $this->db->where('act.fecha >=',$minvalue);
+   // $this->db->where('act.fecha <=',$maxvalue);
+   // $this->db->where('act.id_tecnico <=',$id);
+   // $query2 = $this->db->get_compiled_select();
+   // return $this->db->query($query1." UNION ".$query2)->result();
    $query = $this->db->get();
 
 
@@ -160,6 +153,25 @@ class ModelReportes extends CI_Model {
      return $query->result();
    }
  }
+
+ public function getActividades($minvalue,$maxvalue,$id)
+ {
+
+   $this->db->select('*');
+   $this->db->from('MAN_Actividades');
+   $this->db->where('fecha >=',$minvalue);
+   $this->db->where('fecha <=',$maxvalue);
+   $this->db->where('id_tecnico',$id);
+
+   $query = $this->db->get();
+
+   if ($query->num_rows() > 0) {
+     return $query->result();
+   } else { return false; }
+ }
+
+
+
 
  public function getIndice($tipo,$min,$max){
     $this->db->select('*');

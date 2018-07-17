@@ -13,14 +13,24 @@
       <!-- <?php $fechass = array(); ?> -->
       <?php if ($seguimientos): ?>
       <?php
+
+
             foreach ($seguimientos as $seguimiento) {
                $fechas[$seguimiento-> fecha][] = $seguimiento;
 
             }
+            if ($actividades) {
+              foreach ($actividades as $actividade) {
+                 $fechas[$actividade-> fecha][] = $actividade;
+
+              }
+            }
 
       ?>
-
+      <?php $countTable=0; ?>
+      <?php $totalEnd=0; ?>
       <?php foreach ($fechas as $fecha): ?>
+        <?php $countTable+=1; ?>
       <table  class="table table-hover dataTable no-footer">
       <thead>
           <tr>
@@ -34,7 +44,8 @@
 
           </tr>
       </thead>
-
+        <?php $totalsub= 0; ?>
+        <?php $subtotal=0; ?>
       <?php   foreach ($fecha as $seguimiento): ?>
       <tr>
           <td style="	width:8%;">
@@ -45,29 +56,51 @@
               <?php echo $seguimiento-> NroSolicitud; ?>
           </td>
           <td style="	width: 10%;">
-              <?php echo $seguimiento-> maquina; ?>
+              <?php if (!empty($seguimiento->actividad)): ?>
+                  <?php echo $seguimiento-> actividad; ?>
+              <?php else: ?>
+                  <?php echo $seguimiento-> maquina; ?>
+              <?php endif; ?>
+
+
           </td>
           <td style="	width: 50%;">
               <?php echo $seguimiento-> Comentario; ?>
           </td>
           <td style="	width: 10%;">
               <?php
-              $cadena = strtotime($seguimiento->horaInicio);
-              $cadena = date("H:i", $cadena);
-              echo $cadena;
+              if (!empty($seguimiento->horaInicio)) {
+                $cadena = strtotime($seguimiento->horaInicio);
+                $cadena = date("H:i", $cadena);
+                echo $cadena;
+              }
+
                ?>
-               <input type="hidden"  id="horaInicio" value="<?php echo $cadena ?>">
+
           </td>
           <td style="	width: 10%;">
               <?php
-              $cadena2 = strtotime($seguimiento->horaTermino);
-              $cadena2 = date("H:i", $cadena2);
-              echo $cadena2;
+              if (!empty($seguimiento->horaTermino)) {
+                $cadena2 = strtotime($seguimiento->horaTermino);
+                $cadena2 = date("H:i", $cadena2);
+                echo $cadena2;
+              }
+
                ?>
-               <input type="hidden"  id="horaTermino" value="<?php echo $cadena2 ?>">
+
           </td>
-          <td class="td-calcular" data-inicio="<?php echo $seguimiento->horaInicio;?>" data-fin="<?php echo $seguimiento->horaTermino;?>" data-dia="<?php echo $seguimiento->fecha;?>" >
-        </td>
+          <td style="	width: 10%;">
+
+            <?php if (!empty($seguimiento->TotalHrs)): ?>
+            <?php $totalsub= $seguimiento-> TotalHrs ?>
+
+            <?php else: ?>
+           <?php $totalsub= $seguimiento-> total ?>
+            <?php endif; ?>
+            <?php echo $totalsub; ?>
+
+          <?php $subtotal+= $totalsub ?>
+          </td>
       </tr>
 
       <?php endforeach; ?>
@@ -78,11 +111,20 @@
             </div>
             <div class="col-4 col-md-2">
               <h5> Total horas por fecha :
-                <div class="div-calcular float-right" id="<?php echo $seguimiento->fecha;?>"></div>
-                
+                <div class="div-calcular float-right">
+                  <?php echo $subtotal; ?>
+                </div>
+
                </h5>
-                <h5> Horas turno :    9</h5>
-                <h5> % Ocupacion por fecha: </h5>
+                <h5> Horas turno :
+                  <div class="div-calcular float-right">
+                    9
+                  </div></h5>
+                <h5> % Ocupacion por fecha:
+                  <div class="div-calcular float-right">
+                    <?php echo round($subtotal/9*100,2); ?>
+                    <?php $totalEnd+=$subtotal ?>
+                  </div></h5>
             </div>
           </div>
       <?php endforeach; ?>
@@ -91,9 +133,10 @@
           </div>
           <div class="col-4 col-md-2" style="border: 1px solid #9d9f9d;">
 
-              <h5>Total horas :  <p id="totalhrs" style="float:right;"></p>  </h5>
-              <h5>Horas turno : <p id="countTotal" style="float:right;"></p> </h5>
-              <h5>% Ocupacidad por fecha<p id="totalResultado" style="float:right;"></p> </h5>
+              <h5>Total horas :  <p style="float:right;"><?php echo $totalEnd ?></p>  </h5>
+              <?php $subtotalEnd = $countTable*9; ?>
+              <h5>Horas turno :  <p style="float:right;"><?php echo $subtotalEnd; ?></p> </h5>
+              <h5>% Ocupacidad por fecha<p style="float:right;"><?php echo round($totalEnd/$subtotalEnd*100,2) ?></p> </h5>
           </div>
       </div>
       <?php endif; ?>

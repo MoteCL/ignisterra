@@ -156,7 +156,7 @@ class Mantencion extends CI_Controller
     public function saveMAN()
     {
         $this->load->helper('date');
-        $session_data = $this->session->userdata('logged_in');
+        //$session_data = $this->session->userdata('logged_in');
         $this->form_validation->set_rules('NroSolicitud', 'NroSolicitud');
         $this->form_validation->set_rules('maquina', 'maquina', 'required|trim', array(
             'required' => 'Seleccione una maquina'
@@ -253,16 +253,16 @@ class Mantencion extends CI_Controller
                 $this->session->set_flashdata('success_msg', $message);
             }
 
-           return redirect('main/menu');
+           return redirect('landingPage/index');
         } else {
             $this->session->set_flashdata('error_msg', 'Codigo Invalido');
             $data['data']   = $this->ma->getallMaquinas();
             $data['costos'] = $this->ma->getAllCentroCosto();
             $data['orden']  = $this->ma->getOrden();
-            $session_data   = $this->session->userdata('logged_in');
-            $data['Codigo'] = $session_data['Codigo'];
-            $data['Nombre'] = $session_data['Nombre'];
-            $data['Tipo']   = $session_data['Tipo'];
+            // $session_data   = $this->session->userdata('logged_in');
+            // $data['Codigo'] = $session_data['Codigo'];
+            // $data['Nombre'] = $session_data['Nombre'];
+            // $data['Tipo']   = $session_data['Tipo'];
             $this->load->view('dashboard', $data);
         }
     }

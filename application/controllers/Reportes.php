@@ -198,8 +198,8 @@ class Reportes extends CI_Controller {
 			$data['tipo'] = $this->input->post('customRadio');
 			$data['nombre'] =$this->m->verificarCodigo($persona);
 			$data['seguimientos']= $this->report->getSeguimientoTecnico($desde,$hasta,$persona);
-		//	$data['actividades']= $this->report->getActividades($desde,$hasta);
-		//print_r($data);
+			$data['actividades']= $this->report->getActividades($desde,$hasta,$persona);
+		  //print_r($data);
 
 			$this->load->view('report/person-result',$data);
 		}else {
