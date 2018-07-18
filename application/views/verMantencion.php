@@ -79,7 +79,7 @@
                                 <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                         </li>
                         <li class="">
-                            <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                            <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                             </a>
                         </li>
                         <li class="dropdown">
@@ -337,9 +337,7 @@
                                                     <?php echo $data-> horasolicitud; ?>
                                                 </p>
                                             </div>
-                                        </div>
-                                        <hr style="margin:0;">
-                                        <div class="row">
+
                                             <div class="col-4 col-md-2">
                                                 <h5>Maquina</h5>
                                                 <p>
@@ -347,7 +345,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-4 col-md-2">
-                                                <h5>Codigo Area</h5>
+                                                <h5> Area</h5>
                                                 <p>
                                                     <?php echo $data-> CodArea; ?>
                                                 </p>
@@ -376,9 +374,7 @@
                                                 </p>
                                             </div>
                                             <?php endif; ?>
-                                        </div>
-                                        <hr style="margin:0;">
-                                        <div class="row">
+
                                             <div class="col-4 col-md-2">
                                                 <h5>Solicitante Codigo</h5>
                                                 <p>
@@ -386,7 +382,7 @@
                                                 </p>
                                             </div>
 
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-4">
                                                 <h5>Nombre</h5>
                                                 <p>
                                                     <?php echo $data-> username; ?>
@@ -497,7 +493,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="col-sm-6">
+                                                                    <div class="col-sm-8">
                                                                         <div class="form-group row">
                                                                             <label class="form-label">Desde:</label>
                                                                             <input name="horaInicioo" id="horaInicio" placeholder="00:00" class="start form-control" type="text" value="<?php echo set_value('horaInicio') ?>">
@@ -515,7 +511,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="col-sm-4">
+                                                                    <div class="col-sm-5">
                                                                         <div class="form-group row">
                                                                             <label class="form-label">HH:</label>
 
@@ -590,80 +586,85 @@
                 <div class="modal-body">
                     <?php echo form_open("mantencion/save_MANTecnico/{$data->NroSolicitud}"); ?>
 
-                    <div class="form-group  col-md-12">
-                        <h5>Numero de Solicitud </h5>
-                        <p>
-                            <?php echo $data-> NroSolicitud; ?>
-                        </p>
+                  <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-3">  <h5>Numero de Solicitud </h5></div>
+                    <div class="col-md-3 ml-auto">
+                    <?php echo $data-> NroSolicitud; ?>
                     </div>
-                    <div class="form-group  col-md-12">
-                        <h5>Especialidad </h5>
-                        <p id="especialidadd"></p>
-                        <input type="hidden" name="clasificacion" value="">
+                    <div class="col-md-3">  <h5>Especialidad </h5></div>
+                    <div class="col-md-3 ml-auto">
+                    <p id="especialidadd"></p>
                     </div>
-                    <div class="form-group col-md-12">
-                        <h5>Tipo de Detencion </h5>
-                        <p id="tipo_detencionn"></p>
-                        <p id="horometroo"></p>
-                        <input type="hidden" name="tipo_detencion" value="">
-                        <input type="hidden" name="horometro" value="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <h5>Reparacion </h5>
-                        <p id="reparacionn"></p>
+                  </div>
 
-                        <input type="hidden" name="reparacion" value="">
+                  <div class="row">
+                    <div class="col-md-3">  <h5>Tipo de Detencion </h5></div>
+                    <div class="col-md-3 ml-auto">
+                      <p id="tipo_detencionn"></p>
+                      <p id="horometroo"></p>
                     </div>
-                    <div class="form-group col-md-12">
-                        <h5>Tecnicos </h5>
-                        <p id="tecnico11"></p>
-                        <p id="tecnico22"></p>
-                        <p id="tecnico33"></p>
-                        <input type="hidden" name="id_tecnico1" value="">
-                        <input type="hidden" name="id_tecnico2" value="">
-                        <input type="hidden" name="id_tecnico3" value="">
+                    <div class="col-md-3">  <h5>Reparacion </h5></div>
+                    <div class="col-md-3 ml-auto">
+                      <p id="reparacionn"></p>
                     </div>
-                    <div class="form-group col-md-12">
-                        <h5>Hora </h5>
-                        <div class="horaI col-md-3">
+                  </div>
 
-                        </div>
-                        <div class="horaT col-md-3">
-
-                        </div>
-                        <input type="hidden" name="horaInicio" value="">
-                        <input type="hidden" name="horaTermino" value="">
+                  <div class="row">
+                    <div class="col-md-3">
+                       <h5>Hora Inicio</h5>
+                      <h5>Hora Termino</h5>
+                     </div>
+                    <div class="col-md-3 ml-auto">
+                      <p class="horaI"></p>
+                      <p class="horaT"></p>
                     </div>
-
-                    <div class="form-group col-md-12">
-                        <h5>HH | HM </h5>
-                        <div class="HHH col-md-3">
-
-                        </div>
-                        <div class="HHM col-md-3">
-
-                        </div>
-                        <input type="hidden" name="HH" value="">
-                        <input type="hidden" name="HM" value="">
+                    <div class="col-md-3">
+                       <h5> HH </h5>
+                       <h5> HM </h5>
                     </div>
-                    <div class="form-group col-md-12">
-                        <h5>Interrumpe </h5>
+                    <div class="col-md-3 ml-auto">
+                      <p class="HHH"></p>
+                      <p class="HHM"></p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-3">  <h5>Interrumpe </h5></div>
+                    <div class="col-md-3 ml-auto">
                         <p id="interrumpee"></p>
-                        <input type="hidden" name="Int_Prod" value="">
                     </div>
-                    <div class="form-group col-md-12">
-                        <h5>Comentario </h5>
-                        <p id="comentarioo"></p>
-                        <input type="hidden" name="Comentario" value="">
+                    <div class="col-md-3">  <h5>Comentario </h5></div>
+                    <div class="col-md-3 ml-auto">
+                      <p id="comentarioo"></p>
                     </div>
+                  </div>
+
+                  </div>
+
+                    <input type="hidden" name="clasificacion" value="">
+                    <input type="hidden" name="tipo_detencion" value="">
+                    <input type="hidden" name="horometro" value="">
+                    <input type="hidden" name="reparacion" value="">
+                    <input type="hidden" name="id_tecnico1" value="">
+                    <input type="hidden" name="id_tecnico2" value="">
+                    <input type="hidden" name="id_tecnico3" value="">
+                    <input type="hidden" name="horaInicio" value="">
+                    <input type="hidden" name="horaTermino" value="">
+                    <input type="hidden" name="HH" value="">
+                    <input type="hidden" name="HM" value="">
+                    <input type="hidden" name="Int_Prod" value="">
+                    <input type="hidden" name="Comentario" value="">
+                  </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-success">Guardar</button>
                         <?php echo form_close(); ?>
+                        <button type="submit" class="btn btn-primary float-left">Otra intervencion</button>
                     </div>
                 </div>
-                <?php echo form_close(); ?>
+
             </div>
         </div>
     </div>

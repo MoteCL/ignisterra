@@ -75,7 +75,7 @@
             <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                 </li>
                 <li class="">
-                    <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                    <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                     </a>
                 </li>
                 <li class="dropdown">
@@ -214,7 +214,6 @@
                                   <th>Tipo</th>
                                   <th>Tipo de Trabajo</th>
                                   <th>Fecha</th>
-                                  <th>Estado</th>
                                   <th>Urgente</th>
                                   <th></th>
                               </tr>
@@ -237,8 +236,7 @@
                                           <?php echo $row -> tipotrabajo; ?></td>
                                       <td>
                                           <?php echo $row -> fechasolicitud; ?></td>
-                                      <td>
-                                          <?php echo $row -> estado; ?></td>
+
                                       <td>
                                           <?php echo $row -> urgente; ?></td>
 
@@ -265,8 +263,7 @@
                                           <?php echo $row -> tipotrabajo; ?></td>
                                       <td>
                                           <?php echo $row -> fechasolicitud; ?></td>
-                                      <td>
-                                          <?php echo $row -> estado; ?></td>
+
                                       <td>
                                           <?php echo $row -> urgente; ?></td>
 
@@ -304,9 +301,13 @@
 </footer>
 
 <!-- Javascript Libs -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script> -->
 <script>
 $(document).ready(function(){
  $('#tbl_personal').DataTable({

@@ -72,7 +72,7 @@
                           <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                               </li>
                               <li class="">
-                                  <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                  <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                                   </a>
                               </li>
                               <li class="dropdown">
@@ -174,7 +174,7 @@
                           <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                               </li>
                               <li class="">
-                                  <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                  <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                                   </a>
                               </li>
                               <li class="dropdown">
@@ -311,14 +311,13 @@
                                             <table id="tbl_personal" class="table table-hover dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>Orden</th>
+
                                                         <th>NroSolicitud</th>
                                                         <th>Maquina</th>
-                                                        <th>CodArea</th>
+                                                        <th>Detalle</th>
                                                         <th>Tipo</th>
                                                         <th>Tipo de Trabajo</th>
                                                         <th>Fecha</th>
-                                                        <th>Estado</th>
                                                         <th>Urgente</th>
                                                         <th></th>
                                                     </tr>
@@ -328,9 +327,7 @@
                                                     <?php  { if ($data) foreach ($data as $row ) { ?>
                                                     <?php if ($row-> urgente == 'SI' ): ?>
                                                     <tr class="danger">
-                                                        <td>
-                                                            <?php echo $row -> orden; ?>
-                                                        </td>
+
                                                         <td>
                                                             <?php echo $row -> NroSolicitud; ?>
                                                         </td>
@@ -338,7 +335,7 @@
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
                                                         <td>
-                                                              <?php echo $row -> CodArea; ?>
+                                                              <?php echo $row -> detalle; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>
@@ -350,9 +347,7 @@
                                                             <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
                                                             <?php echo  $row-> fechasolicitud;  ?>
                                                         </td>
-                                                        <td>
-                                                            <?php echo $row -> estado; ?>
-                                                        </td>
+
                                                         <td>
                                                             <?php echo $row -> urgente; ?>
                                                         </td>
@@ -364,9 +359,7 @@
                                                     </tr>
                                                     <?php else: ?>
                                                     <tr>
-                                                        <td>
-                                                            <?php echo $row -> orden; ?>
-                                                        </td>
+
                                                         <td>
                                                             <?php echo $row -> NroSolicitud; ?>
                                                         </td>
@@ -374,7 +367,7 @@
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
                                                         <td>
-                                                              <?php echo $row -> CodArea; ?>
+                                                              <?php echo $row -> detalle; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>
@@ -386,15 +379,13 @@
                                                           <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
                                                           <?php echo  $row-> fechasolicitud;  ?>
                                                         </td>
-                                                        <td>
-                                                            <?php echo $row -> estado; ?>
-                                                        </td>
+
                                                         <td>
                                                             <?php echo $row -> urgente; ?>
                                                         </td>
 
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab.</a>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab.</a> <br>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>

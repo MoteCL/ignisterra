@@ -88,11 +88,11 @@
                           <ul class="nav navbar-nav">
 
                               <li class="active">
-                                  <a href="<?php echo base_url('index.php/landingPage/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                  <a href="<?php echo base_url('index.php/landingPage/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                                   </a>
                               </li>
                               <li class="">
-                                  <a href="<?php echo base_url('index.php/main/login'); ?>" target="_self" style="color:"> <span class="icon voyager-person"></span> <span class="title">Acceder.<span>
+                                  <a href="<?php echo base_url('index.php/main/login'); ?>" target="_self" style="color:"> <span class="icon voyager-person"></span> <span class="title">Acceder<span>
                                   </a>
                               </li>
                           </ul>

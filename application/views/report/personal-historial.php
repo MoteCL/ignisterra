@@ -116,7 +116,7 @@
                                         <ul class="nav navbar-nav">
                                             <li class="">
                                                 <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
+                        <span class="icon voyager-list"></span> <span class="title">Desempeño Maquinas</span> </a>
                                             </li>
                                             <li class="">
                                                 <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
@@ -213,7 +213,7 @@
                                         <ul class="nav navbar-nav">
                                             <li class="">
                                                 <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
+                        <span class="icon voyager-list"></span> <span class="title">Desempeño Maquinas</span> </a>
                                             </li>
                                             <li class="">
                                                 <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
