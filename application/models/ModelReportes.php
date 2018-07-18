@@ -103,7 +103,7 @@ class ModelReportes extends CI_Model {
  {
 
    $this->db->select('*');
-   $this->db->from('Tecnico_Seguimiento as d');
+   $this->db->from('MAN_TecnicoSeguimiento as d');
    $this->db->join('personal as p','p.Codigo= d.id_tecnico');
 
 
@@ -127,7 +127,7 @@ class ModelReportes extends CI_Model {
  public function getSeguimientoTecnico($minvalue,$maxvalue,$id)
  {
    $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina, d.total');
-   $this->db->from('Tecnico_Seguimiento as t');
+   $this->db->from('MAN_TecnicoSeguimiento as t');
    $this->db->join('personal as p','p.Codigo = t.id_tecnico');
    $this->db->join('MAN_SeguimientoDetalle as d','d.id_detalle = t.id_detalle');
    $this->db->join('MAN_Seguimiento as s','s.idMan_Tecnico = d.id_man_tecnico');

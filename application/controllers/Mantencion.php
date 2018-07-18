@@ -263,7 +263,7 @@ class Mantencion extends CI_Controller
             // $data['Codigo'] = $session_data['Codigo'];
             // $data['Nombre'] = $session_data['Nombre'];
             // $data['Tipo']   = $session_data['Tipo'];
-            $this->load->view('dashboard', $data);
+            $this->load->view('landing-pageforall', $data);
         }
     }
 
@@ -419,7 +419,7 @@ class Mantencion extends CI_Controller
                     'id_tecnico' => $_POST['id_tecnico1'],
                     'id_detalle' => $id_detalle
                 );
-                $this->seguimiento->create('Tecnico_Seguimiento', $data3);
+                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
             }
 
             if ($_POST['id_tecnico2']) {
@@ -427,7 +427,7 @@ class Mantencion extends CI_Controller
                     'id_tecnico' => $_POST['id_tecnico2'],
                     'id_detalle' => $id_detalle
                 );
-                $this->seguimiento->create('Tecnico_Seguimiento', $data3);
+                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
             }
 
             if ($_POST['id_tecnico3']) {
@@ -435,7 +435,7 @@ class Mantencion extends CI_Controller
                     'id_tecnico' => $_POST['id_tecnico3'],
                     'id_detalle' => $id_detalle
                 );
-                $this->seguimiento->create('Tecnico_Seguimiento', $data3);
+                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
             }
 
             if ($result) {

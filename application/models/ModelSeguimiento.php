@@ -30,9 +30,9 @@ class ModelSeguimiento extends CI_Model
 
     public function getTecnicoSeguimiento()
     {
-        $this->db->join('personal as p', 'p.Codigo = Tecnico_Seguimiento.id_tecnico');
+        $this->db->join('personal as p', 'p.Codigo = MAN_TecnicoSeguimiento.id_tecnico');
         $this->db->order_by('id_detalle', 'desc');
-        $query = $this->db->get('Tecnico_Seguimiento');
+        $query = $this->db->get('MAN_TecnicoSeguimiento');
 
         if ($query->num_rows() > 0) {
             return $query->result();
@@ -46,7 +46,7 @@ class ModelSeguimiento extends CI_Model
         $this->db->select('*');
         $this->db->from('MAN_SeguimientoDetalle as detalle');
         $this->db->join('MAN_Seguimiento as MAN', 'MAN.idMan_Tecnico = detalle.id_detalle');
-        $this->db->join('Tecnico_Seguimiento as tecnico', 'tecnico.id_detalle = detalle.id_detalle');
+        $this->db->join('MAN_TecnicoSeguimiento as tecnico', 'tecnico.id_detalle = detalle.id_detalle');
 
 
         $query = $this->db->get();
@@ -103,7 +103,7 @@ class ModelSeguimiento extends CI_Model
         $this->db->select('*');
         $this->db->from('MAN_Seguimiento as MAN');
         $this->db->join('MAN_SeguimientoDetalle as detalle', 'detalle.id_man_tecnico = MAN.idMan_Tecnico');
-        $this->db->join('Tecnico_Seguimiento as tecnico', 'tecnico.id_detalle = detalle.id_detalle');
+        $this->db->join('MAN_TecnicoSeguimiento as tecnico', 'tecnico.id_detalle = detalle.id_detalle');
 
         $this->db->where('MAN.idMan_Tecnico', $id);
         $query = $this->db->get();
@@ -132,7 +132,7 @@ class ModelSeguimiento extends CI_Model
 
     public function getTecnicos($id)
     {
-        $query = $this->db->get_where('Tecnico_Seguimiento', array(
+        $query = $this->db->get_where('MAN_TecnicoSeguimiento', array(
             'id_detalle' => $id
         ));
         if ($query->num_rows() > 0) {

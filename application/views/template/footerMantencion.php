@@ -6,9 +6,15 @@
                                     - v1.1.0
             </div>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
+
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
 
 
@@ -35,7 +41,7 @@ $(document).ready(function(){
      $('#horaTermino').timepicker({ 'scrollDefault': 'now' , 'timeFormat': 'G:i' });
 
 
-     
+
      $(document).on('click', '.btn_add', function(){
 
      });
