@@ -128,9 +128,7 @@
               success: function(data){
                 // within the Bootstrap modal
                   $('#phone_result').html(data);
-
               }
-
         });
         // End AJAX function
     });

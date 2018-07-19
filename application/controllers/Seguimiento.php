@@ -40,6 +40,7 @@ class Seguimiento extends CI_Controller
         $estado = 'TECNICA';
 
         $data['data']     = $this->seguimiento->getDetallePorID($id);
+        $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where_id($id);
         $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
         $session_data     = $this->session->userdata('logged_in');
         $data['Codigo']   = $session_data['Codigo'];

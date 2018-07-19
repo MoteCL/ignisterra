@@ -351,7 +351,7 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-4 col-md-4"><h5>Clasificacion</h5>
+                                            <div class="col-4 col-md-4"><h5>Especialidad</h5>
                                                 <p>
                                                     <?php echo $data-> clasificacion; ?>
                                                 </p>
@@ -369,29 +369,6 @@
                                             </div>
 
                                         </div>
-                                        <?php if ($tecnicos): ?>
-                                            <?php foreach ($tecnicos as $tecnico): ?>
-                                              <?php if ($tecnico->id_detalle==$data->id_detalle): ?>
-                                                  <div class="row">
-
-                                                      <div class="col-4 col-md-4"><h5>Codigo Tecnico</h5>
-                                                        <p>
-                                                            <?php echo $tecnico-> id_tecnico; ?>
-                                                        </p>
-
-                                                    </div>
-
-                                                    <div class="col-4 col-md-4"><h5>Nombre Tecnico</h5>
-                                                        <p>
-                                                            <?php echo $tecnico-> Nombre; ?>
-                                                        </p>
-
-                                                    </div>
-
-                                                </div>
-                                              <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
 
                                     </div>
                                 </div>
@@ -403,52 +380,61 @@
                             <div class="col-md-12">
                                 <div class="panel panel-bordered">
                                     <div class="panel-body">
-                                        <div class="page-header">
+                                        <div class="page-header text-center">
+                                            <?php if ($seguimientos && $tecnicos): ?>
                                             <i class="fa fa-industry" aria-hidden="true"></i> Mantencion realizada
-
                                         </div>
-                                        <div class="col-5 col-xl-12">
-                                            <div class="row">
-                                              <div class="col-4 col-md-1">Fecha
-                                                  <p>
-                                                      <?php echo $data-> fecha; ?>
-                                                  </p>
-                                              </div>
-                                                <div class="col-4 col-md-1">Hora de Inicio
-                                                    <p>
-                                                        <?php echo $data-> horaInicio; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-4 col-md-2">Hora de Termino
-                                                    <p>
-                                                        <?php echo $data-> horaTermino; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-4 col-md-1">HH
-                                                    <p>
-                                                        <?php echo $data-> HH; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-4 col-md-1">HM
-                                                    <p>
-                                                        <?php echo $data-> HM; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-4 col-md-2">Interrumpe
-                                                    <p>
-                                                        <?php echo $data-> Int_Prod; ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-4 col-md-4">Comentario
-                                                    <p>
-                                                        <?php echo $data-> Comentario; ?>
-                                                    </p>
-                                                </div>
 
-                                            </div>
+                                        <div class="col-5 col-xl-12">
+                                              <div class="table-responsive">
+
+                                                  <table class="table table-hover dataTable no-footer" id="dynamic_field">
+
+                                                          <thead>
+                                                              <tr>
+                                                                  <th>Tecnico</th>
+                                                                  <th>Desde</th>
+                                                                  <th>Hasta</th>
+                                                                  <th>HH</th>
+                                                                  <th>HM</th>
+                                                                  <th>Int</th>
+                                                                  <th>Comentario</th>
+
+                                                              </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                              <?php foreach ($seguimientos as $seguimiento): ?>
+                                                              <tr>
+                                                                  <td style="width:25%;">
+                                                                    <?php foreach ($tecnicos as $tecnico): ?>
+                                                                      <?php if ($seguimiento-> id_detalle == $tecnico-> id_detalle): ?>
+                                                                    *  <?php echo $tecnico-> Nombre; ?> <br>
+                                                                      <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                   </td>
+                                                                   <td style="width:10%;"><?php echo $seguimiento-> horaInicio ?></td>
+
+                                                                    <td style="width:10%;"><?php echo $seguimiento-> horaTermino ?>  </td>
+
+                                                                    <td style="width:5%;"> <?php echo $seguimiento-> HH ?></td>
+
+                                                                    <td style="width:5%;">  <?php echo $seguimiento-> HM ?></td>
+
+                                                                    <td style="width:5%;"><?php echo $seguimiento-> Int_Prod ?></td>
+
+                                                                    <td style="width:30%;"><?php echo $seguimiento-> Comentario ?>  </td>
+                                                              </tr>
+                                                          </tbody>
+                                                          <?php $id_seguimiento = $seguimiento->idMan_Tecnico; ?>
+                                                          <?php $id_solicitud = $seguimiento->NroSolicitud; ?>
+
+                                                          <?php endforeach; ?>
+                                                      </table>
+                                              </div>
+                                            <br>
                                         </div>
                                     </div>
-
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

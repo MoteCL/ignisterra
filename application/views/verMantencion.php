@@ -437,7 +437,7 @@
                                                                   <td style="width:25%;">
                                                                     <?php foreach ($tecnicos as $tecnico): ?>
                                                                       <?php if ($seguimiento-> id_detalle == $tecnico-> id_detalle): ?>
-                                                                      <?php echo $tecnico-> Nombre; ?> <br>
+                                                                    *  <?php echo $tecnico-> Nombre; ?> <br>
                                                                       <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                    </td>
