@@ -94,12 +94,12 @@ class Calendario extends CI_Controller {
 	        break;
 	    case 'Semestral':
 	        $fecha = $this->input-> post('fecha');
-	        $nuevafecha = strtotime('+3 month', strtotime($fecha));
+	        $nuevafecha = strtotime('+6 month', strtotime($fecha));
 	        $data['fechaVence'] = date('Y-m-j', $nuevafecha);
 	        break;
 	    case 'Trimestral':
 	        $fecha = $this->input-> post('fecha');
-	        $nuevafecha = strtotime('+6 month', strtotime($fecha));
+	        $nuevafecha = strtotime('+3 month', strtotime($fecha));
 	        $data['fechaVence'] = date('Y-m-j', $nuevafecha);
 	        break;
 

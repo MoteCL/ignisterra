@@ -319,12 +319,15 @@
                                                         <th>Tipo de Trabajo</th>
                                                         <th>Fecha</th>
                                                         <th>Ur</th>
+                                                        <th>G</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     <?php  { if ($data) foreach ($data as $row ) { ?>
+
+
                                                     <?php if ($row-> urgente == 'SI' ): ?>
                                                     <tr class="danger">
 
@@ -344,20 +347,57 @@
                                                             <?php echo $row -> tipotrabajo; ?>
                                                         </td>
                                                         <td>
-                                                            <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
-                                                            <?php echo  $row-> fechasolicitud;  ?>
+
+                                                            <?php echo  date('d/m/Y',strtotime($row-> fechasolicitud));  ?>
+                                                            <!-- <?php echo  $row-> fechasolicitud;  ?> -->
                                                         </td>
 
                                                         <td>
                                                             <?php echo $row -> urgente; ?>
                                                         </td>
-
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab.</a>
+                                                          <?php echo $row-> generacion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>
-                                                    <?php else: ?>
+
+                                                  <?php elseif ($row-> generacion == 'A' ): ?>
+                                                    <tr class="info">
+
+                                                        <td>
+                                                            <?php echo $row -> NroSolicitud; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row -> maquina; ?>
+                                                        </td>
+                                                        <td style="width: 691.417px;">
+                                                              <?php echo  mb_substr($row -> detalle,0,15); ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row -> tipomantencion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row -> tipotrabajo; ?>
+                                                        </td>
+                                                        <td>
+                                                          <?php echo  date('d/m/Y',strtotime($row-> fechasolicitud));  ?>
+                                                        </td>
+
+                                                        <td>
+                                                            <?php echo $row -> urgente; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row-> generacion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
+                                                        </td>
+                                                    </tr>
+                                                  <?php else: ?>
                                                     <tr>
 
                                                         <td>
@@ -376,16 +416,17 @@
                                                             <?php echo $row -> tipotrabajo; ?>
                                                         </td>
                                                         <td>
-                                                          <!-- <?php echo  date('j M Y',strtotime($row-> fechasolicitud));  ?> -->
-                                                          <?php echo  $row-> fechasolicitud;  ?>
+                                                          <?php echo  date('d/m/Y',strtotime($row-> fechasolicitud));  ?>
                                                         </td>
 
                                                         <td>
                                                             <?php echo $row -> urgente; ?>
                                                         </td>
-
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab.</a> <br>
+                                                            <?php echo $row-> generacion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>

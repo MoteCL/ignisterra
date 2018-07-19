@@ -319,48 +319,33 @@
 
                                         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
                                         <div class="row">
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-1">
                                                 <h5>Numero de Solicitud</h5>
                                                 <p>
                                                     <?php echo $data-> NroSolicitud; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-1">
                                                 <h5>Fecha</h5>
                                                 <p>
-                                                    <?php echo $data-> fechasolicitud; ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-4 col-md-2">
-                                                <h5>Hora</h5>
-                                                <p>
-                                                    <?php echo $data-> horasolicitud; ?>
+                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud)); ?>
                                                 </p>
                                             </div>
 
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-1">
                                                 <h5>Maquina</h5>
                                                 <p>
                                                     <?php echo $data-> maquina; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-1">
                                                 <h5> Area</h5>
                                                 <p>
                                                     <?php echo $data-> CodArea; ?>
                                                 </p>
 
                                             </div>
-                                            <div class="col-4 col-md-2">
-                                                <h5>Estado</h5>
-                                                <p>
-                                                    <?php echo $data-> estado; ?>
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4 col-md-2">
+                                            <div class="col-4 col-md-1">
                                                 <h5>Tipo de Mantencion</h5>
                                                 <p>
                                                     <?php echo $data-> tipomantencion; ?>
@@ -374,30 +359,15 @@
                                                 </p>
                                             </div>
                                             <?php endif; ?>
-
-                                            <div class="col-4 col-md-2">
-                                                <h5>Solicitante Codigo</h5>
-                                                <p>
-                                                    <?php echo $data-> cod_detecta; ?>
-                                                </p>
-                                            </div>
-
                                             <div class="col-4 col-md-4">
                                                 <h5>Nombre</h5>
                                                 <p>
                                                     <?php echo $data-> username; ?>
                                                 </p>
                                             </div>
-                                            <div class="col-4 col-md-2">
-                                                <h5>Area de Solicitante</h5>
-                                                <p>
-                                                    <?php echo $data-> area; ?>
-                                                </p>
-                                            </div>
-
-
 
                                         </div>
+
                                         <div class="panel-heading" style="border-bottom:0;">
                                             <h3 class="panel-title">Detalle de Mantencion</h3>
                                         </div>
