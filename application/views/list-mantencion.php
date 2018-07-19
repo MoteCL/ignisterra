@@ -318,7 +318,7 @@
                                                         <th>Tipo</th>
                                                         <th>Tipo de Trabajo</th>
                                                         <th>Fecha</th>
-                                                        <th>Urgente</th>
+                                                        <th>Ur</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -334,8 +334,8 @@
                                                         <td>
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
-                                                        <td>
-                                                              <?php echo $row -> detalle; ?>
+                                                        <td style="width: 691.417px;">
+                                                              <?php echo  mb_substr($row -> detalle,0,15); ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>
@@ -366,8 +366,8 @@
                                                         <td>
                                                             <?php echo $row -> maquina; ?>
                                                         </td>
-                                                        <td>
-                                                              <?php echo $row -> detalle; ?>
+                                                        <td style="width: 691.417px;">
+                                                              <?php echo  mb_substr($row -> detalle,0,60); ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $row -> tipomantencion; ?>

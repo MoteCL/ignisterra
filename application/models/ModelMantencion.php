@@ -98,7 +98,7 @@ class ModelMantencion extends CI_Model
     $this->db->join('personal as p', 'p.Codigo = m.cod_detecta');
     $this->db->join('area as a', 'a.CodArea = p.Area');
     $query = $this->db->get_where('MAN_Solicitud as m', array(
-			'NroSolicitud' => $id
+			'm.NroSolicitud' => $id
 		));
 		if ($query->num_rows() > 0) {
 			return $query->row();

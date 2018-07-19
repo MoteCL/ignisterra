@@ -16,6 +16,24 @@ class ModelSeguimiento extends CI_Model
             return false;
         }
     }
+
+
+        public function getManSeguimiento_where($data)
+        {
+            $this->db->join('MAN_SeguimientoDetalle as s', 's.id_man_tecnico = MAN_Seguimiento.idMan_Tecnico');
+            $this->db->order_by('idMan_Tecnico', 'desc');
+            $query = $this->db->get_where('MAN_Seguimiento', array(
+                'NroSolicitud' => $data
+            ));
+
+            if ($query->num_rows() > 0) {
+                return $query->result();
+            } else {
+                return false;
+            }
+        }
+
+
     public function getSeguimientoDetalle()
     {
         $this->db->order_by('id_detalle', 'desc');
@@ -63,9 +81,6 @@ class ModelSeguimiento extends CI_Model
     {
         return $this->db->where('idMan_Tecnico', $id)->update('MAN_Seguimiento', $data);
     }
-
-
-
 
     public function create($table, $data)
     {

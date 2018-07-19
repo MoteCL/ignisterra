@@ -26,7 +26,7 @@ class Mantencion extends CI_Controller
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];
-      //  print_r($data);
+        //  print_r($data);
         $this->load->view('dashboard', $data);
     }
 
@@ -209,21 +209,21 @@ class Mantencion extends CI_Controller
 
             $result1 = $this->main->getCorreo($recibeQuery);
             foreach ($result1 as $key) {
-                $recibe = $key-> Correo;
+                $recibe = $key->Correo;
             }
 
             $result3 = $this->main->getCorreo($this->input->post('phoneData'));
             foreach ($result3 as $key) {
-                $nombrePersonal = $key-> Nombre;
+                $nombrePersonal = $key->Nombre;
             }
             $result5 = $this->maquina->getArea($this->input->post('CodArea'));
             foreach ($result5 as $key) {
-                $area = $key-> CodArea;
+                $area = $key->CodArea;
             }
 
             $result6 = $this->maquina->getSupervisor($area);
             foreach ($result6 as $key) {
-                $supervisor = $key-> Correo;
+                $supervisor = $key->Correo;
             }
 
             $dataa['NroSolicitud']   = $_POST['NroSolicitud'];
@@ -240,9 +240,10 @@ class Mantencion extends CI_Controller
             $this->email->set_newline("\r\n");
             $body = $this->load->view('email/index.php', $dataa, TRUE);
             $this->email->from($envia, '');
-            $this->email->to(
-              array($recibe,$supervisor)
-            );
+            $this->email->to(array(
+                $recibe,
+                $supervisor
+            ));
             $this->email->subject('Nueva Mantencion maquina ' . $machine);
             $this->email->message($body);
             $this->email->set_mailtype("html");
@@ -253,16 +254,12 @@ class Mantencion extends CI_Controller
                 $this->session->set_flashdata('success_msg', $message);
             }
 
-           return redirect('landingPage/index');
+            return redirect('landingPage/index');
         } else {
             $this->session->set_flashdata('error_msg', 'Codigo Invalido');
             $data['data']   = $this->ma->getallMaquinas();
             $data['costos'] = $this->ma->getAllCentroCosto();
             $data['orden']  = $this->ma->getOrden();
-            // $session_data   = $this->session->userdata('logged_in');
-            // $data['Codigo'] = $session_data['Codigo'];
-            // $data['Nombre'] = $session_data['Nombre'];
-            // $data['Tipo']   = $session_data['Tipo'];
             $this->load->view('landing-pageforall', $data);
         }
     }
@@ -290,8 +287,10 @@ class Mantencion extends CI_Controller
             redirect('main/login', 'refresh');
         }
 
-        $data['data'] = $this->ma->getMantencionbyId($id);
-        $session_data = $this->session->userdata('logged_in');
+        $data['data']   = $this->ma->getMantencionbyId($id);
+        $session_data   = $this->session->userdata('logged_in');
+        $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
+        $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
         $data['Codigo'] = $session_data['Codigo'];
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];
@@ -393,66 +392,102 @@ class Mantencion extends CI_Controller
         $this->form_validation->set_rules('Comentario', 'Comentario', 'required', array(
             'required' => 'Agrege un breve comentario'
         ));
-        if ($this->form_validation->run() || $this->main->verificarCodigo($_POST['id_tecnico1'])) {
-            $data['clasificacion']  = $_POST['clasificacion'];
-            $data['tipo_detencion'] = $_POST['tipo_detencion'];
-            $data['horometro'] = $_POST['horometro'];
-            $data['reparacion'] = $_POST['reparacion'];
-            $data['NroSolicitud']   = $id;
-            $data['fecha']          = date('Y-m-d');
-            $data['estado']         = 'TECNICA';
-            $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
-            $data2                  = array(
-                'horaInicio' => $_POST['horaInicio'],
-                'horaTermino' => $_POST['horaTermino'],
-                'HH' => $_POST['HH'],
-                'HM' => $_POST['HM'],
-                'Int_Prod' => $_POST['Int_Prod'],
-                'id_man_tecnico' => $id_seguimiento,
-                'Comentario' => $_POST['Comentario']
-            );
-            $id_detalle             = $this->seguimiento->create('MAN_SeguimientoDetalle', $data2);
-            $update['estado']       = 'TECNICA';
-            $result                 = $this->ma->updateMantencion($update, $id);
-            if ($_POST['id_tecnico1']) {
-                $data3 = array(
-                    'id_tecnico' => $_POST['id_tecnico1'],
-                    'id_detalle' => $id_detalle
+        if ($this->form_validation->run()) {
+            $my_action = $this->input->post('submit');
+            if ($my_action == 'end') {
+
+                $data['clasificacion']  = $_POST['clasificacion'];
+                $data['tipo_detencion'] = $_POST['tipo_detencion'];
+                $data['horometro']      = $_POST['horometro'];
+                $data['reparacion']     = $_POST['reparacion'];
+                $data['NroSolicitud']   = $id;
+                $data['fecha']          = date('Y-m-d');
+                $data['estado']         = 'TECNICA';
+                $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
+                $data2                  = array(
+                    'horaInicio' => $_POST['horaInicio'],
+                    'horaTermino' => $_POST['horaTermino'],
+                    'HH' => $_POST['HH'],
+                    'HM' => $_POST['HM'],
+                    'Int_Prod' => $_POST['Int_Prod'],
+                    'id_man_tecnico' => $id_seguimiento,
+                    'Comentario' => $_POST['Comentario']
                 );
-                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
-            }
+                $id_detalle             = $this->seguimiento->create('MAN_SeguimientoDetalle', $data2);
+                $update['estado']       = 'TECNICA';
+                $result                 = $this->ma->updateMantencion($update, $id);
 
-            if ($_POST['id_tecnico2']) {
-                $data3 = array(
-                    'id_tecnico' => $_POST['id_tecnico2'],
-                    'id_detalle' => $id_detalle
+                foreach ($this->input->post('id_tecnico') as $tecnico) {
+
+                    $data3 = array(
+                        'id_tecnico' => $tecnico,
+                        'id_detalle' => $id_detalle
+                    );
+
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+
+                if ($result) {
+                    $this->session->set_flashdata('success_msg', 'Mantencion en seguimiento');
+                } else {
+                    $this->session->set_flashdata('error_msg', 'Error BD');
+                }
+
+                return redirect('mantencion/listado');
+            } else if ($my_action == 'other') {
+
+                $data['clasificacion']  = $_POST['clasificacion'];
+                $data['tipo_detencion'] = $_POST['tipo_detencion'];
+                $data['horometro']      = $_POST['horometro'];
+                $data['reparacion']     = $_POST['reparacion'];
+                $data['NroSolicitud']   = $id;
+                $data['fecha']          = date('Y-m-d');
+
+                $id_seguimiento = $this->seguimiento->create('MAN_Seguimiento', $data);
+                $data2          = array(
+                    'horaInicio' => $_POST['horaInicio'],
+                    'horaTermino' => $_POST['horaTermino'],
+                    'HH' => $_POST['HH'],
+                    'HM' => $_POST['HM'],
+                    'Int_Prod' => $_POST['Int_Prod'],
+                    'id_man_tecnico' => $id_seguimiento,
+                    'Comentario' => $_POST['Comentario']
                 );
-                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                $id_detalle     = $this->seguimiento->create('MAN_SeguimientoDetalle', $data2);
+
+
+                foreach ($this->input->post('id_tecnico') as $tecnico) {
+
+                    $data3 = array(
+                        'id_tecnico' => $tecnico,
+                        'id_detalle' => $id_detalle
+                    );
+
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+
+                $data['data']   = $this->ma->getMantencionbyId($id);
+                $session_data   = $this->session->userdata('logged_in');
+                $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
+                $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
+                $data['Codigo'] = $session_data['Codigo'];
+                $data['Nombre'] = $session_data['Nombre'];
+                $data['Tipo']   = $session_data['Tipo'];
+
+                $this->load->view('verMantencion', $data);
             }
 
-            if ($_POST['id_tecnico3']) {
-                $data3 = array(
-                    'id_tecnico' => $_POST['id_tecnico3'],
-                    'id_detalle' => $id_detalle
-                );
-                $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
-            }
 
-            if ($result) {
-                $this->session->set_flashdata('success_msg', 'Mantencion en seguimiento');
-            } else {
-                $this->session->set_flashdata('error_msg', 'Error BD');
-            }
 
-            return redirect('mantencion/listado');
         } else {
-            $data['data']     = $this->ma->getMantencionbyId($id);
-            $data['area']     = $this->ma->getallArea();
-            $session_data     = $this->session->userdata('logged_in');
-            $data['personas'] = $this->main->getallPersona();
-            $data['Codigo']   = $session_data['Codigo'];
-            $data['Nombre']   = $session_data['Nombre'];
-            $data['Tipo']     = $session_data['Tipo'];
+          $data['data']   = $this->ma->getMantencionbyId($id);
+          $session_data   = $this->session->userdata('logged_in');
+          $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
+          $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
+          $data['Codigo'] = $session_data['Codigo'];
+          $data['Nombre'] = $session_data['Nombre'];
+          $data['Tipo']   = $session_data['Tipo'];
+
             $this->load->view('verMantencion', $data);
         }
     }
@@ -691,9 +726,9 @@ class Mantencion extends CI_Controller
             $this->seguimiento->addCambio($insert);
             $result = $this->main->getEmail();
             foreach ($result as $row) {
-							  $recibeQuery   = $row->codigoEncargado;
-                $envia  = $row->smtp_user;
-                $config = Array(
+                $recibeQuery = $row->codigoEncargado;
+                $envia       = $row->smtp_user;
+                $config      = Array(
                     'protocol' => $row->protocol,
                     'smtp_host' => $row->smtp_host,
                     'smtp_port' => $row->smtp_port,
@@ -703,17 +738,17 @@ class Mantencion extends CI_Controller
                     'charset' => $row->charset
                 );
             }
-						$result1 = $this->main->getCorreo($recibeQuery);
-						foreach ($result1 as $key) {
-								$recibe = $key->Correo;
-						}
+            $result1 = $this->main->getCorreo($recibeQuery);
+            foreach ($result1 as $key) {
+                $recibe = $key->Correo;
+            }
 
             $email['fecha']        = date('Y-m-d');
             $email['supervisor']   = $session_data['Nombre'];
             $email['area']         = $session_data['DescArea'];
-						$email['Codigo']         = $session_data['Codigo'];
+            $email['Codigo']       = $session_data['Codigo'];
             $email['NroSolicitud'] = $this->input->post('NroSolicitud');
-						$email['maquina'] = $this->input->post('maquina');
+            $email['maquina']      = $this->input->post('maquina');
             $this->load->library('email', $config);
             $this->email->set_newline("\r\n");
             $body = $this->load->view('email/re-abrir.php', $email, TRUE);
@@ -726,15 +761,15 @@ class Mantencion extends CI_Controller
                 $message .= 'Correo enviado';
                 $this->session->set_flashdata('success_msg', $message);
             } else {
-							$message = 'ERROR DB';
+                $message = 'ERROR DB';
             }
-						return redirect('mantencion/listCerradas');
+            return redirect('mantencion/listCerradas');
 
         } else {
             $message = 'ERROR DB';
             $this->session->set_flashdata('error_msg', $message);
         }
-				return redirect('mantencion/listCerradas');
+        return redirect('mantencion/listCerradas');
 
     }
 }

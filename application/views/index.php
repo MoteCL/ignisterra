@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-xs-10 col-sm-5 col-md-4 login-sidebar">
+        <div class="col-xl-10 col-sm-5 col-md-4 login-sidebar">
 
             <div class="login-container">
 
