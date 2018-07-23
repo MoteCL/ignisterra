@@ -107,13 +107,13 @@
                                     <ul class="nav navbar-nav">
                                         <li class="active">
                                             <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                                                <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
+                                                <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
                                         </li>
 
 
                                         <li class="">
                                             <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                                                <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
+                                                <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
                                         </li>
 
 
@@ -209,13 +209,13 @@
                                     <ul class="nav navbar-nav">
                                         <li class="active">
                                             <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                                                <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
+                                                <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
                                         </li>
 
 
                                         <li class="">
                                             <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                                                <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
+                                                <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
                                         </li>
 
 
@@ -439,6 +439,9 @@
                                             <input type="hidden" name="NroSolicitud" value="<?php echo $id_solicitud ?>">
                                             <input type="hidden" name="id_seguimiento" value="<?php echo $id_seguimiento ?>">
                                             <div class="table-responsive">
+                                                    <?php echo form_error('HH','<div class="text-danger">','</div>') ?> <br>
+                                                    <?php echo form_error('id_tecnico','<div class="text-danger">','</div>') ?>
+
                                                 <table class="table table-sm" id="dynamic_field">
                                                     <tbody>
                                                         <tr>
@@ -455,7 +458,7 @@
                                                                             <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
 
                                                                         </div>
-                                                                        <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" />
+                                                                        <!-- <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" /> -->
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -494,6 +497,7 @@
                                                                         <label class="form-label">HM:</label>
 
                                                                         <input name="HM" id="resultado" class="form-control" type="text" readonly>
+
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -603,7 +607,7 @@
                                         <div class="col-5 col-xl-12">
 
                                             <div class="table-responsive">
-
+                                              <?php echo form_error('HH','<div class="text-danger">','</div>') ?>
                                                 <table class="table table-sm" id="dynamic_field">
                                                     <tbody>
                                                         <tr>
@@ -664,8 +668,8 @@
                                                                 <div class="col-sm-5">
                                                                     <div class="form-group row">
                                                                         <label class="form-label">HM:</label>
-
                                                                         <input name="HM" id="resultado" class="form-control" type="text" readonly>
+                                                                        <?php echo form_error('HM','<div class="text-danger">','</div>') ?>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -749,7 +753,7 @@
                 'timeFormat': 'G:i'
             });
 
-        
+
 
             $("#horaTermino").keypress(function(event) {
 

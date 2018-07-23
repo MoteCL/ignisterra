@@ -108,13 +108,13 @@
                                         <ul class="nav navbar-nav">
                                             <li class="active">
                                                 <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
+                        <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
                                             </li>
 
 
                                             <li class="">
                                                 <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
+                        <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
                                             </li>
 
 

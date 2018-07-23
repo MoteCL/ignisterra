@@ -288,6 +288,13 @@ class Seguimiento extends CI_Controller
             'required' => 'Ingrese una hora de termino'
         ));
 
+        $this->form_validation->set_rules('HH', 'HH', 'required', array(
+            'required' => 'FALTA CALCULO PRESIONE TAB AL MOMENTO DE INGRESAR HORA TERMINO'
+        ));
+        $this->form_validation->set_rules('id_tecnico', 'id_tecnico', 'required', array(
+            'required' => 'Ingrese un Codigo de un tecnico de Mantencion'
+        ));
+        $this->form_validation->set_rules('HM', 'HM', 'required');
         $id_solicitud   = $this->input->post('NroSolicitud');
         $id_seguimiento = $this->input->post('id_seguimiento');
         if ($this->form_validation->run()) {
