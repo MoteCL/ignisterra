@@ -569,12 +569,12 @@
                                                         <label class="form-check-label" for="inlineRadio1">Det. Parcial</label>
                                                         <input class="check form-check-input" type="radio" name="tipo_detencion" value="Completa" <?php echo set_radio( 'tipo_detencion', 'Completa') ?>>
                                                         <label class="form-check-label" for="inlineRadio1"> Completa</label>
-                                                        <input class="form-check-input" type="radio" id="tipo_detencion" name="tipo_detencion" value="Horometro" <?php echo set_radio( 'tipo_detencion', 'Horometro') ?>>
+                                                        <input class="form-check-input" type="radio" name="tipo_detencion" value="Horometro" <?php echo set_radio( 'tipo_detencion', 'Horometro') ?>>
                                                         <label class="form-check-label" for="inlineRadio1">Horometro</label>
 
                                                     </div>
                                                     <?php echo form_error('tipo_detencion','<div class="text-danger">','</div>') ?>
-                                                    <div class="col-sm-1" id="divhidden" hidden>
+                                                    <div class="col-sm-1">
                                                         <br>
                                                         <input type="number" class="form-control" placeholder="0" name="horometro" value="">
                                                     </div>
@@ -749,16 +749,7 @@
                 'timeFormat': 'G:i'
             });
 
-            $("#tipo_detencion").click(function() {
-
-                $("#divhidden").first().show("fast", function() {});
-                $('#tipotrabajo1').prop("checked");
-            });
-
-            $(".check").click(function() {
-                $("#divhidden").hide(100);
-                $("input[name=horometroo]").val('');
-            });
+        
 
             $("#horaTermino").keypress(function(event) {
 
