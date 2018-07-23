@@ -398,7 +398,7 @@
                                                         </td>
                                                     </tr>
                                                   <?php else: ?>
-                                                    <tr>
+                                                    <tr style="background-color: #cfec101a;">
 
                                                         <td>
                                                             <?php echo $row -> NroSolicitud; ?>
