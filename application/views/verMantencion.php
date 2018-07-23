@@ -730,7 +730,6 @@
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
 
-
     <script>
         $(document).ready(function() {
 
@@ -756,8 +755,12 @@
             });
 
             $("#horaTermino").keypress(function(event) {
+
+              if(event.keyCode==9){
                 ObtieneTotHoras();
                 $("input[name=Comentarioo]").focus();
+              }
+
             })
 
 
