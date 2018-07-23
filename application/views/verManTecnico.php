@@ -1,5 +1,9 @@
 <?php include("template/header.php"); ?>
 
+<?php if ($Codigo==999): ?>
+<?php redirect('main/listado');  ?>
+<?php endif; ?>
+
 <body class="voyager">
 
     <div id="voyager-loader">

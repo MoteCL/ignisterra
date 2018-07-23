@@ -359,7 +359,7 @@
                                                           <?php echo $row-> generacion; ?>
                                                         </td>
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-dark"> Ejecutar Trab</a>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>
@@ -393,7 +393,7 @@
                                                             <?php echo $row-> generacion; ?>
                                                         </td>
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-dark"> Ejecutar Trab</a>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>
@@ -426,7 +426,7 @@
                                                             <?php echo $row-> generacion; ?>
                                                         </td>
                                                         <td>
-                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-info"> Ejecutar Trab</a>
+                                                            <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$row->NroSolicitud); ?>" class="label label-dark"> Ejecutar Trab</a>
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarMantencion/'.$row->NroSolicitud); ?>" class="label label-success"> Modificar</a>
                                                         </td>
                                                     </tr>

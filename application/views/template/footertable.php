@@ -25,7 +25,15 @@ $(document).ready(function(){
 
 "language": idioma_espanol
 });
+mostrar_mensaje();
 });
+
+var mostrar_mensaje = function() {
+    $(".mensaje").fadeOut(5000, function() {
+        $(this).html("");
+        $(this).fadeIn(1000);
+    });
+}
 var idioma_espanol = {    
     "sProcessing":      "Procesando...",
         "sLengthMenu":      "Mostrar _MENU_ registros",

@@ -328,7 +328,9 @@
                                             <div class="col-4 col-md-1">
                                                 <h5>Fecha</h5>
                                                 <p>
-                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud)); ?>
+                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud));?>
+                                                    &nbsp;
+                                                    <?php echo date('G:i',strtotime($data-> horasolicitud));?>
                                                 </p>
                                             </div>
 
@@ -360,7 +362,7 @@
                                             </div>
                                             <?php endif; ?>
                                             <div class="col-4 col-md-4">
-                                                <h5>Nombre</h5>
+                                                <h5>Solicitante Nombre</h5>
                                                 <p>
                                                     <?php echo $data-> username; ?>
                                                 </p>
@@ -453,7 +455,7 @@
                                                                             <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
 
                                                                         </div>
-                                                                        <!-- <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" /> -->
+                                                                        <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" />
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -540,13 +542,13 @@
                                                 <div class="row">
 
                                                     <div class="form-group col-md-1">
-                                                        <h5>Especialidad :</h5>
+                                                        <h5>Tipo de falla :</h5>
 
                                                         <?php $clasificacion = array(
                                                     				'Electrico'         => 'Electrico',
                                                             'Mecanico'         => 'Mecanico',
                                                             'Calibracion'           => 'Calibracion',
-                                                            'Operativo'           => 'Operativo',
+                                                            'Operacion'           => 'Operacion',
                                                             'Solicitud expresa de mantencion'           => 'Solicitud expresa de mantencion',
                                                     			);
                                                           $js = 'id="clasificacionnn"';

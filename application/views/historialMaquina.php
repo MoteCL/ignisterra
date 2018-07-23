@@ -27,7 +27,7 @@
                             <li class="">
                                 <i class="voyager-person"></i>
                                 <a href="<?php echo base_url( '/index.php/mantencion/verMantencion/'.$numero); ?>" target="_self" style="color:">
-                    Mantencion N  <?php echo $numero; ?></a>
+                                  Mantencion N  <?php echo $numero; ?></a>
                             </li>
                             <li class="active">
                                 Historial

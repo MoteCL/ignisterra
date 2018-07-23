@@ -295,9 +295,8 @@ class Mantencion extends CI_Controller
         $data['Nombre'] = $session_data['Nombre'];
         $data['Tipo']   = $session_data['Tipo'];
 
-        //print_r($data);
 
-        $this->load->view('verMantencion', $data);
+       $this->load->view('verMantencion', $data);
     }
 
     public function listadoAprobado()

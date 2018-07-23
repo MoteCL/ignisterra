@@ -27,8 +27,13 @@ class Seguimiento extends CI_Controller
         $data['Nombre']   = $session_data['Nombre'];
         $data['Tipo']     = $session_data['Tipo'];
         $data['tecnicos'] = $this->seguimiento->getSeguimientoWhere($estado);
+        if ($session_data['Codigo']==999) {
+            $this->session->set_flashdata('error_msg','PERMISO DENEGADO');
+            redirect('mantencion/listado', 'refresh');
+        }else {
+            $this->load->view('list-tecnico', $data);
+        }
 
-        $this->load->view('list-tecnico', $data);
 
     }
     public function verSeguimiento($id)
