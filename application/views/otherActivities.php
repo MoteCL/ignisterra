@@ -361,7 +361,7 @@
                                       </div>
                                         <div class="form-group  col-md-12">
                                         <div class="row">
-                                          <div class="form-group  col-md-1">
+                                          <div class="form-group  col-md-2">
                                             <h5>Inicio</h5>
                                             <input type="text" class="form-control" name="horaInicio" id="horaInicio" placeholder="00:00" value="">
                                             <div class="col-md-5">
@@ -369,14 +369,19 @@
                                             </div>
                                           </div>
 
-                                          <div class="form-group  col-md-1">
+                                          <div class="form-group  col-md-2">
                                             <h5>Termino</h5>
                                             <input type="text" class="form-control" name="horaTermino" id="horaTermino" placeholder="00:00" value="">
                                             <div class="col-md-5">
                                                 <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
                                             </div>
                                           </div>
+
+                                                                                      <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
+                                                                                        <i class="fas fa-exclamation-circle"></i>
+                                                                                        </span>
                                           <div class="form-group  col-md-2">
+
                                             <h5>Resultado</h5>
                                             <input name="TotalHrs" id="resultado" class="form-control" type="text" readonly>
                                             <div class="col-md-5">
@@ -427,10 +432,13 @@
 
          $('#horaTermino').timepicker({ 'scrollDefault': 'now' , 'timeFormat': 'G:i' });
 
-         $("#horaTermino").keypress(function(event)
-         {
-           ObtieneTotHoras();
-           $("input[name=Comentarioo]").focus();
+         $("#horaTermino").keypress(function(event) {
+
+           if(event.keyCode==9){
+             ObtieneTotHoras();
+             $("input[name=Comentarioo]").focus();
+           }
+
          })
 
          function ObtieneTotHoras()

@@ -394,6 +394,7 @@
                                                           <thead>
                                                               <tr>
                                                                   <th>Tecnico</th>
+                                                                  <th>Fecha</th>
                                                                   <th>Desde</th>
                                                                   <th>Hasta</th>
                                                                   <th>HH</th>
@@ -413,6 +414,7 @@
                                                                       <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                    </td>
+                                                                     <td style="width:10%;"><?php echo $seguimiento-> fechaSeguimiento ?></td>
                                                                   <td style="width:10%;"><?php echo $seguimiento-> horaInicio ?></td>
 
                                                                     <td style="width:10%;"><?php echo $seguimiento-> horaTermino ?>  </td>
@@ -475,6 +477,9 @@
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group row">
                                                                         <label class="form-label">Hasta:</label>
+                                                                        <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH y HM, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
+                                                                        <i class="fas fa-exclamation-circle"></i>
+                                                                        </span>
                                                                         <input name="horaTermino" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
                                                                         <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
                                                                     </div>

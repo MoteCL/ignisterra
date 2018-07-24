@@ -49,8 +49,13 @@
       <?php   foreach ($fecha as $seguimiento): ?>
       <tr>
           <td style="	width:8%;">
+              <?php if (!empty($seguimiento-> fechaSeguimiento)): ?>
+                <?php echo  date('j M Y',strtotime($seguimiento-> fechaSeguimiento)); ?>
+                <?php else: ?>
+                  <?php echo  date('j M Y',strtotime($seguimiento-> fecha)); ?>
+              <?php endif; ?>
 
-              <?php echo  date('j M Y',strtotime($seguimiento-> fecha)); ?>
+
           </td>
           <td style="	width:5%;">
               <?php echo $seguimiento-> NroSolicitud; ?>

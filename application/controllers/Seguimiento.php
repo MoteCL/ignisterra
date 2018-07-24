@@ -291,9 +291,9 @@ class Seguimiento extends CI_Controller
         $this->form_validation->set_rules('HH', 'HH', 'required', array(
             'required' => 'FALTA CALCULO PRESIONE TAB AL MOMENTO DE INGRESAR HORA TERMINO'
         ));
-        $this->form_validation->set_rules('id_tecnico', 'id_tecnico', 'required', array(
-            'required' => 'Ingrese un Codigo de un tecnico de Mantencion'
-        ));
+        // $this->form_validation->set_rules('id_tecnico', 'id_tecnico', 'required', array(
+        //     'required' => 'Ingrese un Codigo de un tecnico de Mantencion'
+        // ));
         $this->form_validation->set_rules('HM', 'HM', 'required');
         $id_solicitud   = $this->input->post('NroSolicitud');
         $id_seguimiento = $this->input->post('id_seguimiento');
@@ -305,6 +305,7 @@ class Seguimiento extends CI_Controller
                 $this->seguimiento->updateSeguimiento($data, $id);
 
                 $data2      = array(
+                    'fechaSeguimiento'  => date('Y-m-d'),
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
@@ -339,6 +340,7 @@ class Seguimiento extends CI_Controller
             } else if ($my_action == 'other') {
 
                 $data2 = array(
+                    'fechaSeguimiento'  => date('Y-m-d'),
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],

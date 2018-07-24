@@ -394,9 +394,9 @@ class Mantencion extends CI_Controller
         $this->form_validation->set_rules('HH', 'HH', 'required', array(
             'required' => 'FALTA CALCULO PRESIONE TAB AL MOMENTO DE INGRESAR HORA TERMINO'
         ));
-        $this->form_validation->set_rules('id_tecnico', 'id_tecnico', 'required', array(
-            'required' => 'Ingrese un Codigo de un tecnico de Mantencion'
-        ));
+        // $this->form_validation->set_rules('id_tecnico', 'id_tecnico', 'required', array(
+        //     'required' => 'Ingrese un Codigo de un tecnico de Mantencion'
+        // ));
         if ($this->form_validation->run()) {
             $my_action = $this->input->post('submit');
             if ($my_action == 'end') {
@@ -410,6 +410,7 @@ class Mantencion extends CI_Controller
                 $data['estado']         = 'TECNICA';
                 $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2                  = array(
+                    'fechaSeguimiento'  => date('Y-m-d'),
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
@@ -450,6 +451,7 @@ class Mantencion extends CI_Controller
 
                 $id_seguimiento = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2          = array(
+                    'fechaSeguimiento'  => date('Y-m-d'),
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
