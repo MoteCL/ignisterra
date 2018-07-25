@@ -305,7 +305,7 @@ class Seguimiento extends CI_Controller
                 $this->seguimiento->updateSeguimiento($data, $id);
 
                 $data2      = array(
-                    'fechaSeguimiento'  => date('Y-m-d'),
+                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
@@ -340,7 +340,7 @@ class Seguimiento extends CI_Controller
             } else if ($my_action == 'other') {
 
                 $data2 = array(
-                    'fechaSeguimiento'  => date('Y-m-d'),
+                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],

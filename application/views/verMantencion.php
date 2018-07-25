@@ -6,8 +6,6 @@
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
     </div>
-
-
     <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">
@@ -166,11 +164,7 @@
                             <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
                                 <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
                         </li>
-
-
                     </ul>
-
-
                     <?php
                             break;
                         case 4:
@@ -211,14 +205,10 @@
                                             <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
                                                 <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
                                         </li>
-
-
                                         <li class="">
                                             <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
                                                 <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -278,14 +268,9 @@
                                 <span class="icon fas fa-user-secret"></span> <span class="title">Privacidad<span>
                             </a>
                         </li>
-
-
                     </ul>
-
-
                     <?php
                           break;
-
                     }
                     ?>
                 </nav>
@@ -328,8 +313,7 @@
                                             <div class="col-4 col-md-1">
                                                 <h5>Fecha</h5>
                                                 <p>
-                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud));?>
-                                                    &nbsp;
+                                                    <?php echo date('j M Y',strtotime($data-> fechasolicitud));?> &nbsp;
                                                     <?php echo date('G:i',strtotime($data-> horasolicitud));?>
                                                 </p>
                                             </div>
@@ -386,13 +370,13 @@
                                         <div class="col-5 col-xl-12">
 
                                             <details>
-                                              <summary><i class="fas fa-angle-double-down"></i>Mostrar tabla de intervencion</summary>
-                                              <div class="table-responsive">
+                                                <summary><i class="fas fa-angle-double-down"></i>Mostrar tabla de intervencion</summary>
+                                                <div class="table-responsive">
 
-                                                  <table class="table table-sm" id="dynamic_field">
-                                                      <table id="tbl_personal" class="table table-hover">
-                                                          <thead>
-                                                              <tr>
+                                                    <table class="table table-sm" id="dynamic_field">
+                                                        <table id="tbl_personal" class="table table-hover">
+                                                            <thead>
+                                                                <tr>
                                                                   <th>Tecnico</th>
                                                                   <th>Fecha</th>
                                                                   <th>Desde</th>
@@ -402,132 +386,135 @@
                                                                   <th>Int</th>
                                                                   <th>Comentario</th>
 
-                                                              </tr>
-                                                          </thead>
-                                                          <tbody>
-                                                              <?php foreach ($seguimientos as $seguimiento): ?>
-                                                              <tr>
-                                                                  <td style="width:25%;">
-                                                                    <?php foreach ($tecnicos as $tecnico): ?>
-                                                                      <?php if ($seguimiento-> id_detalle == $tecnico-> id_detalle): ?>
-                                                                    *  <?php echo $tecnico-> Nombre; ?> <br>
-                                                                      <?php endif; ?>
-                                                                    <?php endforeach; ?>
-                                                                   </td>
-                                                                     <td style="width:10%;"><?php echo $seguimiento-> fechaSeguimiento ?></td>
-                                                                  <td style="width:10%;"><?php echo $seguimiento-> horaInicio ?></td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach ($seguimientos as $seguimiento): ?>
+                                                                <tr>
+                                                                    <td style="width:25%;">
+                                                                        <?php foreach ($tecnicos as $tecnico): ?>
+                                                                        <?php if ($seguimiento-> id_detalle == $tecnico-> id_detalle): ?> *
+                                                                        <?php echo $tecnico-> Nombre; ?> <br>
+                                                                        <?php endif; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </td>
+                                                                    <td style="width:10%;">
+                                                                        <?php echo $seguimiento-> fechaSeguimiento ?>
+                                                                    </td>
+                                                                    <td style="width:10%;">
+                                                                        <?php echo $seguimiento-> horaInicio ?>
+                                                                    </td>
 
-                                                                    <td style="width:10%;"><?php echo $seguimiento-> horaTermino ?>  </td>
+                                                                    <td style="width:10%;">
+                                                                        <?php echo $seguimiento-> horaTermino ?>
+                                                                    </td>
 
-                                                                  <td style="width:5%;"> <?php echo $seguimiento-> HH ?></td>
+                                                                    <td style="width:5%;">
+                                                                        <?php echo $seguimiento-> HH ?>
+                                                                    </td>
 
-                                                                    <td style="width:5%;">  <?php echo $seguimiento-> HM ?></td>
+                                                                    <td style="width:5%;">
+                                                                        <?php echo $seguimiento-> HM ?>
+                                                                    </td>
 
-                                                                    <td style="width:5%;"><?php echo $seguimiento-> Int_Prod ?></td>
+                                                                    <td style="width:5%;">
+                                                                        <?php echo $seguimiento-> Int_Prod ?>
+                                                                    </td>
 
-                                                                  <td style="width:30%;"><?php echo $seguimiento-> Comentario ?>  </td>
-                                                              </tr>
-                                                          </tbody>
-                                                          <?php $id_seguimiento = $seguimiento->idMan_Tecnico; ?>
-                                                          <?php $id_solicitud = $seguimiento->NroSolicitud; ?>
+                                                                    <td style="width:30%;">
+                                                                        <?php echo $seguimiento-> Comentario ?>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <?php $id_seguimiento = $seguimiento->idMan_Tecnico; ?>
+                                                            <?php $id_solicitud = $seguimiento->NroSolicitud; ?>
 
-                                                          <?php endforeach; ?>
-                                                      </table>
-                                              </div>
+                                                            <?php endforeach; ?>
+                                                        </table>
+                                                </div>
                                             </details> <br>
                                         </div>
                                         <div class="col-5 col-xl-12">
                                             <?php echo form_open("seguimiento/save_Seguimiento/{$id_seguimiento}"); ?>
                                             <input type="hidden" name="NroSolicitud" value="<?php echo $id_solicitud ?>">
                                             <input type="hidden" name="id_seguimiento" value="<?php echo $id_seguimiento ?>">
-                                            <div class="table-responsive">
-                                                    <?php echo form_error('HH','<div class="text-danger">','</div>') ?> <br>
-                                                    <?php echo form_error('id_tecnico','<div class="text-danger">','</div>') ?>
+                                            <?php echo form_error('HH','<div class="text-danger">','</div>') ?>
 
-                                                <table class="table table-sm" id="dynamic_field">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="col-sm-10">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">Cod. Tecnico:</label>
-                                                                        <div id="content">
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
 
-                                                                        </div>
-                                                                        <!-- <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" /> -->
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-8">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">Desde:</label>
-                                                                        <input name="horaInicio" id="horaInicio" placeholder="00:00" class="start form-control" type="text" value="<?php echo set_value('horaInicio') ?>">
-                                                                        <?php echo form_error('horaInicio','<div class="text-danger">','</div>') ?>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-8">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">Hasta:</label>
-                                                                        <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH y HM, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
-                                                                        <i class="fas fa-exclamation-circle"></i>
-                                                                        </span>
-                                                                        <input name="horaTermino" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
-                                                                        <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-5">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">HH:</label>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Cod. Tecnico</label>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Desde:</label>
+                                                        <input name="horaInicio" id="horaInicio" placeholder="00:00" class="start form-control" type="text" value="<?php echo set_value('horaInicio') ?>">
+                                                        <?php echo form_error('horaInicio','<div class="text-danger">','</div>') ?>
+                                                    </div>
 
-                                                                        <input name="HH" id="resultadoFinal" readonly class="form-control" type="text">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Hasta:</label>
+                                                        <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH y HM, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                        </span>
+                                                        <input name="horaTermino" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
+                                                        <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
+                                                    </div>
+                                                </div>
 
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <div class="col-sm-5">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">HM:</label>
-
-                                                                        <input name="HM" id="resultado" class="form-control" type="text" readonly>
-
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-10">
-                                                                    <div class="form-check">
-
-                                                                        <label class="form-check">Interrumpe Produccion?</label>
-                                                                        <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="No" checked>
-                                                                            <label class="form-check-label" for="inlineRadio1">No</label>
-                                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="Si">
-                                                                            <label class="form-check-label" for="inlineRadio1">Si</label>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="Comentario" rows="2" placeholder="Comentario" class="form-control" id="mytext" cols="60"></textarea>
-
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">HH:</label>
+                                                        <input name="HH" id="resultadoFinal" readonly class="form-control" type="text">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">HM:</label>
+                                                        <input name="HM" id="resultado" class="form-control" type="text" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>Interrumpe Produccion?</label>
+                                                        <br>
+                                                        <label class="checkbox-inline">
+                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="No" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">No</label>
+                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="Si">
+                                                            <label class="form-check-label" for="inlineRadio1">Si</label>
+                                                    </div>
+                                                </div>
                                                 <div class="panel-footer text-center">
                                                     <button type="submit" name="submitt" class="btn btn-warning" value="other">
                                                         <span class="glyphicon glyphicon-repeat"></span> &nbsp; Otra intervencion
@@ -537,23 +524,33 @@
                                                     </button>
 
                                                 </div>
-                                                <?php echo form_close(); ?>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Fecha de intervencion</label>
+                                                        <input type="date" class="form-control" id="datePicker" name="fechaSeguimiento" value="">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>Comentario</label>
+                                                        <textarea name="Comentario" rows="4" placeholder="Comentario" class="form-control" id="mytext" cols="60"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <?php else: ?>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                    <?php else: ?>
+                                    <?php echo form_open("mantencion/save_MANTecnico/{$data->NroSolicitud}"); ?>
+                                    <div class="panel-body" style="padding-top:0;">
 
-
-                                        <div class="panel-body" style="padding-top:0;">
+                                        <div class="row">
+                                            <div class="divider"> </div>
                                             <div class="row">
+                                                <div class="form-group col-md-1">
+                                                    <h5>Tipo de falla :</h5>
 
-                                                <div class="divider"> </div>
-                                                <?php echo form_open("mantencion/save_MANTecnico/{$data->NroSolicitud}"); ?>
-                                                <div class="row">
-
-                                                    <div class="form-group col-md-1">
-                                                        <h5>Tipo de falla :</h5>
-
-                                                        <?php $clasificacion = array(
+                                                    <?php $clasificacion = array(
                                                     				'Electrico'         => 'Electrico',
                                                             'Mecanico'         => 'Mecanico',
                                                             'Calibracion'           => 'Calibracion',
@@ -562,164 +559,153 @@
                                                     			);
                                                           $js = 'id="clasificacionnn"';
                                                     		 ?>
-                                                        <?php echo form_dropdown('clasificacion', $clasificacion,set_value('clasificacion'),$js,['class'=>'form-control']);?>
-
-                                                    </div>
-                                                    <?php echo form_error('clasificacion','<div class="text-danger">','</div>') ?>
+                                                    <?php echo form_dropdown('clasificacion', $clasificacion,set_value('clasificacion'),$js,['class'=>'form-control']);?>
 
                                                 </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-4">
-                                                        <h5>Tipo de Detencion :</h5>
+                                                <?php echo form_error('clasificacion','<div class="text-danger">','</div>') ?>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <h5>Tipo de Detencion :</h5>
 
-                                                        <input class="check form-check-input" type="radio" name="tipo_detencion" value="Sin detencion" <?php echo set_radio( 'tipo_detencion', 'Sin detencion') ?> checked >
-                                                        <label class="form-check-label" for="inlineRadio1">Sin detencion</label>
-                                                        <input class="check form-check-input" type="radio" name="tipo_detencion" value="Parcial" <?php echo set_radio( 'tipo_detencion', 'Parcial') ?>>
-                                                        <label class="form-check-label" for="inlineRadio1">Det. Parcial</label>
-                                                        <input class="check form-check-input" type="radio" name="tipo_detencion" value="Completa" <?php echo set_radio( 'tipo_detencion', 'Completa') ?>>
-                                                        <label class="form-check-label" for="inlineRadio1"> Completa</label>
-                                                        <input class="form-check-input" type="radio" name="tipo_detencion" value="Horometro" <?php echo set_radio( 'tipo_detencion', 'Horometro') ?>>
-                                                        <label class="form-check-label" for="inlineRadio1">Horometro</label>
+                                                    <input class="check form-check-input" type="radio" name="tipo_detencion" value="Sin detencion" <?php echo set_radio( 'tipo_detencion', 'Sin detencion') ?> checked >
+                                                    <label class="form-check-label" for="inlineRadio1">Sin detencion</label>
+                                                    <input class="check form-check-input" type="radio" name="tipo_detencion" value="Parcial" <?php echo set_radio( 'tipo_detencion', 'Parcial') ?>>
+                                                    <label class="form-check-label" for="inlineRadio1">Det. Parcial</label>
+                                                    <input class="check form-check-input" type="radio" name="tipo_detencion" value="Completa" <?php echo set_radio( 'tipo_detencion', 'Completa') ?>>
+                                                    <label class="form-check-label" for="inlineRadio1"> Completa</label>
+                                                    <input class="form-check-input" type="radio" name="tipo_detencion" value="Horometro" <?php echo set_radio( 'tipo_detencion', 'Horometro') ?>>
+                                                    <label class="form-check-label" for="inlineRadio1">Horometro</label>
 
-                                                    </div>
-                                                    <?php echo form_error('tipo_detencion','<div class="text-danger">','</div>') ?>
-                                                    <div class="col-sm-1">
-                                                        <br>
-                                                        <input type="number" class="form-control" placeholder="0" name="horometro" value="">
-                                                    </div>
-                                                    <div class="form-group col-md-2">
-                                                        <h5>Reparacion por :</h5>
+                                                </div>
+                                                <?php echo form_error('tipo_detencion','<div class="text-danger">','</div>') ?>
+                                                <div class="col-sm-1">
+                                                    <br>
+                                                    <input type="number" class="form-control" placeholder="0" name="horometro" value="">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <h5>Reparacion por :</h5>
 
-                                                        <?php $reparacion = array(
+                                                    <?php $reparacion = array(
                                                           'DESGASTE'         => 'DESGASTE',
                                                           'MALTRATO'         => 'MALTRATO',
                                                         );
                                                         $jss = 'id="reparacionnn"';
                                                        ?>
-                                                        <?php echo form_dropdown('reparacion', $reparacion,set_value('reparacion'),$jss,['class'=>'form-control']);?>
+                                                    <?php echo form_dropdown('reparacion', $reparacion,set_value('reparacion'),$jss,['class'=>'form-control']);?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="page-header">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> intervencion Mantencion
+                                    </div>
+                                    <div class="col-5 col-xl-12">
+
+                                        <div class="table-responsive">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Cod. Tecnico</label>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Desde:</label>
+                                                        <input name="horaInicio" id="horaInicio" placeholder="00:00" class="start form-control" type="text" value="<?php echo set_value('horaInicio') ?>">
+                                                        <?php echo form_error('horaInicio','<div class="text-danger">','</div>') ?>
                                                     </div>
 
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Hasta:</label>
+                                                        <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH y HM, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                        </span>
+                                                        <input name="horaTermino" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
+                                                        <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
+                                                    </div>
                                                 </div>
 
-
-
-                                            </div>
-                                        </div>
-
-                                        <div class="page-header">
-                                            <i class="fa fa-plus" aria-hidden="true"></i> intervencion Mantencion
-                                        </div>
-                                        <div class="col-5 col-xl-12">
-
-                                            <div class="table-responsive">
-                                              <?php echo form_error('HH','<div class="text-danger">','</div>') ?>
-                                                <table class="table table-sm" id="dynamic_field">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="col-sm-10">
-                                                                    <div class="form-group row">
-
-                                                                        <label class="form-label">Cod. Tecnico:</label>
-                                                                        <div id="content">
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                          <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control"> <br>
-                                                                        </div>
-                                                                        <?php echo form_error('id_tecnico','<div class="text-danger">','</div>') ?>
-                                                                        <!-- <input type="button" id="more_fields" class="btn btn-primary" onclick="add_fields();" value="Otro" /> -->
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-8">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">Desde:</label>
-                                                                        <input name="horaInicio" id="horaInicio" placeholder="00:00" class="start form-control" type="text" value="<?php echo set_value('horaInicio') ?>">
-                                                                        <?php echo form_error('horaInicio','<div class="text-danger">','</div>') ?>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-8">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">Hasta:</label>
-                                                                        <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" title="Se recuerda para realizar el calculo de HH y HM, ingrese la hora de Inicio y de Termino al momento de haber ingresado la Hora de Termino presione la tecla TAB y el sistema realizara el calculo ">
-                                                                        <i class="fas fa-exclamation-circle"></i>
-                                                                        </span>
-                                                                        <input name="horaTermino" id="horaTermino" placeholder="00:00" class="end form-control" type="text" value="<?php echo set_value('horaTermino') ?>">
-
-                                                                        <?php echo form_error('horaTermino','<div class="text-danger">','</div>') ?>
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-5">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">HH:</label>
-
-                                                                        <input name="HH" id="resultadoFinal" readonly class="form-control" type="text">
-
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                                <div class="col-sm-5">
-                                                                    <div class="form-group row">
-                                                                        <label class="form-label">HM:</label>
-                                                                        <input name="HM" id="resultado" class="form-control" type="text" readonly>
-                                                                        <?php echo form_error('HM','<div class="text-danger">','</div>') ?>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-10">
-                                                                    <div class="form-check">
-
-                                                                        <label class="form-check">Interrumpe Produccion?</label>
-                                                                        <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="No" checked>
-                                                                            <label class="form-check-label" for="inlineRadio1">No</label>
-                                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="Si">
-                                                                            <label class="form-check-label" for="inlineRadio1">Si</label>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="Comentario" rows="2" placeholder="Comentario" class="form-control" id="mytext" cols="60"></textarea>
-                                                                <?php echo form_error('Comentario','<div class="text-danger">','</div>') ?>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="panel-footer text-center">
-                                                    <button type="submit" name="submit" class="btn btn-warning" value="other">
-                                                        <span class="glyphicon glyphicon-repeat"></span> &nbsp; Otra intervencion
-                                                    </button>
-                                                    <button type="submit" name="submit" class="btn btn-success" value="end">
-                                                        <span class="glyphicon glyphicon-check"></span> &nbsp; Terminar
-                                                    </button>
-
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">HH:</label>
+                                                        <input name="HH" id="resultadoFinal" readonly class="form-control" type="text">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">HM:</label>
+                                                        <input name="HM" id="resultado" class="form-control" type="text" readonly>
+                                                    </div>
                                                 </div>
-                                                <?php echo form_close(); ?>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>Interrumpe Produccion?</label>
+                                                        <br>
+                                                        <label class="checkbox-inline">
+                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="No" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">No</label>
+                                                            <input class="form-check-input" type="radio" name="Int_Prod" value="Si">
+                                                            <label class="form-check-label" for="inlineRadio1">Si</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label>Fecha de intervencion</label>
+                                                    <input type="date" class="form-control" id="datePicker" name="fechaSeguimiento" value="">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label>Comentario</label>
+                                                        <textarea name="Comentario" rows="4" placeholder="Comentario" class="form-control" id="mytext" cols="60"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="panel-footer text-center">
+                                                   <button type="submit" name="submit" class="btn btn-warning" value="other">
+                                                       <span class="glyphicon glyphicon-repeat"></span> &nbsp; Otra intervencion
+                                                   </button>
+                                                   <button type="submit" name="submit" class="btn btn-success" value="end">
+                                                       <span class="glyphicon glyphicon-check"></span> &nbsp; Terminar
+                                                   </button>
+
+                                               </div>
+                                               <?php echo form_close(); ?>
                                     </div>
+
                                     <?php endif; ?>
-
-
-
-                                    <div class="col-4 col-md-10">
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -738,15 +724,27 @@
         </div>
     </footer>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> -->
 
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
 
+
     <script>
         $(document).ready(function() {
+          
+          var now = new Date();
+
+           var day = ("0" + now.getDate()).slice(-2);
+           var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+           var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+
+          $('#datePicker').val(today);
+
 
             $('#horaInicio').timepicker({
                 'scrollDefault': 'now',
@@ -762,10 +760,10 @@
 
             $("#horaTermino").keypress(function(event) {
 
-              if(event.keyCode==9){
-                ObtieneTotHoras();
-                $("input[name=Comentarioo]").focus();
-              }
+                if (event.keyCode == 9) {
+                    ObtieneTotHoras();
+                    $("input[name=Comentarioo]").focus();
+                }
 
             })
 
@@ -802,11 +800,11 @@
 
             var inputs = $('input[name^=id_tecnico]');
 
-            for (j=0; j<inputs.length; j++) {
-              if (inputs[j].value !='') {
-                contar+=1;
-              }
-              }
+            for (j = 0; j < inputs.length; j++) {
+                if (inputs[j].value != '') {
+                    contar += 1;
+                }
+            }
 
             $('#resultado').val(TotHorasTrab);
             $('#resultadoFinal').val(TotHorasTrab * contar);

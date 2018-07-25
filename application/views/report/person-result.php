@@ -2,10 +2,10 @@
 
 <body class="voyager">
 
-    <!-- <div id="voyager-loader">
+    <div id="voyager-loader">
         <?php echo base_url('assets/img/logo-icon.png'); ?>
         <img src="<?php echo base_url('assets/img/logo-icon.png'); ?>" alt="Voyager Loader">
-    </div> -->
+    </div>
     <div class="app-container expanded">
         <div class="fadetoblack visible-xs"></div>
         <div class="row content-container">

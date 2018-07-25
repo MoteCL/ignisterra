@@ -410,7 +410,7 @@ class Mantencion extends CI_Controller
                 $data['estado']         = 'TECNICA';
                 $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2                  = array(
-                    'fechaSeguimiento'  => date('Y-m-d'),
+                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
@@ -451,7 +451,7 @@ class Mantencion extends CI_Controller
 
                 $id_seguimiento = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2          = array(
-                    'fechaSeguimiento'  => date('Y-m-d'),
+                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
