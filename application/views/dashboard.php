@@ -156,8 +156,6 @@
                                         <div class="form-group  col-md-5">
                                             <h3>Area</h3>
                                             <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
-
-
                                             <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
                                         </div>
                                         <div class="form-group  col-sm-8">
