@@ -732,9 +732,10 @@
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
 
 
+
     <script>
         $(document).ready(function() {
-          
+
           var now = new Date();
 
            var day = ("0" + now.getDate()).slice(-2);
@@ -756,25 +757,15 @@
                 'timeFormat': 'G:i'
             });
 
-
-
-            $("#horaTermino").keypress(function(event) {
-
-                if (event.keyCode == 9) {
+            $("#horaTermino").keydown(function(event) {
+              var keycode = event.keyCode;
+                if (keycode == 9) {
                     ObtieneTotHoras();
-                    $("input[name=Comentarioo]").focus();
+                    $("input[name=Comentario]").focus();
                 }
 
             })
-
-
         });
-
-        function add_fields() {
-            var d = document.getElementById("content");
-
-            d.innerHTML += "<br> <input type='text' name='id_tecnico[]'  value=''  placeholder='Codigo' class='form-control'>";
-        }
 
         function ObtieneTotHoras() {
             var contar = 0;
@@ -790,6 +781,7 @@
             TotDesde = parseInt((HoraDesde * 60)) + parseInt(MinutoDesde);
             TotHasta = parseInt(HoraHasta * 60) + parseInt(MinutoHasta);
             RestaHoras = (TotHasta - TotDesde);
+
             var opcion = confirm('DESCUENTA COLACIÓN?');
             if (opcion == true) {
                 var Resta = (RestaHoras / 60);

@@ -299,7 +299,7 @@
                                     <?php echo form_open('calendario/saveCalendarizacion'); ?>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-6 col-md-2">
+                                            <div class="col-6 col-md-3">
                                                 <h3>Listado de Maquinas</h3> <br>
                                                 <select class="form-control selectpicker" data-live-search="true" name="maquina">
                                                   <?php if ($maquinas): ?>
@@ -313,11 +313,11 @@
                                                 <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>
                                             </div>
 
-                                            <div class="col-4 col-md-3">
+                                            <div class="col-4 col-md-2">
                                                 <h3> Fecha Inicio</h3>
                                                 <br>
-                                                <div class="form-group col-lg-5">
-                                                    <input type="date" class="form-control" name="fecha" value="">
+                                                <div class="form-group">
+                                                    <input type="date" class="form-control" name="fecha" id="datePicker" value="">
                                                     <?php echo form_error('fecha','<div class="text-danger">','</div>') ?>
                                                 </div>
 

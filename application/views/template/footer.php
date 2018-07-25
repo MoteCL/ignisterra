@@ -12,8 +12,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
+
 
 
 
@@ -32,24 +31,23 @@
 
   $("#CodArea").val(valor);
   $("#maquina").val(texto);
+  if ($(this).find('option:selected').text() === 'Otros') {
+
+      $("#CodArea").attr("readonly", false);
+    }
   });
 
-  $("#tipo_mantencion3").click(function() {
 
-    $("#divhidden").first().show("fast", function() {
-                });
-      $('#tipotrabajo1').prop("checked");
-        });
+  var now = new Date();
 
-  $("#tipo_mantencion1").click(function() {
-      $("#divhidden").hide(100);
-      $("input[name=tipotrabajo]:checked").prop('checked', false);
-        });
-  $("#tipo_mantencion2").click(function() {
-      $("#divhidden").hide(100);
-      $("input[name=tipotrabajo]:checked").prop('checked', false);
-        });
-  //mostrar_mensaje();
+		 var day = ("0" + now.getDate()).slice(-2);
+		 var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		 var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+
+		$('#datePicker').val(today);
+  mostrar_mensaje();
    });
 
 
@@ -76,19 +74,6 @@
        });
    }
 
-// $(document).ready(function(){
-//      var i=1;
-//      $('#add').click(function(){
-//           i++;
-//            $('#dynamic_field').append('<tr id="row'+i+'"><td><div class="col-sm-4"><div class="form-group row"><label  class="form-label">Desde:</label><input name="horaInicio[]"  class="form-control" type="text"></div></div></td><td><div class="col-sm-4"><div class="form-group row"><label  class="form-label">Hasta:</label><input name="horaTermino[]"  class="form-control" type="text"></div></div></td><td><div class="col-sm-4"><div class="form-group row"><label  class="form-label">HH:</label><input name="HH[]"  class="form-control" type="number"></div></div></td><td><div class="col-sm-4"><div class="form-group row"><label  class="form-label">HM:</label><input name="HM[]"  class="form-control" type="number"></div></div></td><td><div class="col-sm-8"><div class="form-check"><label class="form-check">Interrumpe Produccion?</label><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="interrumpe[]" value="Si"><label class="form-check-label" for="inlineRadio1">Si</label></div></div></div></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">Quitar</button></td></tr>');
-//
-//     });
-//      $(document).on('click', '.btn_remove', function(){
-//           var button_id = $(this).attr("id");
-//           $('#row'+button_id+'').remove();
-//      });
-//
-// });
    var idioma_espanol = {    
        "sProcessing":      "Procesando...",
            "sLengthMenu":      "Mostrar _MENU_ registros",

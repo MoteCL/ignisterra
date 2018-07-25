@@ -368,7 +368,7 @@
                                                           <option selected="" disabled> --- Maquinas ---</option>
                                                           <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                            <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
+                                                            <option  value="<?php echo $maquina-> DescArea ?>"><?php echo $maquina-> Maquina ?></option>
                                                           <?php }?>
                                                           <option  disabled> --- Centro Costo ---</option>
                                                           <?php if ($costos) foreach ($costos as $costo) { ?>
@@ -386,7 +386,8 @@
 
                                         <div class="form-group  col-md-5">
                                             <h3>Area</h3>
-                                            <?php  echo form_input(['maxlength'=>'35','name'=>'CodArea','id'=>'CodArea','class'=>'form-control','value'=>set_value('CodArea'),'readonly'=>'TRUE']);  ?>
+                                            <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
+
 
 
                                             <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
@@ -510,7 +511,7 @@
 
                                           <div class="form-group  col-md-5">
                                               <h3>Area</h3>
-                                              <?php  echo form_input(['maxlength'=>'35','name'=>'CodArea','id'=>'CodArea','class'=>'form-control','value'=>set_value('CodArea'),'readonly'=>'TRUE']);  ?>
+                                            <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
 
 
                                               <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
