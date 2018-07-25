@@ -13,11 +13,11 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button class="hamburger btn-link is-active">
-          <span class="hamburger-inner"></span>
-          </button>
+                            <span class="hamburger-inner"></span>
+                        </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
-                              <i class="voyager-home"></i> <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
+                                <i class="voyager-home"></i> <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">Panel</a>
                             </li>
                             <li class="active">
                                 <i class="voyager-tag"></i> Solicitar Mantencion
@@ -45,7 +45,8 @@
                             <div class="panel-content">
                                 <img src="<?php echo base_url('assets/img/default.png'); ?>" class="avatar" alt="Admin Web avatar">
                                 <h4>
-                                    <?php echo $Nombre ?> </h4>
+                                    <?php echo $Nombre ?>
+                                </h4>
                                 <a href="#" class="btn btn-primary">Perfil</a>
                                 <div style="clear:both"></div>
                             </div>
@@ -55,19 +56,19 @@
                     switch ($Tipo) {
                         case 1:
                           ?>
-                          <ul class="nav navbar-nav">
-                              <li class="">
-                                  <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
-                          <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
-                              </li>
-                              <li class="active">
-                                  <a href="<?php echo base_url('index.php/mantencion/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
-                                  </a>
-                              </li>
-                          </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
+                                <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
+                        </li>
+                        <li class="active">
+                            <a href="<?php echo base_url('index.php/mantencion/index'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
+                            </a>
+                        </li>
+                    </ul>
 
 
-                          <?php
+                    <?php
                           break;
                         case 2:
                             include('template/nav-sup.php');
@@ -106,25 +107,27 @@
                                         <div class="form-group  col-md-5">
                                             <h2><strong>Numero de Solicitud</strong></h2>
                                             <h3>
-                                              <?php if ($orden): ?>
+                                                <?php if ($orden): ?>
                                                 <?php $Num =0; ?>
                                                 <?php foreach ($orden as $key): ?>
-                                                  <?php $Num =   $key-> total; ?>
-                                                  <?php  $Num+=1; ?>
+                                                <?php $Num =   $key-> total; ?>
+                                                <?php  $Num+=1; ?>
                                                 <?php endforeach; ?>
 
                                                 <?php echo 'M'.$Num; ?>
                                                 <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
                                                 <input type="hidden" name="orden" value="<?php echo $Num; ?>">
-                                              <?php endif; ?>
+                                                <?php endif; ?>
 
                                             </h3>
                                         </div>
                                         <div class="form-group col-md-5">
                                             <h2><strong>Codigo Personal</strong></h2>
                                             <div class="form-group mx-sm-3 mb-2">
-                                            <input type="text" name="phoneData" id="phoneData" class="view_data form-control" value=""> <br>
-                                            <p id="phone_result"> <?php echo form_error('phoneData','<div class="text-danger">','</div>') ?>&nbsp;</p>
+                                                <input type="text" name="phoneData" id="phoneData" class="view_data form-control" value=""> <br>
+                                                <p id="phone_result">
+                                                    <?php echo form_error('phoneData','<div class="text-danger">','</div>') ?>&nbsp;
+                                                </p>
                                             </div>
                                         </div>
 
@@ -133,19 +136,23 @@
                                             <h3>Maquina</h3>
 
                                             <div class="form-group mx-sm-3 mb-2">
-                                              <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-                                                          <option selected="" disabled> --- Maquinas ---</option>
-                                                          <?php if ($data) foreach ($data as $maquina) { ?>
+                                                <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
+                                                    <option selected="" disabled> --- Maquinas ---</option>
+                                                    <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                            <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
-                                                          <?php }?>
-                                                          <option  disabled> --- Centro Costo ---</option>
-                                                          <?php if ($costos) foreach ($costos as $costo) { ?>
+                                                    <option value="<?php echo $maquina-> DescArea ?>">
+                                                        <?php echo $maquina-> Maquina ?>
+                                                    </option>
+                                                    <?php }?>
+                                                    <option disabled> --- Centro Costo ---</option>
+                                                    <?php if ($costos) foreach ($costos as $costo) { ?>
 
-                                                            <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
-                                                          <?php }?>
+                                                    <option value="<?php echo $costo-> DescArea ?>">
+                                                        <?php echo $costo-> CentroCosto ?>
+                                                    </option>
+                                                    <?php }?>
 
-                                              </select>
+                                                </select>
                                                 <div class="col-md-5">
                                                     <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>
                                                 </div>
@@ -177,29 +184,7 @@
                                                 <?php echo form_error('tipomantencion','<div class="text-danger">','</div>') ?>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-4" hidden id="divhidden">
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo1" value="Electrica" <?php echo set_radio( 'tipotrabajo', 'Electica') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Electica</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo2" value="Mecanica" <?php echo set_radio( 'tipotrabajo', 'Mecanica') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Mecanica</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo3" value="Lubricacion" <?php echo set_radio( 'tipotrabajo', 'Lubricacion') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Lubricacion</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo4" value="Medicion" <?php echo set_radio( 'tipotrabajo', 'Medicion') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Medicion</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo5" value="Pauta Anual" <?php echo set_radio( 'tipotrabajo', 'Pauta Anual') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Pauta Anual</label>
-                                            </div>
-                                        </div>
+                                    
 
 
                                         <div class="form-group  col-md-12">
@@ -211,13 +196,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group  col-md-12">
-                                          <?php if ($Tipo==2): ?>
+                                            <?php if ($Tipo==2): ?>
                                             <label>Urgente</label>
                                             <div class="custom-control custom-checkbox">
                                                 <?php echo form_checkbox('urgente', 'SI'); ?>
                                                 <label class="custom-control-label" for="customCheck1">Se requiere urgente?</label>
                                             </div>
-                                          <?php endif; ?>
+                                            <?php endif; ?>
 
                                         </div>
 

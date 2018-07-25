@@ -448,7 +448,7 @@
 
             <div class="panel-footer text-center">
                 <button type="button" class="btn btn-info" value="" data-toggle="modal" data-target="#exampleModalCenter">
-                  <span class="glyphicon glyphicon-pencil"></span> &nbsp; Autorizacion de Repecion
+                  <span class="glyphicon glyphicon-pencil"></span> &nbsp; Autorizacion para recepcionar
                 </button>
 
             </div>

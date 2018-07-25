@@ -358,8 +358,6 @@
                                             <p id="phone_result"> <?php echo form_error('phoneData','<div class="text-danger">','</div>') ?>&nbsp;</p>
                                             </div>
                                         </div>
-
-
                                         <div class="form-group  col-md-5">
                                             <h3>Maquina</h3>
 
@@ -387,9 +385,6 @@
                                         <div class="form-group  col-md-5">
                                             <h3>Area</h3>
                                             <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
-
-
-
                                             <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
                                         </div>
                                         <div class="form-group  col-sm-8">
@@ -411,29 +406,7 @@
                                                 <?php echo form_error('tipomantencion','<div class="text-danger">','</div>') ?>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-4" hidden id="divhidden">
 
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo1" value="Electrica" <?php echo set_radio( 'tipotrabajo', 'Electica') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Electica</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo2" value="Mecanica" <?php echo set_radio( 'tipotrabajo', 'Mecanica') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Mecanica</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo3" value="Lubricacion" <?php echo set_radio( 'tipotrabajo', 'Lubricacion') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Lubricacion</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo4" value="Medicion" <?php echo set_radio( 'tipotrabajo', 'Medicion') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Medicion</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo5" value="Pauta Anual" <?php echo set_radio( 'tipotrabajo', 'Pauta Anual') ?>>
-                                                <label class="form-check-label" for="tipotrabajo">Pauta Anual</label>
-                                            </div>
-                                        </div>
 
 
                                         <div class="form-group  col-md-12">
@@ -464,6 +437,7 @@
                                     <?php echo form_close(); ?>
 
                                     <?php else: ?>
+
                                       <?php echo form_open('mantencion/save'); ?>
 
                                       <div class="panel-body">
@@ -471,37 +445,38 @@
                                           <div class="form-group  col-md-12">
                                               <h2><strong>Numero de Solicitud</strong></h2>
                                               <h3>
-                                              <?php if ($orden): ?>
-                                                <?php $Num =0; ?>
-                                                <?php foreach ($orden as $key): ?>
-                                                  <?php $Num =   $key-> total; ?>
-                                                  <?php  $Num+=1; ?>
-                                                <?php endforeach; ?>
+                                                <?php if ($orden): ?>
+                                                  <?php $Num =0; ?>
+                                                  <?php foreach ($orden as $key): ?>
+                                                    <?php $Num =   $key-> total; ?>
+                                                    <?php  $Num+=1; ?>
+                                                  <?php endforeach; ?>
 
-                                                <?php echo 'M'.$Num; ?>
-                                                <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
-                                                <input type="hidden" name="orden" value="<?php echo $Num; ?>">
-                                              <?php endif; ?>
+                                                  <?php echo 'M'.$Num; ?>
+                                                  <input type="hidden" name="NroSolicitud" value="<?php echo 'M'.$Num; ?>">
+                                                  <input type="hidden" name="orden" value="<?php echo $Num; ?>">
+                                                <?php endif; ?>
 
                                               </h3>
                                           </div>
+
                                           <div class="form-group  col-md-5">
                                               <h3>Maquina</h3>
 
                                               <div class="form-group mx-sm-3 mb-2">
-                                                  <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
-                                                              <option selected="" disabled> --- Maquinas ---</option>
-                                                              <?php if ($data) foreach ($data as $maquina) { ?>
+                                                <select class="form-control select2 select2-hidden-accessible" id="id_maquinaria" name="" tabindex="-1" aria-hidden="true">
+                                                            <option selected="" disabled> --- Maquinas ---</option>
+                                                            <?php if ($data) foreach ($data as $maquina) { ?>
 
-                                                                <option  value="<?php echo $maquina-> DescArea ?>">  <?php echo $maquina-> Maquina ?></option>
-                                                              <?php }?>
-                                                              <option  disabled> --- Centro Costo ---</option>
-                                                              <?php if ($costos) foreach ($costos as $costo) { ?>
+                                                              <option  value="<?php echo $maquina-> DescArea ?>"><?php echo $maquina-> Maquina ?></option>
+                                                            <?php }?>
+                                                            <option  disabled> --- Centro Costo ---</option>
+                                                            <?php if ($costos) foreach ($costos as $costo) { ?>
 
-                                                                <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
-                                                              <?php }?>
+                                                              <option  value="<?php echo $costo-> DescArea ?>">  <?php echo $costo-> CentroCosto ?></option>
+                                                            <?php }?>
 
-                                                  </select>
+                                                </select>
                                                   <div class="col-md-5">
                                                       <?php echo form_error('maquina','<div class="text-danger">','</div>') ?>
                                                   </div>
@@ -511,9 +486,7 @@
 
                                           <div class="form-group  col-md-5">
                                               <h3>Area</h3>
-                                            <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
-
-
+                                              <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
                                               <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
                                           </div>
                                           <div class="form-group  col-sm-8">
@@ -535,29 +508,7 @@
                                                   <?php echo form_error('tipomantencion','<div class="text-danger">','</div>') ?>
                                               </div>
                                           </div>
-                                          <div class="form-group col-md-4" hidden id="divhidden">
 
-                                              <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo1" value="Electrica" <?php echo set_radio( 'tipotrabajo', 'Electica') ?>>
-                                                  <label class="form-check-label" for="tipotrabajo">Electica</label>
-                                              </div>
-                                              <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo2" value="Mecanica" <?php echo set_radio( 'tipotrabajo', 'Mecanica') ?>>
-                                                  <label class="form-check-label" for="tipotrabajo">Mecanica</label>
-                                              </div>
-                                              <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo3" value="Lubricacion" <?php echo set_radio( 'tipotrabajo', 'Lubricacion') ?>>
-                                                  <label class="form-check-label" for="tipotrabajo">Lubricacion</label>
-                                              </div>
-                                              <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo4" value="Medicion" <?php echo set_radio( 'tipotrabajo', 'Medicion') ?>>
-                                                  <label class="form-check-label" for="tipotrabajo">Medicion</label>
-                                              </div>
-                                              <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="tipotrabajo" id="tipotrabajo5" value="Pauta Anual" <?php echo set_radio( 'tipotrabajo', 'Pauta Anual') ?>>
-                                                  <label class="form-check-label" for="tipotrabajo">Pauta Anual</label>
-                                              </div>
-                                          </div>
 
 
                                           <div class="form-group  col-md-12">
@@ -569,7 +520,7 @@
                                               </div>
                                           </div>
                                           <div class="form-group  col-md-12">
-                                            <?php if ($Tipo==2||$Tipo==3): ?>
+                                            <?php if ($Tipo==2): ?>
                                               <label>Urgente</label>
                                               <div class="custom-control custom-checkbox">
                                                   <?php echo form_checkbox('urgente', 'SI'); ?>
@@ -584,9 +535,6 @@
                                       <div class="panel-footer">
                                           <?php echo form_submit(['name'=>'submit','value'=>'Enviar Mantencion','class'=>'btn btn-primary']); ?>
                                       </div>
-
-                                      <?php echo form_close(); ?>
-                                  </div>
 
                                   <?php endif; ?>
                                     <!-- form start -->
