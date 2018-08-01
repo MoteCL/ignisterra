@@ -116,25 +116,32 @@ class ModelReportes extends CI_Model {
 
  public function getTecnicos()
  {
-   $query = $this->db->get_where('personal', array(
-     'Cargo' => 'T',
-     'Area' =>'M'
-   ));
+   $this->db->select('*');
+   $this->db->from('personal');
+   $this->db->where('Cargo','T');
+   $this->db->where('Area','M');
+   $this->db->or_where('Area','TA');
+   $query = $this->db->get();
+
    if ($query->num_rows() > 0) {
      return $query->result();
    }
  }
  public function getSeguimientoTecnico($minvalue,$maxvalue,$id)
  {
+   $this->db->distinct();
    $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina, d.total, d.fechaSeguimiento');
-   $this->db->from('MAN_TecnicoSeguimiento as t');
+   // $this->db->from('MAN_TecnicoSeguimiento as t');
+   $this->db->from('MAN_SeguimientoDetalle as d');
+   $this->db->join('MAN_TecnicoSeguimiento as t','t.id_detalle = d.id_detalle');
    $this->db->join('personal as p','p.Codigo = t.id_tecnico');
-   $this->db->join('MAN_SeguimientoDetalle as d','d.id_detalle = t.id_detalle');
+
+   // $this->db->join('MAN_SeguimientoDetalle as d','d.id_detalle = t.id_detalle');
    $this->db->join('MAN_Seguimiento as s','s.idMan_Tecnico = d.id_man_tecnico');
    $this->db->join('MAN_Solicitud as m','m.NroSolicitud = s.NroSolicitud');
    $this->db->where('t.id_tecnico',$id);
-   $this->db->where('s.fecha >=',$minvalue);
-   $this->db->where('s.fecha <=',$maxvalue);
+   $this->db->where('d.fechaSeguimiento >=',$minvalue);
+   $this->db->where('d.fechaSeguimiento <=',$maxvalue);
    $this->db->order_by('s.fecha', 'asc');
    // $query1 = $this->db->get_compiled_select();
    //

@@ -165,7 +165,7 @@
                                             <input name='CodArea' id='CodArea' class='form-control' readonly='TRUE'>
                                             <input type="hidden" name="maquina" value="<?php echo set_value('maquina'); ?>" id="maquina">
                                         </div>
-                                        <div class="form-group  col-sm-8">
+                                        <div class="form-group  col-md-8">
                                             <h3>Tipo Mantencion</h3>
                                             <br>
                                             <div class="form-check form-check-inline">
@@ -184,7 +184,7 @@
                                                 <?php echo form_error('tipomantencion','<div class="text-danger">','</div>') ?>
                                             </div>
                                         </div>
-                                    
+
 
 
                                         <div class="form-group  col-md-12">

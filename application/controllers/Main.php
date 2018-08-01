@@ -34,7 +34,6 @@ class Main extends CI_Controller
         $data['Tipo']   = $session_data['Tipo'];
         $data['result'] = $this->report->landing_page_enc();
 
-
         $this->load->view('landing-page', $data);
     }
 
@@ -246,6 +245,7 @@ class Main extends CI_Controller
         } else {
             $this->session->set_flashdata('error_msg', 'Error DB');
         }
+
 
         return redirect('main/configEmail');
     }

@@ -16,7 +16,7 @@
 
 
             foreach ($seguimientos as $seguimiento) {
-               $fechas[$seguimiento-> fecha][] = $seguimiento;
+               $fechas[$seguimiento-> fechaSeguimiento][] = $seguimiento;
 
             }
             if ($actividades) {

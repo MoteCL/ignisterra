@@ -446,32 +446,32 @@
                                                     <label>Cod. Tecnico</label>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico1" id="id_tecnico1"  value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico2" id="id_tecnico2" value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico3" id="id_tecnico3" value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico4" id="id_tecnico4" value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico5" id="id_tecnico5" value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
+                                                            <input type="text" name="id_tecnico6" id="id_tecnico6" value="" placeholder="Codigo" class="form-control">
                                                         </label>
                                                     </div>
                                                 </div>
@@ -544,6 +544,7 @@
                                     <?php echo form_open("mantencion/save_MANTecnico/{$data->NroSolicitud}"); ?>
                                     <div class="panel-body" style="padding-top:0;">
 
+
                                         <div class="row">
                                             <div class="divider"> </div>
                                             <div class="row">
@@ -554,8 +555,8 @@
                                                     				'Electrico'         => 'Electrico',
                                                             'Mecanico'         => 'Mecanico',
                                                             'Calibracion'           => 'Calibracion',
-                                                            'Operacion'           => 'Operacion',
-                                                            'Solicitud expresa de mantencion'           => 'Solicitud expresa de mantencion',
+                                                            'Mala Operacion'           => 'Operacion',
+
                                                     			);
                                                           $js = 'id="clasificacionnn"';
                                                     		 ?>
@@ -601,43 +602,44 @@
                                     <div class="page-header">
                                         <i class="fa fa-plus" aria-hidden="true"></i> intervencion Mantencion
                                     </div>
-                                    <div class="col-5 col-xl-12">
+                                    <?php echo form_error('HH','<div class="text-danger">','</div>') ?>
 
+                                    <div class="col-5 col-xl-12">
                                         <div class="table-responsive">
                                             <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <label>Cod. Tecnico</label>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="text" name="id_tecnico[]" value="" placeholder="Codigo" class="form-control">
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                              <div class="form-group">
+                                                  <label>Cod. Tecnico</label>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico1" id="id_tecnico1"  value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico2" id="id_tecnico2" value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico3" id="id_tecnico3" value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico4" id="id_tecnico4" value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico5" id="id_tecnico5" value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                      <label>
+                                                          <input type="text" name="id_tecnico6" id="id_tecnico6" value="" placeholder="Codigo" class="form-control">
+                                                      </label>
+                                                  </div>
+                                              </div>
 
                                             </div>
                                             <div class="col-lg-5">
@@ -767,6 +769,8 @@
             })
         });
 
+
+
         function ObtieneTotHoras() {
             var contar = 0;
             HDesde = $('#horaInicio').val();
@@ -790,19 +794,50 @@
                 TotHorasTrab = (RestaHoras / 60).toFixed(2);
             }
 
-            var inputs = $('input[name^=id_tecnico]');
-
-            for (j = 0; j < inputs.length; j++) {
-                if (inputs[j].value != '') {
-                    contar += 1;
-                }
-            }
+            // var inputs = $('input[name^=id_tecnico]');
+            //
+            // for (j = 0; j < inputs.length; j++) {
+            //     if (inputs[j].value != '') {
+            //         contar += 1;
+            //     }
+            // }
+            if ($('#id_tecnico1').val().length != 0) {
+                 contar+=1;
+              }
+              if ($('#id_tecnico2').val().length != 0) {
+                 contar+=1;
+              }
+              if ($('#id_tecnico3').val().length != 0) {
+                 contar+=1;
+              }
+              if ($('#id_tecnico4').val().length != 0) {
+                 contar+=1;
+              }
+              if ($('#id_tecnico5').val().length != 0) {
+                 contar+=1;
+              }
+              if ($('#id_tecnico6').val().length != 0) {
+                 contar+=1;
+              }
 
             $('#resultado').val(TotHorasTrab);
             $('#resultadoFinal').val(TotHorasTrab * contar);
             document.getElementById("mytext").focus();
 
         }
+    </script>
+
+    <script>
+    $(document).ready(function() {
+      $("input[type=submit]").click(function() {
+        if ( $("input[type=submit]").attr('disabled') == "disabled" ) {
+          return false;
+        }
+        else {
+            $('#file').trigger('click');
+        }
+      });
+    });
     </script>
 </body>
 

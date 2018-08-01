@@ -287,16 +287,16 @@ class Mantencion extends CI_Controller
             redirect('main/login', 'refresh');
         }
 
-        $data['data']   = $this->ma->getMantencionbyId($id);
-        $session_data   = $this->session->userdata('logged_in');
+        $data['data']         = $this->ma->getMantencionbyId($id);
+        $session_data         = $this->session->userdata('logged_in');
         $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
-        $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
-        $data['Codigo'] = $session_data['Codigo'];
-        $data['Nombre'] = $session_data['Nombre'];
-        $data['Tipo']   = $session_data['Tipo'];
+        $data['tecnicos']     = $this->seguimiento->getTecnicoSeguimiento();
+        $data['Codigo']       = $session_data['Codigo'];
+        $data['Nombre']       = $session_data['Nombre'];
+        $data['Tipo']         = $session_data['Tipo'];
 
 
-       $this->load->view('verMantencion', $data);
+        $this->load->view('verMantencion', $data);
     }
 
     public function listadoAprobado()
@@ -410,11 +410,12 @@ class Mantencion extends CI_Controller
                 $data['estado']         = 'TECNICA';
                 $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2                  = array(
-                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
+                    'fechaSeguimiento' => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
                     'HM' => $_POST['HM'],
+                    'total' => $_POST['HH'],
                     'Int_Prod' => $_POST['Int_Prod'],
                     'id_man_tecnico' => $id_seguimiento,
                     'Comentario' => $_POST['Comentario']
@@ -423,13 +424,55 @@ class Mantencion extends CI_Controller
                 $update['estado']       = 'TECNICA';
                 $result                 = $this->ma->updateMantencion($update, $id);
 
-                foreach ($this->input->post('id_tecnico') as $tecnico) {
-
+                // foreach ($this->input->post('id_tecnico') as $tecnico) {
+                //
+                //     $data3 = array(
+                //         'id_tecnico' => $tecnico,
+                //         'id_detalle' => $id_detalle
+                //     );
+                //
+                //     $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                // }
+                if ($_POST['id_tecnico1']) {
                     $data3 = array(
-                        'id_tecnico' => $tecnico,
+                        'id_tecnico' => $_POST['id_tecnico1'],
                         'id_detalle' => $id_detalle
                     );
-
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico2']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico2'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico3']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico3'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico4']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico4'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico5']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico5'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico6']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico6'],
+                        'id_detalle' => $id_detalle
+                    );
                     $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
                 }
 
@@ -451,11 +494,12 @@ class Mantencion extends CI_Controller
 
                 $id_seguimiento = $this->seguimiento->create('MAN_Seguimiento', $data);
                 $data2          = array(
-                    'fechaSeguimiento'  => $_POST['fechaSeguimiento'],
+                    'fechaSeguimiento' => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
                     'horaTermino' => $_POST['horaTermino'],
                     'HH' => $_POST['HH'],
                     'HM' => $_POST['HM'],
+                    'total' => $_POST['HH'],
                     'Int_Prod' => $_POST['Int_Prod'],
                     'id_man_tecnico' => $id_seguimiento,
                     'Comentario' => $_POST['Comentario']
@@ -463,37 +507,78 @@ class Mantencion extends CI_Controller
                 $id_detalle     = $this->seguimiento->create('MAN_SeguimientoDetalle', $data2);
 
 
-                foreach ($this->input->post('id_tecnico') as $tecnico) {
+                // foreach ($this->input->post('id_tecnico') as $tecnico) {
+                //
+                //     $data3 = array(
+                //         'id_tecnico' => $tecnico,
+                //         'id_detalle' => $id_detalle
+                //     );
+                //
+                //     $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                // }
 
+                if ($_POST['id_tecnico1']) {
                     $data3 = array(
-                        'id_tecnico' => $tecnico,
+                        'id_tecnico' => $_POST['id_tecnico1'],
                         'id_detalle' => $id_detalle
                     );
-
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico2']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico2'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico3']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico3'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico4']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico4'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico5']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico5'],
+                        'id_detalle' => $id_detalle
+                    );
+                    $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
+                }
+                if ($_POST['id_tecnico6']) {
+                    $data3 = array(
+                        'id_tecnico' => $_POST['id_tecnico6'],
+                        'id_detalle' => $id_detalle
+                    );
                     $this->seguimiento->create('MAN_TecnicoSeguimiento', $data3);
                 }
 
-                $data['data']   = $this->ma->getMantencionbyId($id);
-                $session_data   = $this->session->userdata('logged_in');
+                $data['data']         = $this->ma->getMantencionbyId($id);
+                $session_data         = $this->session->userdata('logged_in');
                 $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
-                $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
-                $data['Codigo'] = $session_data['Codigo'];
-                $data['Nombre'] = $session_data['Nombre'];
-                $data['Tipo']   = $session_data['Tipo'];
+                $data['tecnicos']     = $this->seguimiento->getTecnicoSeguimiento();
+                $data['Codigo']       = $session_data['Codigo'];
+                $data['Nombre']       = $session_data['Nombre'];
+                $data['Tipo']         = $session_data['Tipo'];
 
                 $this->load->view('verMantencion', $data);
             }
 
-
-
         } else {
-          $data['data']   = $this->ma->getMantencionbyId($id);
-          $session_data   = $this->session->userdata('logged_in');
-          $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
-          $data['tecnicos'] = $this->seguimiento->getTecnicoSeguimiento();
-          $data['Codigo'] = $session_data['Codigo'];
-          $data['Nombre'] = $session_data['Nombre'];
-          $data['Tipo']   = $session_data['Tipo'];
+            $data['data']         = $this->ma->getMantencionbyId($id);
+            $session_data         = $this->session->userdata('logged_in');
+            $data['seguimientos'] = $this->seguimiento->getManSeguimiento_where($id);
+            $data['tecnicos']     = $this->seguimiento->getTecnicoSeguimiento();
+            $data['Codigo']       = $session_data['Codigo'];
+            $data['Nombre']       = $session_data['Nombre'];
+            $data['Tipo']         = $session_data['Tipo'];
 
             $this->load->view('verMantencion', $data);
         }

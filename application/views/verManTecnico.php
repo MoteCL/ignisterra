@@ -397,6 +397,7 @@
                                                           <thead>
                                                               <tr>
                                                                   <th>Tecnico</th>
+                                                                  <th>Fecha</th>
                                                                   <th>Desde</th>
                                                                   <th>Hasta</th>
                                                                   <th>HH</th>
@@ -416,6 +417,7 @@
                                                                       <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                    </td>
+                                                                    <td style="width:10%;"><?php echo $seguimiento-> fechaSeguimiento ?></td>
                                                                    <td style="width:10%;"><?php echo $seguimiento-> horaInicio ?></td>
 
                                                                     <td style="width:10%;"><?php echo $seguimiento-> horaTermino ?>  </td>

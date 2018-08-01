@@ -22,7 +22,9 @@ class LandingPage extends CI_Controller
     public function index()
     {
 
+        
         $data['data']   = $this->ma->getallMaquinas();
+        $data['costos'] = $this->ma->getAllCentroCosto();
         $data['orden']  = $this->ma->getOrden();
 
 
