@@ -15,8 +15,8 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button class="hamburger btn-link is-active">
-          <span class="hamburger-inner"></span>
-          </button>
+                            <span class="hamburger-inner"></span>
+                        </button>
                         <ol class="breadcrumb hidden-xs">
                             <li class="">
                                 <i class="voyager-home"></i>
@@ -68,60 +68,60 @@
                             break;
                         case 3:
                         ?>
-                        <ul class="nav navbar-nav">
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
-                        <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
-                                <div id="3-dropdown-element" class="panel-collapse collapse " >
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
+                                <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
+                            <div id="3-dropdown-element" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
 
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
+                                                <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
-                                <div id="1-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
-                                            </li>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
+                            <div id="1-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-list"></span> <span class="title">Lista Abierta</span> </a>
+                                        </li>
 
 
-                                            <li class="active">
-                                                <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
-                                            </li>
+                                        <li class="active">
+                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-check"></span> <span class="title">List por Cerrar</span> </a>
+                                        </li>
 
 
-                                        </ul>
-                                    </div>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
-                                <div id="2-dropdown-element" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <!-- <li class="">
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                            <div id="2-dropdown-element" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <!-- <li class="">
                                                 <a href="#" target="_self" style="color:">
                         <span class="icon voyager-list"></span> <span class="title">Desempeño Maquinas</span> </a>
                                             </li>
@@ -133,151 +133,151 @@
                                                 <a href="#" target="_self" style="color:">
                         <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
                                             </li> -->
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
-                                            </li>
-                                            <!-- <li class="">
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
+                                        </li>
+                                        <!-- <li class="">
                                                 <a href="#" target="_self" style="color:">
                         <span class="icon voyager-laptop"></span> <span class="title">Programa Mantencion</span> </a>
                                             </li>
                                         </ul> -->
-                                    </div>
                                 </div>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
-                        <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
-                            </li>
+                            </div>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
+                                <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
+                                <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
+                                <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
+                        </li>
 
 
-                        </ul>
+                    </ul>
 
 
-                        <?php
+                    <?php
                             break;
                         case 4:
                         ?>
-                        <ul class="nav navbar-nav">
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
-                        <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
-                                <div id="3-dropdown-element" class="panel-collapse collapse " >
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
+                                <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
+                            <div id="3-dropdown-element" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
 
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
+                                                <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
-                                <div id="1-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                            </li>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
+                            <div id="1-dropdown-element" class="panel-collapse collapse in" aria-expanded="true">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
+                                        </li>
 
 
-                                            <li class="active">
-                                                <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
-                                            </li>
+                                        <li class="active">
+                                            <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
+                                        </li>
 
 
-                                        </ul>
-                                    </div>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
-                                <div id="2-dropdown-element" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">Indice de cumplimiento</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-laptop"></span> <span class="title">Programa Mantencion</span> </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                            <div id="2-dropdown-element" class="panel-collapse collapse ">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li class="">
+                                            <a href="#" target="_self" style="color:">
+                                                <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-check"></span> <span class="title">Indice de cumplimiento</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" target="_self" style="color:">
+                                                <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
+                                                <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" target="_self" style="color:">
+                                                <span class="icon voyager-laptop"></span> <span class="title">Programa Mantencion</span> </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
-                        <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
-                            </li>
+                            </div>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
+                                <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
+                                <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/maquina/index');  ?>" target="_self" style="color:">
+                                <span class="icon fas fa-tachometer-alt"></span> <span class="title">Maquinas</span> </a>
+                        </li>
 
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:">
-                                  <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/listPersonal'); ?>" target="_self" style="color:">
-                                  <span class="icon fas fa-user-secret"></span> <span class="title">Privacidad<span>
-                                </a>
-                            </li>
-                        </ul>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/configEmail'); ?>" target="_self" style="color:">
+                                <span class="icon voyager-mail"></span> <span class="title">Config Email<span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url('index.php/main/listPersonal'); ?>" target="_self" style="color:">
+                                <span class="icon fas fa-user-secret"></span> <span class="title">Privacidad<span>
+                            </a>
+                        </li>
+                    </ul>
 
 
-                        <?php
+                    <?php
                           break;
 
                     }
@@ -312,7 +312,6 @@
                                                         <th>Clasificacion</th>
                                                         <th>Tipo Detencion</th>
                                                         <th>Estado</th>
-
                                                         <th>--</th>
 
                                                     </tr>
@@ -346,15 +345,14 @@
                                                         </td>
                                                         <td>
                                                             <a href="<?php echo base_url( '/index.php/seguimiento/verSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-primary">
-                                        <i class="icon voyager-documentation"></i>Ver</a>
+                                                                <i class="icon voyager-documentation"></i>Ver</a>
 
-                                                            <!-- <a href="<?php echo base_url( '/index.php/seguimiento/editarSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-success"> Editar</a>
-                                                          </td> -->
+                                                                <button type="button" onclick="ReAbrir()"  class="label label-danger" data-toggle="modal" data-target="#myModalthree">
+                                                                  <i class="fas fa-unlock-alt" aria-hidden="true"></i> Re-Abrir Solicitud
+                                                                </button></td>
+                                                            <!-- <button type="button"  name="button" class="label label-danger"> <i class="icon voyager-tag"></i> Re-Abrir</button> -->
 
                                                     </tr>
-
-
-
                                                     <?php endforeach; ?>
                                                     <?php endif; ?>
                                                 </tbody>
@@ -366,16 +364,127 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
-
-
-
         </div>
     </div>
 
-    <?php include("template/footertable.php"); ?>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalthree" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Re-Abrir Solicitud</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <?php echo form_open('seguimiento/cambiarEstado'); ?>
+          <div class="modal-body">
+
+              Esta seguro que desea Re-Abrir esta Solicitud?
+              <br>
+
+              <input type="hidden" name="NroSolicitud" value="" id="id_solicitud">
+              <input type="hidden" name="idMan_Tecnico" value="" id="id_seguimiento">
+
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-success">Cambiar estado</button>
+
+          </div>
+            <?php echo form_close(); ?>
+        </div>
+      </div>
+    </div>
+
+
+
+    <footer class="app-footer">
+        <div class="site-footer-right">
+            Made with <i class="voyager-heart"></i>
+            - v1.1.0
+        </div>
+    </footer>
+
+    <!-- Javascript Libs -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>">
+    </script>
+
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>">
+    </script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>">
+    </script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>">
+    </script>
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('#tbl_personal').DataTable({
+                "order": [
+                    [0, "desc"]
+                ],
+
+
+                "language": idioma_espanol
+            });
+            mostrar_mensaje();
+        });
+
+        var mostrar_mensaje = function() {
+            $(".mensaje").fadeOut(5000, function() {
+                $(this).html("");
+                $(this).fadeIn(1000);
+            });
+        }
+
+        function ReAbrir()
+        {
+          $('#tbl_personal tr').on('click', function(){
+        //    var first = $(this).find('td:first').html();
+         var first = $(this).find('td:eq(0)').text();
+         var second = $(this).find('td:eq(1)').text();
+
+            $('#id_seguimiento').val(first);
+            $('#id_solicitud').val(second);
+
+          });
+
+        }
+        var idioma_espanol = {
+            "sProcessing":      "Procesando...",
+                "sLengthMenu":      "Mostrar _MENU_ registros",
+                "sZeroRecords":     "No se encontraron resultados",
+                "sEmptyTable":      "Ningún dato disponible en esta tabla",
+                "sInfo":            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":       "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":    "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":     "",
+                "sSearch":          "Buscar:",
+                "sUrl":             "",
+                "sInfoThousands":   ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                "sFirst":     "Primero",
+                        "sLast":      "Último",
+                        "sNext":      "Siguiente",
+                        "sPrevious": "Anterior"
+            },
+                "oAria": {
+                "sSortAscending":   ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>

@@ -41,6 +41,7 @@ class ModelMantencion extends CI_Model
 
   public function getAllCentroCosto()
 	{
+    
     $this->db->join('area as a', 'a.CodArea = Centro_Costo.Area');
 		$this->db->order_by('CodCC', 'asc');
 		$query = $this->db->get('Centro_Costo');

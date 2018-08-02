@@ -548,7 +548,7 @@
                                         <div class="row">
                                             <div class="divider"> </div>
                                             <div class="row">
-                                                <div class="form-group col-md-1">
+                                                <div class="form-group col-md-5">
                                                     <h5>Tipo de falla :</h5>
 
                                                     <?php $clasificacion = array(
