@@ -708,6 +708,7 @@
                                     </div>
 
                                     <?php endif; ?>
+                                     <p>Content here. <a class="alert" href=#>Alert!</a></p>
                                 </div>
                             </div>
                         </div>
@@ -732,6 +733,20 @@
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/bootbox.min.js'); ?>"></script> -->
+
+
+    <script>
+           $(document).on("click", ".alert", function(e) {
+               bootbox.alert("Hello world!", function() {
+                   console.log("Alert Callback");
+               });
+           });
+       </script>
+
+
+
 
 
 
@@ -786,7 +801,30 @@
             TotHasta = parseInt(HoraHasta * 60) + parseInt(MinutoHasta);
             RestaHoras = (TotHasta - TotDesde);
 
-            var opcion = confirm('DESCUENTA COLACIÓN?');
+        //   var opcion = bootbox.confirm({
+        //     message: "Descuenta Colacion?",
+        //     buttons: {
+        //         confirm: {
+        //             label: 'Si',
+        //             className: 'btn-success'
+        //         },
+        //         cancel: {
+        //             label: 'No',
+        //             className: 'btn-danger'
+        //         }
+        //     },
+        //     callback: function (opcion) {
+        //       if (opcion == true) {
+        //           var Resta = (RestaHoras / 60);
+        //           TotHorasTrab = (Resta - 0.5).toFixed(2);
+        //       } else {
+        //           TotHorasTrab = (RestaHoras / 60).toFixed(2);
+        //       }
+        //     }
+        // });
+
+
+           var opcion = confirm('DESCUENTA COLACIÓN?');
             if (opcion == true) {
                 var Resta = (RestaHoras / 60);
                 TotHorasTrab = (Resta - 0.5).toFixed(2);

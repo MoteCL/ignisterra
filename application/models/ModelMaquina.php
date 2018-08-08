@@ -8,7 +8,7 @@ class ModelMaquina extends CI_Model {
 
  public function getallMaquinas()
  {
-
+   $this->db->distinct();
    $this->db->join('Centro_Costo as c', 'c.CodCC = Maestro_Maquinas.Centro_Costo');
    $this->db->join('area as a', 'a.CodArea = c.Area');
    $this->db->order_by('Maquina', 'asc');

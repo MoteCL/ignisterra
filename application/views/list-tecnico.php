@@ -311,7 +311,7 @@
                                                         <th>Fecha</th>
                                                         <th>Clasificacion</th>
                                                         <th>Tipo Detencion</th>
-                                                        <th>Estado</th>
+
                                                         <th>--</th>
 
                                                     </tr>
@@ -340,9 +340,7 @@
                                                         <td>
                                                             <?php echo $tecnico -> tipo_detencion; ?>
                                                         </td>
-                                                        <td>
-                                                            <?php echo $tecnico -> estado; ?>
-                                                        </td>
+                                                      
                                                         <td>
                                                             <a href="<?php echo base_url( '/index.php/seguimiento/verSeguimiento/'.$tecnico->idMan_Tecnico); ?>" class="label label-primary">
                                                                 <i class="icon voyager-documentation"></i>Ver</a>

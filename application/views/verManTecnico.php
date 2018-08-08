@@ -352,9 +352,6 @@
                                         </div>
 
                                         <div class="row">
-
-                                        </div>
-                                        <div class="row">
                                             <div class="col-4 col-md-4"><h5>Especialidad</h5>
                                                 <p>
                                                     <?php echo $data-> clasificacion; ?>
@@ -372,6 +369,17 @@
                                                 </p>
                                             </div>
 
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-4 col-md-4"><h5>Tipo Mantencion </h5>
+                                              <p>
+                                                  <?php echo $data-> tipomantencion; ?>
+
+                                              </p>
+                                          </div>
+                                          <div class="col-4 col-md-6"><h4>Detalle</h4>
+                                              <h3><?php echo $data-> detalle; ?></h3>
+                                          </div>
                                         </div>
 
                                     </div>

@@ -301,7 +301,7 @@
                                           <h3> Desde</h3>
                                           <br>
                                           <div class="form-group">
-                                              <input type="date" class="form-control" name="fechadesde" value="">
+                                              <input type="date" class="form-control" name="fechadesde" value="" >
                                               <?php echo form_error('fechadesde','<div class="text-danger">','</div>') ?>
                                           </div>
                                       </div>
@@ -317,8 +317,10 @@
                                       </div>
                                       <div class="col-4 col-md-3">
                                       <div class="form-group">
-                                           <label for="exampleFormControlSelect2">Tecnicos</label>
-                                           <select multiple class="form-control" name="persona">
+                                           <!-- <label for="exampleFormControlSelect2">Tecnicos</label> -->
+                                           <h3>Tecnicos</h3>
+
+                                           <select  class="form-control" id="chkveg" name="persona[]"  multiple="multiple">
                                              <?php if ($tecnicos): ?>
                                                <?php foreach ($tecnicos as $tecnico): ?>
                                                  <option value=" <?php echo $tecnico-> Codigo; ?>"><?php echo $tecnico-> Nombre; ?></option>
@@ -334,12 +336,18 @@
                                        <div class="form-group">
                                             <br>
                                             <br>
+                                            <br>
+
                                         <?php echo form_submit(['name'=>'submit','value'=>'Buscar','class'=>'btn btn-primary']); ?>
 
                                             </select>
                                           </div>
                                         </div>
                                           <?php echo form_close(); ?>
+                                          <div class="col-lg-12">
+                                            <br>  <br>    <br>  <br>       <br>  <br>    <br>  <br>
+                                          </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -356,12 +364,11 @@
             - v1.1.0
         </div>
     </footer>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-multiselect.js'); ?>"></script>
 
 
 
@@ -400,13 +407,13 @@
 
             $('input[name=fechadesde]').val(today);
             $('input[name=fechahasta]').val(today);
-            mostrar_mensaje();
+
+              $('#chkveg').multiselect({
+
+                  includeSelectAllOption: true
+              });
+
         });
-
-
-
-
-
 
         var idioma_espanol = {
             "sProcessing":      "Procesando...",

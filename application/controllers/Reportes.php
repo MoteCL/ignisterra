@@ -179,7 +179,7 @@ class Reportes extends CI_Controller {
 		$data['Nombre'] = $session_data['Nombre'];
 		$data['Tipo'] = $session_data['Tipo'];
 
-		$this->form_validation->set_rules('persona', 'persona','required|trim',array(
+		$this->form_validation->set_rules('persona[]', 'persona','required|trim',array(
 			'required' => 'Seleccione una maquina'
 		));
 		$this->form_validation->set_rules('fechadesde', 'fechadesde','required',array(
@@ -190,16 +190,20 @@ class Reportes extends CI_Controller {
 		));
 		if ($this->form_validation->run()) {
 
+		 	$persona =  $this->input->post('persona');
 			$desde =$this->input->post('fechadesde');
 			$hasta =$this->input->post('fechahasta');
-			$persona =  $this->input->post('persona');
+
 			$data['desde'] = $desde;
 			$data['hasta'] = $hasta;
 			$data['tipo'] = $this->input->post('customRadio');
-			$data['nombre'] =$this->m->verificarCodigo($persona);
-			$data['seguimientos']= $this->report->getSeguimientoTecnico($desde,$hasta,$persona);
-			$data['actividades']= $this->report->getActividades($desde,$hasta,$persona);
-		  //print_r($data);
+			foreach ($this->input->post('persona') as $key => $persona) {
+
+
+				$data['reports'][$key]['nombre'] =$this->m->verificarCodigo($persona);
+				$data['reports'][$key]['seguimientos']= $this->report->getSeguimientoTecnico($desde,$hasta,$persona);
+				$data['reports'][$key]['actividades']= $this->report->getActividades($desde,$hasta,$persona);
+			}
 
 			$this->load->view('report/person-result',$data);
 		}else {
