@@ -149,9 +149,7 @@
             </div>
         </div>
         <?php endif; ?>
-        <button type="submit" name="button" class="btn btn-success" value="" onclick="window.print();">
-          <span class="voyager-documentation"></span> Imprimir &nbsp;
-        </button>
+      
       </div>
   </div>
 

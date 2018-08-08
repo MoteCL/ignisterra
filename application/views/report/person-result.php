@@ -282,6 +282,9 @@
                             Resumen
                         <?php endif; ?>
                     </h1>
+                    <button type="submit" name="button" class="btn btn-success" value="" onclick="window.print();">
+                      <span class="voyager-documentation"></span> Imprimir &nbsp;
+                    </button>
                       <img src="<?php echo base_url('assets/img/logofull.png'); ?>" class="avatar float-right" alt="Logo">
 
                     <?php   require_once(APPPATH.'views/template/msg.php'); ?>
