@@ -328,12 +328,14 @@
                                                 <h5>Fecha</h5>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Desde:</label>
-                                                    <input type="date" name="desde" class="form-control">
+                                                    <!-- <input type="date" name="desde" class="form-control"> -->
+                                                       <input type="text" id="desde" name="desde" class="form-control validate" required>
                                                 </div>
                                                   <?php echo form_error('desde','<div class="text-danger">','</div>') ?>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Hasta:</label>
-                                                    <input type="date" name="hasta" class="form-control">
+                                                    <!-- <input type="date" name="hasta" class="form-control"> -->
+                                                     <input type="text" id="hasta" name="hasta" class="form-control validate" required>
                                                 </div>
                                                 <?php echo form_error('hasta','<div class="text-danger">','</div>') ?>
                                             </div>
@@ -389,4 +391,84 @@
         </div>
     </div>
 
-    <?php include("template/footertable.php"); ?>
+    <footer class="app-footer">
+        <div class="site-footer-right">
+            Made with <i class="voyager-heart"></i>
+            - v1.1.0
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-multiselect.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js'); ?>"></script>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#tbl_personal').DataTable({
+                "order": [
+                    [0, "desc"]
+                ],
+                "language": idioma_espanol
+            });
+
+            $("#id_maquinaria").change(function() {
+                var valor = $(this).val(); // Capturamos el valor del select
+                var texto = $(this).find('option:selected').text(); // Capturamos el texto del option seleccionado
+
+                $("#CodArea").val(valor);
+                $("#maquina").val(texto);
+                if ($(this).find('option:selected').text() === 'Otros') {
+
+                    $("input[name=CodArea]").attr("readonly", false);
+                } else {
+                    $("#CodArea").attr("readonly", true);
+                }
+            });
+
+            $("input[name=desde]").datepicker();
+            $("input[name=hasta]").datepicker();
+
+
+
+              $('#chkveg').multiselect({
+
+                  includeSelectAllOption: true
+              });
+
+        });
+
+        var idioma_espanol = {
+            "sProcessing":      "Procesando...",
+                "sLengthMenu":      "Mostrar _MENU_ registros",
+                "sZeroRecords":     "No se encontraron resultados",
+                "sEmptyTable":      "Ningún dato disponible en esta tabla",
+                "sInfo":            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":       "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":    "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":     "",
+                "sSearch":          "Buscar:",
+                "sUrl":             "",
+                "sInfoThousands":   ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                "sFirst":     "Primero",
+                        "sLast":      "Último",
+                        "sNext":      "Siguiente",
+                        "sPrevious": "Anterior"
+            },
+                "oAria": {
+                "sSortAscending":   ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    </script>
+
+    </body>
+
+    </html>

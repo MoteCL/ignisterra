@@ -529,6 +529,7 @@
                                                 <div class="form-group">
                                                     <label>Fecha de intervencion</label>
                                                         <input type="date" class="form-control" id="datePicker" name="fechaSeguimiento" value="">
+                                                        <!-- <input type="text" id="datePicker" name="fechaSeguimiento" class="form-control validate" required> -->
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group">
@@ -685,6 +686,7 @@
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label>Fecha de intervencion</label>
+                                                      <!-- <input type="text" id="datePicker" name="fechaSeguimiento" class="form-control validate" required> -->
                                                     <input type="date" class="form-control" id="datePicker" name="fechaSeguimiento" value="">
                                                 </div>
                                                 <div class="row">
@@ -708,7 +710,7 @@
                                     </div>
 
                                     <?php endif; ?>
-                                     <p>Content here. <a class="alert" href=#>Alert!</a></p>
+
                                 </div>
                             </div>
                         </div>
@@ -726,24 +728,15 @@
             - v1.1.0
         </div>
     </footer>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> -->
+
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/jquery.timepicker.js'); ?>"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-    <!-- <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/bootbox.min.js'); ?>"></script> -->
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js'); ?>"></script>
 
-
-    <script>
-           $(document).on("click", ".alert", function(e) {
-               bootbox.alert("Hello world!", function() {
-                   console.log("Alert Callback");
-               });
-           });
-       </script>
 
 
 
@@ -752,6 +745,7 @@
 
     <script>
         $(document).ready(function() {
+          // $("input[name=fechaSeguimiento]").datepicker();
 
           var now = new Date();
 

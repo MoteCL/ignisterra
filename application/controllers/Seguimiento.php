@@ -83,9 +83,14 @@ class Seguimiento extends CI_Controller
                   'charset' => $row->charset
               );
           }
-          $result3 = $this->seguimiento->getArea($area);
-          foreach ($result3 as $row) {
-              $areaSupervisor = $row->CodArea;
+
+          if ($area =='administracion') {
+            $supervisor = 'mgonzalez@ignisterra.com';
+          }else {
+            $result3 = $this->seguimiento->getArea($area);
+            foreach ($result3 as $row) {
+                $areaSupervisor = $row->CodArea;
+            }
           }
 
           $result2 = $this->seguimiento->getSupervisor($areaSupervisor);
@@ -206,6 +211,8 @@ class Seguimiento extends CI_Controller
       $data['Tipo']   = $session_data['Tipo'];
       $desde          = $this->input->post('desde');
       $hasta          = $this->input->post('hasta');
+      $desde =  date('Y-m-d',strtotime($desde));
+			$hasta =  date('Y-m-d',strtotime($hasta));
       $urgente        = $this->input->post('urgente');
       $tipomantencion = $this->input->post('tipomantencion');
       $abierta        = $this->input->post('estado');
@@ -300,11 +307,13 @@ class Seguimiento extends CI_Controller
 
       } else if ($my_action == 'other') {
 
-          $this->form_validation->set_rules('horaInicio', 'horaInicio', 'required', array(
-              'required' => 'Ingrese una hora de inicio'
+          $this->form_validation->set_rules('horaInicio', 'horaInicio', 'required|max_length[5]', array(
+              'required' => 'Ingrese una hora de inicio',
+              'max_length' => 'Largo Incorrecto'
           ));
-          $this->form_validation->set_rules('horaTermino', 'horaTermino', 'required', array(
-              'required' => 'Ingrese una hora de termino'
+          $this->form_validation->set_rules('horaTermino', 'horaTermino', 'required|max_length[5]', array(
+              'required' => 'Ingrese una hora de termino',
+              'max_length' => 'Largo Incorrecto'
           ));
 
           $this->form_validation->set_rules('HH', 'HH', 'required', array(
@@ -314,6 +323,8 @@ class Seguimiento extends CI_Controller
           $this->form_validation->set_rules('HM', 'HM', 'required');
 
           if ($this->form_validation->run()) {
+            // $fechaSeguimiento =$this->input->post('fechaSeguimiento');
+        		// $fechaSeguimiento =  date('Y-m-d',strtotime($fechaSeguimiento));
               $data2 = array(
                   'fechaSeguimiento' => $_POST['fechaSeguimiento'],
                   'horaInicio' => $_POST['horaInicio'],

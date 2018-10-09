@@ -144,11 +144,12 @@
         <tr>
             <td>
                 <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
-                     Ignisterra.
+                     <?php echo $detalle; ?> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 </div>
             </td>
         </tr>
     </table>
+    
     <!-- pre-header end -->
     <!-- header -->
     <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
@@ -213,7 +214,7 @@
 
                             <div style="line-height: 35px">
 
-                                Tiene una tarea pendiente en <span style="color: #5caad2;">mantencion</span>
+                                Tiene una tarea pendiente en <span style="color: #5caad2;">Mantencion</span>
 
                             </div>
                         </td>
@@ -244,14 +245,14 @@
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
 
-                                        <p style="line-height: 24px; margin-bottom:15px;">
-
-                                            Estimado,
-
-                                        </p>
+                                       
                                         <strong></strong>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                           Se ha ingresado una nueva mantecion con codigo <strong><?php echo $NroSolicitud; ?></strong>. Realizada por el operario <em><?php echo $Nombre; ?></em> codigo <strong><?php echo $Codigo; ?></strong>.
+                                           Codigo Mantencion  <strong><?php echo $NroSolicitud; ?></strong>. 
+                                        </p>
+                                        <h4>Operario</h4>
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                           <em><?php echo $Nombre; ?></em> Codigo : <strong><?php echo $Codigo; ?></strong>.
                                         </p>
                                         <h4>Maquina</h4>
                                         <p style="line-height: 24px;margin-bottom:10px;">
@@ -264,9 +265,7 @@
                                         </p>
 
                                         <p style="line-height: 24px;margin-bottom:10px;"> <strong></strong>
-                                           Tipo de Mantencion : <strong> <?php echo $tipomantencion; ?>. </strong>  <?php if ($tipotrabajo): ?>
-                                              | Tipo de Trabajo : <strong> <?php echo $tipotrabajo ?>. </strong>.
-                                           <?php endif; ?>
+                                           Tipo de Mantencion : <strong> <?php echo $tipomantencion; ?>. </strong>
 
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
@@ -467,3 +466,4 @@
 </body>
 
 </html>
+

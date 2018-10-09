@@ -1,5 +1,4 @@
 
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Mantencion extends CI_Controller
@@ -11,6 +10,7 @@ class Mantencion extends CI_Controller
         $this->load->model('ModelMain', 'main');
         $this->load->model('ModelSeguimiento', 'seguimiento');
         $this->load->model('ModelMaquina', 'maquina');
+        $this->load->model('ModelSupervisor', 'supervisor');
     }
 
     public function index()
@@ -62,7 +62,7 @@ class Mantencion extends CI_Controller
             'required' => 'Seleccione una mantencion'
         ));
         $this->form_validation->set_rules('urgente', 'urgente');
-        $this->form_validation->set_rules('tipotrabajo', 'tipotrabajo');
+        // $this->form_validation->set_rules('tipotrabajo', 'tipotrabajo');
         if ($this->form_validation->run()) {
             $data                   = $this->input->post();
             $data['fechasolicitud'] = date('Y-m-d');
@@ -106,6 +106,11 @@ class Mantencion extends CI_Controller
             foreach ($result2 as $key) {
                 $recibeUr = $key->Correo;
             }
+            $result3 = $this->main->getAP();
+            foreach ($result2 as $key) {
+                $recibeAP = $key->Correo;
+            }
+
 
             $dataa['NroSolicitud']   = $_POST['NroSolicitud'];
             $dataa['maquina']        = $_POST['maquina'];
@@ -114,21 +119,24 @@ class Mantencion extends CI_Controller
             $dataa['CodArea']        = $_POST['CodArea'];
             $dataa['detalle']        = $_POST['detalle'];
             $dataa['CodArea']        = $_POST['CodArea'];
-            $dataa['tipotrabajo']    = $_POST['tipotrabajo'];
+            // $dataa['tipotrabajo']    = $_POST['tipotrabajo'];
             $dataa['tipomantencion'] = $_POST['tipomantencion'];
             $dataa['urgente']        = $_POST['urgente'];
             $dataa['detalle']        = $_POST['detalle'];
             $this->load->library('email', $config);
             $this->email->set_newline("\r\n");
             $body = $this->load->view('email/index.php', $dataa, TRUE);
-            $this->email->to($recibe);
+            $this->email->to(array(
+            $recibe,
+            $recibeAP
+                ));
             if ($this->input->post('urgente')) {
                 $this->email->cc($recibeUr);
-                $this->email->from($envia, '');
-                $this->email->subject('Nueva Mantencion maquina ' . $_POST['maquina']);
+                $this->email->from($envia, 'Urgente');
+                $this->email->subject('Mantencion'. $_POST['maquina']);
             } else {
                 $this->email->from($envia, '');
-                $this->email->subject('Nueva Mantencion maquina ' . $_POST['maquina']);
+                $this->email->subject('Mantencion'. $_POST['maquina']);
             }
 
             $this->email->message($body);
@@ -155,6 +163,8 @@ class Mantencion extends CI_Controller
 
     public function saveMAN()
     {
+        $session_data   = $this->session->userdata('logged_in');
+        $codigoUser = $session_data['Codigo'];
         $this->load->helper('date');
         //$session_data = $this->session->userdata('logged_in');
         $this->form_validation->set_rules('NroSolicitud', 'NroSolicitud');
@@ -176,13 +186,18 @@ class Mantencion extends CI_Controller
         if ($this->form_validation->run() && $this->main->checkUser($check)) {
             $data['NroSolicitud']   = $_POST['NroSolicitud'];
             $data['maquina']        = $_POST['maquina'];
-            $data['tipotrabajo']    = $_POST['tipotrabajo'];
+            // $data['tipotrabajo']    = $_POST['tipotrabajo'];
             $data['tipomantencion'] = $_POST['tipomantencion'];
             $data['orden']          = $this->input->post('orden');
             $data['CodArea']        = $_POST['CodArea'];
             $data['detalle']        = $_POST['detalle'];
             $data['fechasolicitud'] = date('Y-m-d');
-            $data['horasolicitud']  = date('H:i:s');
+            if ($this->input->post('horasolicitud')) {
+                $data['horasolicitud']  = $this->input->post('horasolicitud');
+            }else {
+                $data['horasolicitud']  = date('H:i:s');
+            }
+
             $data['estado']         = 'ABIERTA';
             $data['cod_detecta']    = $this->input->post('phoneData');
             $data['urgente']        = 'NO';
@@ -221,10 +236,19 @@ class Mantencion extends CI_Controller
                 $area = $key->CodArea;
             }
 
-            $result6 = $this->maquina->getSupervisor($area);
-            foreach ($result6 as $key) {
-                $supervisor = $key->Correo;
+            if ($area =='ADM' || 'PLV') {
+              $supervisor = 'mgonzalez@ignisterra.com';
+            }else {
+              $result6 = $this->maquina->getSupervisor($area);
+              foreach ($result6 as $key) {
+                  $supervisor = $key->Correo;
+              }
             }
+            $result7 = $this->main->getAP();
+            foreach ($result2 as $key) {
+                $recibeAP = $key->Correo;
+            }
+
 
             $dataa['NroSolicitud']   = $_POST['NroSolicitud'];
             $dataa['maquina']        = $_POST['maquina'];
@@ -232,7 +256,7 @@ class Mantencion extends CI_Controller
             $dataa['Codigo']         = $this->input->post('phoneData');
             $dataa['CodArea']        = $_POST['CodArea'];
             $dataa['detalle']        = $_POST['detalle'];
-            $dataa['tipotrabajo']    = $_POST['tipotrabajo'];
+            // $dataa['tipotrabajo']    = $_POST['tipotrabajo'];
             $dataa['tipomantencion'] = $_POST['tipomantencion'];
             $dataa['urgente']        = $_POST['urgente'];
             $machine                 = $this->input->post('maquina');
@@ -242,7 +266,8 @@ class Mantencion extends CI_Controller
             $this->email->from($envia, '');
             $this->email->to(array(
                 $recibe,
-                $supervisor
+                $supervisor,
+                $recibeAP
             ));
             $this->email->subject('Nueva Mantencion maquina ' . $machine);
             $this->email->message($body);
@@ -250,17 +275,36 @@ class Mantencion extends CI_Controller
             if ($this->email->send()) {
                 $this->session->set_flashdata('success_msg', 'Mantención  ingresada exitosamente');
             } else {
-                $message .= $this->email->print_debugger();
+                //$message .= $this->email->print_debugger();
                 $this->session->set_flashdata('success_msg', $message);
             }
+            if ($codigoUser==999) {
+                return redirect('mantencion/landingPage');
+            }else {
 
-            return redirect('landingPage/index');
+              return redirect('main/index');
+            }
+
         } else {
+
+          if ($codigoUser==999) {
+            $this->session->set_flashdata('error_msg', 'Codigo Invalido');
+            $data['data']   = $this->ma->getallMaquinas();
+            $data['costos'] = $this->ma->getAllCentroCosto();
+            $data['orden']  = $this->ma->getOrden();
+            $data['Codigo'] = $session_data['Codigo'];
+            $data['Nombre'] = $session_data['Nombre'];
+            $data['Tipo']   = $session_data['Tipo'];
+            $this->load->view('dashboard-MAN', $data);
+          }else {
+
             $this->session->set_flashdata('error_msg', 'Codigo Invalido');
             $data['data']   = $this->ma->getallMaquinas();
             $data['costos'] = $this->ma->getAllCentroCosto();
             $data['orden']  = $this->ma->getOrden();
             $this->load->view('landing-pageforall', $data);
+          }
+
         }
     }
 
@@ -382,11 +426,13 @@ class Mantencion extends CI_Controller
         $this->form_validation->set_rules('tipo_detencion', 'tipo_detencion', 'required', array(
             'required' => 'Seleccione una detencion'
         ));
-        $this->form_validation->set_rules('horaInicio', 'horaInicio', 'required', array(
-            'required' => 'Ingrese una hora de inicio'
+        $this->form_validation->set_rules('horaInicio', 'horaInicio', 'required|max_length[5]', array(
+            'required' => 'Ingrese una hora de inicio',
+            'max_length' => 'Largo Incorrecto'
         ));
-        $this->form_validation->set_rules('horaTermino', 'horaTermino', 'required', array(
-            'required' => 'Ingrese una hora de termino'
+        $this->form_validation->set_rules('horaTermino', 'horaTermino', 'required|max_length[5]', array(
+            'required' => 'Ingrese una hora de termino',
+            'max_length' => 'Largo Incorrecto'
         ));
         $this->form_validation->set_rules('Comentario', 'Comentario', 'required', array(
             'required' => 'Agrege un breve comentario'
@@ -409,6 +455,8 @@ class Mantencion extends CI_Controller
                 $data['fecha']          = date('Y-m-d');
                 $data['estado']         = 'TECNICA';
                 $id_seguimiento         = $this->seguimiento->create('MAN_Seguimiento', $data);
+                // $fechaSeguimiento =$this->input->post('fechaSeguimiento');
+                // $fechaSeguimiento =  date('Y-m-d',strtotime($fechaSeguimiento));
                 $data2                  = array(
                     'fechaSeguimiento' => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
@@ -493,6 +541,8 @@ class Mantencion extends CI_Controller
                 $data['fecha']          = date('Y-m-d');
 
                 $id_seguimiento = $this->seguimiento->create('MAN_Seguimiento', $data);
+                // $fechaSeguimiento =$this->input->post('fechaSeguimiento');
+                // $fechaSeguimiento =  date('Y-m-d',strtotime($fechaSeguimiento));
                 $data2          = array(
                     'fechaSeguimiento' => $_POST['fechaSeguimiento'],
                     'horaInicio' => $_POST['horaInicio'],
@@ -610,18 +660,36 @@ class Mantencion extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('main/login', 'refresh');
         }
-
         $session_data   = $this->session->userdata('logged_in');
-        $area           = $session_data['DescArea'];
-        $data['Codigo'] = $session_data['Codigo'];
-        $data['Nombre'] = $session_data['Nombre'];
-        $data['Tipo']   = $session_data['Tipo'];
-        $data['Area']   = $session_data['Area'];
-        $data['datos']  = $this->ma->listByArea($area);
 
-        // print_r($data);
+        if ($session_data['Nombre']=="ARAUS OSORIO NIBALDO ALEXIS") {
 
-        $this->load->view('list-sup', $data);
+          $area           = $session_data['DescArea'];
+          $data['Codigo'] = $session_data['Codigo'];
+          $data['Nombre'] = $session_data['Nombre'];
+          $data['Tipo']   = $session_data['Tipo'];
+          $data['Area']   = $session_data['Area'];
+          $data['datos']  = $this->supervisor->listByArea($area);
+
+          // print_r($data);
+
+          $this->load->view('list-sup', $data);
+
+        }else {
+          $session_data   = $this->session->userdata('logged_in');
+          $area           = $session_data['DescArea'];
+          $data['Codigo'] = $session_data['Codigo'];
+          $data['Nombre'] = $session_data['Nombre'];
+          $data['Tipo']   = $session_data['Tipo'];
+          $data['Area']   = $session_data['Area'];
+          $data['datos']  = $this->ma->listByArea($area);
+
+          // print_r($data);
+
+          $this->load->view('list-sup', $data);
+        }
+
+
     }
 
     public function editarUrgente($id)
@@ -791,18 +859,29 @@ class Mantencion extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect('main/login', 'refresh');
         }
+        $session_data   = $this->session->userdata('logged_in');
 
-        $session_data     = $this->session->userdata('logged_in');
-        $data['Codigo']   = $session_data['Codigo'];
-        $data['Nombre']   = $session_data['Nombre'];
-        $data['Tipo']     = $session_data['Tipo'];
-        $data['DescArea'] = $session_data['DescArea'];
-        $area             = $session_data['DescArea'];
-        $data['datos']    = $this->seguimiento->getCerradaPorArea($area);
+        if ($session_data['Nombre']=="ARAUS OSORIO NIBALDO ALEXIS") {
+          $data['Codigo']   = $session_data['Codigo'];
+          $data['Nombre']   = $session_data['Nombre'];
+          $data['Tipo']     = $session_data['Tipo'];
+          $data['DescArea'] = $session_data['DescArea'];
+          $area             = $session_data['DescArea'];
+          $data['datos']    = $this->supervisor->getCerradaPorArea($area);
 
-        //	print_r($data);
+          $this->load->view('list-cerrada', $data);
 
-        $this->load->view('list-cerrada', $data);
+        }else {
+          $data['Codigo']   = $session_data['Codigo'];
+          $data['Nombre']   = $session_data['Nombre'];
+          $data['Tipo']     = $session_data['Tipo'];
+          $data['DescArea'] = $session_data['DescArea'];
+          $area             = $session_data['DescArea'];
+          $data['datos']    = $this->seguimiento->getCerradaPorArea($area);
+
+          $this->load->view('list-cerrada', $data);
+        }
+
     }
 
     public function editarSolicitud()

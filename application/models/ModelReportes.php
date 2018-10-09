@@ -51,17 +51,18 @@ class ModelReportes extends CI_Model {
  public function getHistorial($desde,$hasta,$maquina)
  {
 
-   //$this->db->select('MAN.orden,MAN.NroSolicitud,MAN.cod_detecta,MAN.maquina,MAN.fechasolicitud,MAN.horasolicitud,MAN.tipomantencion,MAN.CodArea,s.fecha as fechaT');
-   $this->db->distinct('MAN.orden');
-   $this->db->select('*');
-   $this->db->from('MAN_Solicitud as MAN');
-  //$this->db->join('MAN_Seguimiento as s', 's.NroSolicitud = MAN.NroSolicitud');
-   $this->db->join('MAN_Cierre as s', 's.NroSolicitud = MAN.NroSolicitud');
-   $this->db->where('MAN.maquina',$maquina);
-   $this->db->where('MAN.fechasolicitud >=',$desde);
-   $this->db->where('MAN.fechasolicitud <=',$hasta);
-   $this->db->order_by('MAN.fechasolicitud', 'desc');
-   $query = $this->db->get();
+
+   $sql = "SELECT distinct s.orden,s.NroSolicitud,s.maquina,s.fechasolicitud,s.detalle,s.horasolicitud,s.tipomantencion,c.fecha,c.hora,s.tipotrabajo FROM `MAN_Solicitud` as s LEFT JOIN MAN_Cierre as c ON c.NroSolicitud = s.NroSolicitud WHERE s.maquina='$maquina' AND  s.fechasolicitud BETWEEN '$desde' AND '$hasta'";
+   // $this->db->distinct('MAN.orden');
+   // $this->db->select('*');
+   // $this->db->from('MAN_Solicitud as MAN');
+   // $this->db->join('MAN_Cierre as s', 's.NroSolicitud = MAN.NroSolicitud');
+   // $this->db->where('MAN.maquina',$maquina);
+   // $this->db->where('MAN.fechasolicitud >=',$desde);
+   // $this->db->where('MAN.fechasolicitud <=',$hasta);
+   // $this->db->order_by('MAN.fechasolicitud', 'desc');
+   // $query = $this->db->get();
+      $query = $this->db->query($sql);
 
    if ($query->num_rows() > 0) {
      return $query->result();
@@ -130,7 +131,7 @@ class ModelReportes extends CI_Model {
  public function getSeguimientoTecnico($minvalue,$maxvalue,$id)
  {
    $this->db->distinct();
-   $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina, d.total, d.fechaSeguimiento');
+   $this->db->select('t.id_tecnico,t.id_detalle,p.Nombre,s.idMan_Tecnico,s.fecha,s.NroSolicitud,d.horaInicio,d.horaTermino,d.Comentario,m.maquina, d.total, d.fechaSeguimiento,d.HM');
    // $this->db->from('MAN_TecnicoSeguimiento as t');
    $this->db->from('MAN_SeguimientoDetalle as d');
    $this->db->join('MAN_TecnicoSeguimiento as t','t.id_detalle = d.id_detalle');
@@ -143,16 +144,7 @@ class ModelReportes extends CI_Model {
    $this->db->where('d.fechaSeguimiento >=',$minvalue);
    $this->db->where('d.fechaSeguimiento <=',$maxvalue);
    $this->db->order_by('s.fecha', 'asc');
-   // $query1 = $this->db->get_compiled_select();
-   //
-   //
-   // $this->db->select('act.NroSolicitud as NroAct, act.fecha,act.actividad,act.Comentario, act.TotalHrs, act.orden, act.horaActividad, act.id_tecnico ');
-   // $this->db->from('MAN_Actividades as act');
-   // $this->db->where('act.fecha >=',$minvalue);
-   // $this->db->where('act.fecha <=',$maxvalue);
-   // $this->db->where('act.id_tecnico <=',$id);
-   // $query2 = $this->db->get_compiled_select();
-   // return $this->db->query($query1." UNION ".$query2)->result();
+
    $query = $this->db->get();
 
 
@@ -164,13 +156,15 @@ class ModelReportes extends CI_Model {
  public function getActividades($minvalue,$maxvalue,$id)
  {
 
-   $this->db->select('*');
-   $this->db->from('MAN_Actividades');
-   $this->db->where('fecha >=',$minvalue);
-   $this->db->where('fecha <=',$maxvalue);
-   $this->db->where('id_tecnico',$id);
-
-   $query = $this->db->get();
+ $sql ="SELECT *  FROM MAN_Actividades WHERE fecha BETWEEN '$minvalue' AND '$maxvalue' AND id_tecnico='$id'";
+    $query = $this->db->query($sql);
+   // $this->db->select('*');
+   // $this->db->from('MAN_Actividades');
+   // $this->db->where('fecha >=',$minvalue);
+   // $this->db->where('fecha <=',$maxvalue);
+   // $this->db->where('id_tecnico',$id);
+   //
+   // $query = $this->db->get();
 
    if ($query->num_rows() > 0) {
      return $query->result();

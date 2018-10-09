@@ -301,12 +301,13 @@
                                         <div class="row">
                                             <div class="col-6 col-md-3">
                                                 <h3>Listado de Maquinas</h3> <br>
-                                                <select class="form-control selectpicker" data-live-search="true" name="maquina">
+                                             <select class="form-control select2 select2-hidden-accessible"  name="maquina" tabindex="-1" aria-hidden="true">
                                                   <?php if ($maquinas): ?>
                                                     <?php foreach ($maquinas as $maquina): ?>
-                                                      <option data-tokens="<?php echo $maquina-> Maquina; ?>" value="<?php echo $maquina-> Maquina ?>">  <?php echo $maquina-> Maquina ?></option>
-                                                    <?php endforeach; ?>
+                                                      <option  value="<?php echo $maquina-> DescArea ?>"><?php echo $maquina-> Maquina ?></option>
+                                                      <?php endforeach; ?>
                                                   <?php endif; ?>
+
                                                 </select>
                                                 <br>
                                                 <br>

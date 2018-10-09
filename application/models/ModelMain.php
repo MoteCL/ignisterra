@@ -79,6 +79,17 @@ class ModelMain extends CI_Model
 		}
 
 	}
+	public function getAP()
+	{
+		$query = $this->db->get_where('personal', array(
+			'Area' => 'AP',
+			'Cargo'=>'JA'
+		));
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		}
+
+}
 
 	public function getEmail()
 	{
@@ -132,7 +143,7 @@ class ModelMain extends CI_Model
 	{
 		return $this->db->where('Codigo', $id)->update('personal', $data);
 	}
-	
+
 
 }
 

@@ -57,104 +57,48 @@
                             require_once(APPPATH.'views/template/nav-user.php');
                           break;
                         case 2:
-                              require_once(APPPATH.'views/template/nav-sup.php');
-                            break;
-                        case 3:
                         ?>
+
                         <ul class="nav navbar-nav">
                             <li class="">
                                 <a href="<?php echo base_url('index.php/main/index'); ?>" target="_self" style="color:">
                         <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                             </li>
                             <li class="">
-                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                                 </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#3-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-search"></span> <span class="title">Buscador</span> </a>
-                                <div id="3-dropdown-element" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/buscarView');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-search"></span> <span class="title">Buscar Mantencion</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/seguimiento/entreFechas');?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Entre fecha</span> </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <li class="">
+                                <a href="<?php echo base_url('index.php/mantencion/listByArea'); ?>" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">List Solicitud<span>
+                                </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#1-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-list"></span> <span class="title">Listado</span> </a>
-                                <div id="1-dropdown-element" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/mantencion/listado');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Lista de Mantencion</span> </a>
-                                            </li>
-
-
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/seguimiento/MAN_Seguimiento');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">List por Ejecutar</span> </a>
-                                            </li>
-
-
-                                        </ul>
-                                    </div>
-                                </div>
+                            <li class="">
+                                <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerradas<span>
+                                </a>
                             </li>
                             <li class="dropdown">
                                 <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="true" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
                                 <div id="2-dropdown-element" class="panel-collapse collapse in" aria-expanded="true" >
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <!-- <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-list"></span> <span class="title">Desemnio Maquinas</span> </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/indice');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-check"></span> <span class="title">Indice de cumplimiento</span> </a>
-                                            </li> -->
-                                            <!-- <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-person"></span> <span class="title">Informe horas hombres</span> </a>
-                                            </li> -->
+
                                             <li class="active">
-                                                <a href="<?php echo base_url('index.php/reportes/historialMaquina');  ?>" target="_self" style="color:">
+                                                <a href="<?php echo base_url('index.php/supervisor/historialMaquina');  ?>" target="_self" style="color:">
                         <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
                                             </li>
-                                            <li class="">
-                                                <a href="<?php echo base_url('index.php/reportes/historialPersonal');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-settings"></span> <span class="title">Informe Tecnicos</span> </a>
-                                            </li>
-                                            <!-- <li class="">
-                                                <a href="#" target="_self" style="color:">
-                        <span class="icon voyager-laptop"></span> <span class="title">Programa Mantencion</span> </a>
-                                            </li> -->
+
+
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/main/otherActivities');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-world"></span> <span class="title">Otras actividades</span> </a>
-                            </li>
-                            <li class="">
-                                <a href="<?php echo base_url('index.php/calendario/index');  ?>" target="_self" style="color:">
-                        <span class="icon voyager-calendar"></span> <span class="title">Calendarizacion</span> </a>
-                            </li>
-
                         </ul>
 
-
                         <?php
+                            break;
+                        case 3:
+                            require_once(APPPATH.'views/template/nav-enc.php');
+
                             break;
                         case 4:
                         ?>
@@ -283,33 +227,32 @@
                                 <div class="panel panel-bordered">
                                     <!-- form start -->
                                     <div class="panel-body ">
-                                        <?php echo form_open('reportes/buscarHistorial',['name'=>'form']); ?>
+                                        <?php echo form_open('supervisor/buscarHistorial',['name'=>'form']); ?>
                                       <div class="col-4 col-md-2">
                                           <h3> Desde</h3>
-                                          <br>
+                                            <div class="form-group">
                                           <div class="form-group">
-                                            <input type="text" id="fechadesde" name="fechadesde" class="form-control validate" required>
-                                              <!-- <input type="date" class="form-control" name="fechadesde" value=""> -->
+                                              <input type="date" class="form-control" name="fechadesde" value="">
                                               <?php echo form_error('fechadesde','<div class="text-danger">','</div>') ?>
+                                          </div>
                                           </div>
 
                                       </div>
                                       <div class="col-4 col-md-2">
                                           <h3>Hasta</h3>
-                                          <br>
+                                            <div class="form-group">
                                           <div class="form-group">
-                                              <input type="text" id="fechahasta" name="fechahasta" class="form-control validate" required>
-                                              <!-- <input type="date" class="form-control" name="fechahasta" value=""> -->
+                                              <input type="date" class="form-control" name="fechahasta" value="">
                                               <?php echo form_error('fechahasta','<div class="text-danger">','</div>') ?>
                                           </div>
-
+                                          </div>
                                       </div>
-                                      <div class="col-4 col-md-4">
+                                      <div class="col-4 col-md-3">
                                       <div class="form-group">
-                                        <h3>Maquina</h3>
-                                        <br>
-                                           <select  class="form-control select2 select2-hidden-accessible" name="maquina">
-                                                 <option selected="" disabled> --- Maquinas ---</option>
+                                               <h3><strong>Maquinas</strong></h3>
+
+                                          <select class="form-control select2 select2-hidden-accessible" name="maquina" tabindex="-1" aria-hidden="true">
+                                            <option selected="" disabled> --- Maquina ---</option>
                                              <?php if ($maquinas): ?>
                                                <?php foreach ($maquinas as $maquina): ?>
                                                  <option value=" <?php echo $maquina-> Maquina; ?>"><?php echo $maquina-> Maquina; ?></option>
@@ -323,7 +266,7 @@
                                        <div class="col-4 col-md-3">
                                        <div class="form-group">
                                             <br>
-                                            <br>
+
                                         <?php echo form_submit(['name'=>'submit','value'=>'Buscar','class'=>'btn btn-primary']); ?>
 
                                             </select>
@@ -351,8 +294,6 @@
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-multiselect.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js'); ?>"></script>
 
 
 
@@ -380,19 +321,17 @@
                 }
             });
 
-            $("input[name=fechadesde]").datepicker();
-            $("input[name=fechahasta]").datepicker();
 
-            // var now = new Date();
-            //
-            // var day = ("0" + now.getDate()).slice(-2);
-            // var month = ("0" + (now.getMonth() + 1)).slice(-2);
-            //
-            // var today = now.getFullYear() + "-" + (month) + "-" + (day);
-            //
-            //
-            // $('input[name=fechadesde]').val(today);
-            // $('input[name=fechahasta]').val(today);
+            var now = new Date();
+
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+
+            $('input[name=fechadesde]').val(today);
+            $('input[name=fechahasta]').val(today);
 
               $('#chkveg').multiselect({
 

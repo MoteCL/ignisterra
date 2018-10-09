@@ -301,7 +301,8 @@
                                           <h3> Desde</h3>
                                           <br>
                                           <div class="form-group">
-                                              <input type="date" class="form-control" name="fechadesde" value="" >
+                                             <input type="text" id="fechadesde" name="fechadesde" class="form-control validate" required>
+                                              <!-- <input type="date" class="form-control" name="fechadesde" value="" > -->
                                               <?php echo form_error('fechadesde','<div class="text-danger">','</div>') ?>
                                           </div>
                                       </div>
@@ -310,7 +311,8 @@
                                           <h3>Hasta</h3>
                                           <br>
                                           <div class="form-group">
-                                              <input type="date" class="form-control" name="fechahasta" value="">
+                                            <input type="text" id="fechahasta" name="fechahasta" class="form-control validate" required>
+                                              <!-- <input type="date" class="form-control" name="fechahasta" value=""> -->
                                               <?php echo form_error('fechahasta','<div class="text-danger">','</div>') ?>
                                           </div>
 
@@ -327,6 +329,8 @@
                                                <?php endforeach; ?>
                                              <?php endif; ?>
                                               <option value="1774"> CAJALES MIRANDA DOMINGO EDUARDO</option>
+                                              <!-- <option value="2278"> Moises</option>
+                                              <option value="942"> Ale</option> -->
 
                                            </select>
                                          </div>
@@ -369,6 +373,8 @@
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-multiselect.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js'); ?>"></script>
 
 
 
@@ -396,17 +402,20 @@
                 }
             });
 
-
-            var now = new Date();
-
-            var day = ("0" + now.getDate()).slice(-2);
-            var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            $("input[name=fechadesde]").datepicker();
+            $("input[name=fechahasta]").datepicker();
 
 
-            $('input[name=fechadesde]').val(today);
-            $('input[name=fechahasta]').val(today);
+            // var now = new Date();
+            //
+            // var day = ("0" + now.getDate()).slice(-2);
+            // var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            //
+            // var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            //
+            //
+            // $('input[name=fechadesde]').val(today);
+            // $('input[name=fechahasta]').val(today);
 
               $('#chkveg').multiselect({
 

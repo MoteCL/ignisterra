@@ -133,6 +133,8 @@ class Reportes extends CI_Controller {
 
 			$desde =$this->input->post('fechadesde');
 			$hasta =$this->input->post('fechahasta');
+			$desde =  date('Y-m-d',strtotime($desde));
+			$hasta =  date('Y-m-d',strtotime($hasta));
 			$maquina =  $this->input->post('maquina');
 			$data['desde'] = $desde;
 			$data['hasta'] = $hasta;
@@ -144,7 +146,7 @@ class Reportes extends CI_Controller {
 
 
 
-			//print_r($data);
+			// print_r($data);
 
 
 			$this->load->view('report/historial-result',$data);
@@ -193,6 +195,9 @@ class Reportes extends CI_Controller {
 		 	$persona =  $this->input->post('persona');
 			$desde =$this->input->post('fechadesde');
 			$hasta =$this->input->post('fechahasta');
+
+			$desde =  date('Y-m-d',strtotime($desde));
+			$hasta =  date('Y-m-d',strtotime($hasta));
 
 			$data['desde'] = $desde;
 			$data['hasta'] = $hasta;
@@ -267,6 +272,8 @@ class Reportes extends CI_Controller {
 		$data['Tipo'] = $session_data['Tipo'];
 		$desde = $this->input->post('desde');
 		$hasta =$this->input->post('hasta');
+		$desde =  date('Y-m-d',strtotime($desde));
+		$hasta =  date('Y-m-d',strtotime($hasta));
 		$urgente = $this->input->post('urgente');
 		$tipomantencion =$this->input->post('tipomantencion');
 		$this->db->select('*');

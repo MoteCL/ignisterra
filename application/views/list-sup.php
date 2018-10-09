@@ -82,6 +82,22 @@
                                 <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerradas<span>
                                 </a>
                             </li>
+                            <li class="dropdown">
+                                <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                                <div id="2-dropdown-element" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+
+                                            <li class="">
+                                                <a href="<?php echo base_url('index.php/supervisor/historialMaquina');  ?>" target="_self" style="color:">
+                        <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
 
 
@@ -102,7 +118,7 @@
                 <div class="side-body padding-top">
                     <div class="container-fluid">
                         <h1 class="page-title">
-                            <i class="voyager-news"></i> Listado de Solicitud de acuerdo a su Area
+                            <i class="voyager-news"></i> Listado de Solicitud de acuerdo a su Area <em><?php echo $Area; ?></em> 
                         </h1>
 
                     </div>
@@ -121,10 +137,11 @@
                                                     <tr>
                                                         <th>NroSolicitud</th>
                                                         <th>Fecha</th>
+                                                        <th>Detalle</th>
                                                         <th>Maquina</th>
                                                         <th>Solicitante</th>
                                                         <th>Urgente</th>
-                                                        <th>Cambiar estado</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -141,6 +158,9 @@
                                                               <?php echo date('j M Y',strtotime($dato-> fechasolicitud)); ?>
                                                           </td>
                                                           <td>
+                                                            <?php echo  mb_substr($dato -> detalle,0,20); ?>
+                                                          </td>
+                                                          <td>
                                                               <?php echo $dato-> maquina; ?>
                                                           </td>
                                                           <td>
@@ -150,8 +170,8 @@
                                                               <?php echo $dato-> urgente; ?>
                                                           </td>
                                                           <td>
-                                                          <!-- <a href="<?php echo base_url( '/index.php/mantencion/editarUrgente/'.$dato->NroSolicitud); ?>" class="badge badge-danger disabled">
-                                                          <i class="icon voyager-edit disabled">Editar </i></a> -->
+                                                            <a href="<?php echo base_url( '/index.php/supervisor/verMantencion2/'.$dato->NroSolicitud); ?>"  class="badge badge-warning" >
+                                                            <i class="icon voyager-check">Ver Seguimiento </i></a>
 
                                                           </td>
                                                       </tr>
@@ -163,6 +183,9 @@
                                                             </td>
                                                             <td>
                                                                   <?php echo date('j M Y',strtotime($dato-> fechasolicitud)); ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $dato-> detalle; ?>
                                                             </td>
                                                             <td>
                                                                 <?php echo $dato-> maquina; ?>
@@ -177,6 +200,8 @@
 
                                                             <a href="<?php echo base_url( '/index.php/mantencion/editarUrgente/'.$dato->NroSolicitud); ?>"  class="badge badge-success" >
                                                             <i class="icon voyager-edit">Editar </i></a>
+                                                            <a href="<?php echo base_url( '/index.php/supervisor/verMantencion2/'.$dato->NroSolicitud); ?>"  class="badge badge-warning" >
+                                                            <i class="icon voyager-check">Ver Seguimiento </i></a>
                                                             </td>
                                                         </tr>
                                                     <?php endif; ?>

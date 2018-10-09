@@ -78,7 +78,7 @@
                         <span class="icon voyager-documentation"></span> <span class="title">Panel de Control</span> </a>
                             </li>
                             <li class="active">
-                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Solicitar Mant.<span>
+                                <a href="<?php echo base_url('index.php/mantencion/landingPage'); ?>" target="_self" style="color:"> <span class="icon voyager-tag"></span> <span class="title">Orden Trabajo<span>
                                 </a>
                             </li>
                             <li class="">
@@ -88,6 +88,22 @@
                             <li class="">
                                 <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerradas<span>
                                 </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                                <div id="2-dropdown-element" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+
+                                            <li class="">
+                                                <a href="<?php echo base_url('index.php/supervisor/historialMaquina');  ?>" target="_self" style="color:">
+                        <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
 
@@ -334,8 +350,8 @@
 
                                     <div class="panel-body">
 
-                                        <div class="form-group  col-md-5">
-                                            <h2><strong>Numero de Solicitud</strong></h2>
+                                        <div class="form-group  col-md-2">
+                                            <h2><strong>№ de Solicitud</strong></h2>
                                             <h3>
                                               <?php if ($orden): ?>
                                                 <?php $Num =0; ?>
@@ -350,6 +366,12 @@
                                               <?php endif; ?>
 
                                             </h3>
+                                        </div>
+                                        <div class="form-group  col-md-2">
+                                            <h2><strong>Hora</strong></h2>
+                                            <input type="text" id="timeformatExample1" class="form-control" name="horasolicitud" value="">
+
+
                                         </div>
                                         <div class="form-group col-md-5">
                                             <h2><strong>Codigo Personal</strong></h2>

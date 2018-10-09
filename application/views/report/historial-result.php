@@ -313,34 +313,33 @@
                                       <h2 class="text-center">Tiempo por Maquina de trabajos realizados por Mantenimiento</h2>
                                       <p><strong>Desde </strong> <?php echo $desdeformat ?>  &nbsp;  &nbsp;  &nbsp;  <strong>Hasta </strong><?php echo $hastaformat ?></p>
                                       <h4><?php echo $maquina; ?></h4>
+                                      <br>
                                       <?php if ($results): ?>
                                         <?php foreach ($results as $machine): ?>
-                                        <div class="row" style="border: 1px solid #9d9f9d;">
-                                        <div class="col-4 col-sm-4">Tipo Mantencion
-                                            <p>
-                                                <?php echo $machine->tipomantencion; ?>
-                                            </p>
+                                        <div class="row">
+
+                                        <div class="col-md-4">
+                                          <label>Tipo Mantencion</label>
+                                          <p>
+                                              <?php echo $machine->tipomantencion; ?>
+                                          </p>
                                         </div>
-                                        <div class="col-4 col-sm-6">Tipo trabajo
+                                        <div class="col-md-4">
+                                            <label>Tipo trabajo</label>
                                             <p>
                                                 <?php echo $machine->tipotrabajo; ?>
                                             </p>
                                         </div>
-                                        <div class="col-4 col-sm-1">Total detencion
-                                            <p>
-                                                x
-                                            </p>
-                                        </div>
+
                                       </div>
-                                      <table class="table table-hover">
+                                      <table class="table table-striped table-bordered">
                                          <thead>
-                                            <tr>
+                                            <tr class="bg-warning">
                                                 <th>Nro Solicitud</th>
                                                 <th>Fecha Solicitud</th>
                                                 <th>Hora Solicitud</th>
                                                 <th>Detalle</th>
                                                 <th>Fecha Entrega</th>
-
                                                 <th>Dias</th>
                                                 <th>Horas</th>
                                             </tr>
@@ -365,7 +364,12 @@
                                               <?php echo $machine->detalle; ?>
                                             </td>
                                             <td>
-                                                <?php echo date('j M Y',strtotime($machine->fecha));?>
+                                              <?php if ($machine->fecha!=''): ?>
+                                                    <?php echo date('j M Y',strtotime($machine->fecha));?>
+                                              <?php else: ?>
+                                                Sin cerrar
+                                              <?php endif; ?>
+
 
                                             </td>
                                             <td>
@@ -380,12 +384,17 @@
                                               ?>
                                             </td>
                                             <td>
-                                              <?php
-                                              $time1 = new DateTime($machine->horasolicitud);
-                                              $time2 = new DateTime($machine->hora);
-                                              $interval = $time1->diff($time2);
-                                              echo $interval->format('%H:%i');
-                                              ?>
+                                              <?php if ($machine->hora!=''): ?>
+                                                <?php
+                                                $time1 = new DateTime($machine->horasolicitud);
+                                                $time2 = new DateTime($machine->hora);
+                                                $interval = $time1->diff($time2);
+                                                echo $interval->format('%H:%i');
+                                                ?>
+                                              <?php else: ?>
+
+                                              <?php endif; ?>
+
                                             </td>
 
                                           </tr>
@@ -400,7 +409,7 @@
                                         <?php $sumaHH=0;
                                               $sumaHM=0;
                                          ?>
-                                        <table class="table table-striped">
+                                        <table class="table table-striped table-bordered">
                                           <thead>
                                             <tr>
                                               <th>F. Interv.</th>

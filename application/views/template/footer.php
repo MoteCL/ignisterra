@@ -10,7 +10,8 @@
 <script type="text/javascript" src="<?php echo base_url('assets/vendor/tcg/voyager/assets/js/app.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/datatables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
-
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js'); ?>"></script>
 
 
 
@@ -48,6 +49,7 @@
 
         $('#datePicker').val(today);
         mostrar_mensaje();
+        $('#timeformatExample1').timepicker({ 'timeFormat': 'H:i:s' });
     });
 
 

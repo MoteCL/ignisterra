@@ -79,8 +79,24 @@
                                 </a>
                             </li>
                             <li class="active">
-                                <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerrada<span>
+                                <a href="<?php echo base_url('index.php/mantencion/listCerradas'); ?>" target="_self" style="color:"> <span class="icon voyager-check"></span> <span class="title">List Cerradas<span>
                                 </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#2-dropdown-element" data-toggle="collapse" aria-expanded="false" target="_self" style="color:"> <span class="icon voyager-file-text"></span> <span class="title">Reportes</span> </a>
+                                <div id="2-dropdown-element" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+
+                                            <li class="">
+                                                <a href="<?php echo base_url('index.php/supervisor/historialMaquina');  ?>" target="_self" style="color:">
+                        <span class="icon voyager-truck"></span> <span class="title">Historial Maquinas</span> </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
 
@@ -119,37 +135,43 @@
                                             <table id="tbl_personal" class="table table-hover dataTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>NroSolicitud</th>
+                                                        <th>Numero</th>
                                                         <th>Fecha</th>
+                                                        <th>Detalle</th>
                                                         <th>Maquina</th>
-                                                        <th>Urgente</th>
+                                                        <th>URG</th>
                                                         <th>Estado</th>
-                                                        <th>Cambiar estado</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                   <?php if ($datos): ?>
                                                     <?php foreach ($datos as $dato): ?>
                                                       <tr>
-                                                        <td>
+                                                        <td width="8%">
                                                           <?php echo $dato->NroSolicitud; ?>
                                                         </td>
-                                                        <td>
+                                                        <td width="10%">
                                                           <?php echo $dato->fechasolicitud; ?>
                                                         </td>
-                                                        <td>
+                                                        <td width="30%">
+                                                          <?php echo  mb_substr($dato -> detalle,0,40); ?>
+                                                        </td>
+                                                        <td width="15%">
                                                           <?php echo $dato->maquina; ?>
                                                         </td>
-                                                        <td>
+                                                        <td width="5%">
                                                           <?php echo $dato->urgente; ?>
                                                         </td>
-                                                        <td>
+                                                        <td width="8%">
                                                           <?php echo $dato->estado; ?>
                                                         </td>
-                                                        <td>
+                                                       <td width="25%">
                                                           <button type="button"  class="change badge badge-pill badge-success"data-toggle="modal" data-target="#myModalthree">
                                                             <i class="fas fa-unlock-alt" aria-hidden="true"></i> Re-Abrir Solicitud
-                                                          </button></td>
+                                                          </button>
+                                                          <a href="<?php echo base_url( '/index.php/supervisor/verMantencion/'.$dato->NroSolicitud); ?>"  class="badge badge-warning" >
+                                                          <i class="icon voyager-check">Ver Seguimiento </i></a></td>
                                                       </tr>
                                                     <?php endforeach; ?>
                                                   <?php endif; ?>
@@ -228,6 +250,8 @@
                       "data" :4
                     },{
                       "data" :5
+                    },{
+                      "data" :6
                     }],
             "language": idioma_espanol
 

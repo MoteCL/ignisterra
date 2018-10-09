@@ -1,6 +1,3 @@
-
-
-
 <?php foreach ($reports as $report): ?>
 
   <div class="panel panel-bordered">
@@ -16,13 +13,14 @@
 
         <?php $fechas = array(); ?>
 
-        <?php if ($report['seguimientos']): ?>
-        <?php
 
+        <?php
+          if ($report['seguimientos']) {
               foreach ($report['seguimientos'] as $seguimiento) {
                  $fechas[$seguimiento-> fechaSeguimiento][] = $seguimiento;
 
               }
+            }
               if ($report['actividades']) {
                 foreach ($report['actividades'] as $actividade) {
                    $fechas[$actividade-> fecha][] = $actividade;
@@ -35,7 +33,8 @@
         <?php $totalEnd=0; ?>
         <?php foreach ($fechas as $fecha): ?>
           <?php $countTable+=1; ?>
-        <table  class="table table-hover dataTable no-footer">
+
+        <table  class="table table-striped table-bordered no-footer">
         <thead>
             <tr>
                 <th>Fecha</th>
@@ -52,7 +51,7 @@
           <?php $subtotal=0; ?>
         <?php   foreach ($fecha as $seguimiento): ?>
         <tr>
-            <td style="	width:8%;">
+            <td width="8%">
                 <?php if (!empty($seguimiento-> fechaSeguimiento)): ?>
                   <?php echo  date('j M Y',strtotime($seguimiento-> fechaSeguimiento)); ?>
                   <?php else: ?>
@@ -61,10 +60,10 @@
 
 
             </td>
-            <td style="	width:5%;">
+            <td width="5%">
                 <?php echo $seguimiento-> NroSolicitud; ?>
             </td>
-            <td style="	width: 10%;">
+            <td width="10%">
                 <?php if (!empty($seguimiento->actividad)): ?>
                     <?php echo $seguimiento-> actividad; ?>
                 <?php else: ?>
@@ -73,7 +72,7 @@
 
 
             </td>
-            <td style="	width: 50%;">
+            <td width="50%">
                 <?php echo $seguimiento-> Comentario; ?>
             </td>
             <td style="	width: 10%;">
@@ -87,7 +86,7 @@
                  ?>
 
             </td>
-            <td style="	width: 10%;">
+            <td width="10%">
                 <?php
                 if (!empty($seguimiento->horaTermino)) {
                   $cadena2 = strtotime($seguimiento->horaTermino);
@@ -98,13 +97,13 @@
                  ?>
 
             </td>
-            <td style="	width: 10%;">
+            <td width=10%>
 
               <?php if (!empty($seguimiento->TotalHrs)): ?>
               <?php $totalsub= $seguimiento-> TotalHrs ?>
 
               <?php else: ?>
-             <?php $totalsub= $seguimiento-> total ?>
+             <?php $totalsub= $seguimiento-> HM ?>
               <?php endif; ?>
               <?php echo $totalsub; ?>
 
@@ -148,8 +147,8 @@
                 <h5>% Ocupacidad por fecha<p style="float:right;"><?php echo round($totalEnd/$subtotalEnd*100,2) ?></p> </h5>
             </div>
         </div>
-        <?php endif; ?>
-      
+
+
       </div>
   </div>
 

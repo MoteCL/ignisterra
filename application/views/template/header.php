@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/buttons.dataTables.min.css'); ?>">
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-select.min.css'); ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-multiselect.css'); ?>">
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.timepicker.css'); ?>">
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     <style>
